@@ -47,3 +47,21 @@ $('.banner_prev').on('click', function() {
 		});
 	}
 });
+
+
+//For serving Retina artwork
+var pixelRatio = !!window.devicePixelRatio ? window.devicePixelRatio : 1;
+
+if (pixelRatio > 1) {
+	$(window).on('load', function () {
+		img = document.getElementsByTagName("img");
+		var index;
+
+		for (index = 0; index < img.length; ++index) {
+			var src = img[index].src;
+			retina_src = src.replace('.', '@2x.');
+
+			img[index].src = retina_src;
+		}
+	});
+};
