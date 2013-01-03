@@ -59,7 +59,7 @@ if (pixelRatio > 1) {
 
 		for (index = 0; index < img.length; ++index) {
 			var src = img[index].src;
-			retina_src = src.replace('.', '@2x.');
+			retina_src = src.replace('.jpg', '@2x.jpg').replace('.png', '@2x.png').replace('.gif', '@2x.gif');
 
 			img[index].src = retina_src;
 		}
