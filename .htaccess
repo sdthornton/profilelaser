@@ -541,3 +541,13 @@ AddCharset utf-8 .atom .css .js .json .rss .vtt .xml
 <IfModule mod_php5.c>
   php_value session.cookie_httponly true
 </IfModule>
+
+
+# ----------------------------------------------------------------------
+# Serve Retina Images
+# ----------------------------------------------------------------------
+RewriteCond %{REQUEST_URI} ^/img
+RewriteCond %{HTTP_COOKIE} resolution=([^;,]+),2
+RewriteCond %{REQUEST_URI} !@2x\.(jpe?g|gif|png)$
+RewriteCond %{DOCUMENT_ROOT}/$1@2x.$2 -f
+RewriteRule ([^.]+)\.(jpe?g|gif|png)$ $1@2x.$2
