@@ -1,0 +1,9 @@
+@mixin border_bottom ($color:#ddd, $width:1px) {
+	border-bottom: solid $width $color;
+}
+
+@mixin opacity ($opacity) {
+	zoom: 1;
+	filter: alpha(opacity=$opacity*100);
+	opacity: $opacity;
+}
