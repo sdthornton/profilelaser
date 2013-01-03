@@ -131,6 +131,7 @@ nav {
 }
 
 .scroll_banner {
+    @include no_select;
     @include opacity(0);
     cursor: pointer;
     height: 400px;
