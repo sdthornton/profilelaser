@@ -1,5 +1,5 @@
-@mixin border_bottom ($color:#ddd, $width:1px) {
-	border-bottom: solid $width $color;
+@mixin border ($side, $color:#e6e6e6, $width:1px) {
+	border-#{$side}: solid $width $color;
 }
 
 @mixin opacity ($opacity) {
@@ -15,4 +15,23 @@
 	-moz-user-select: none;
 	-ms-user-select: none;
 	user-select: none;
+}
+
+@mixin open_sans {
+	font-family: "Open Sans", "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+}
+
+@mixin caslon {
+	font-family: "Adobe Caslon Pro", "Adobe Caslon Regular", "Adobe Caslon", "Adobe Garamond Pro", "Adobe Garamond Regular", "Adobe Garamond", "Palatino Linotype", "Times New Roman", Times, Garamond, serif;
+	font-style: italic;
+	font-weight: 300;
+}
+
+@mixin retina_background ($image, $type:png) {
+	background-image: url('../img/#{$image}.#{$type}');
+
+	@media only screen and (-webkit-min-device-pixel-ratio: 1.5),
+    only screen and (min-resolution: 144dpi) {
+    	background-image: url('../img/#{$image}@2x.#{$type}');
+    }
 }

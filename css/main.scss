@@ -4,8 +4,7 @@
 $white: #fff;
 $smoke: #f3f3f3;
 $black: #111;
-$border1: darken($white, 10%);
-$border2: darken($smoke, 10%);
+$color: #125a98;
 
 /* ==========================================================================
    HTML5 Boilerplate Base Styles
@@ -56,17 +55,53 @@ textarea {
     margin: 0.2em 0;
     background: #ccc;
     color: #000;
-    padding: 0.2em 0;
+    padding: 0.2em 0.5em;
+    position: absolute;
+    top: 0;
+    z-index: 999;
 }
 
 
 /* ==========================================================================
    Custom styles
+
+   Author:  Samuel Thornton
+   Date:    Janurary 1, 2013
+
+   Typsetting for Profile Laser:
+   http://modularscale.com/scale/?px1=20&px2=308&ra1=1.618&ra2=0
+   20px @ 1:1.618
+   308px @ 1:1.618
    ========================================================================== */
 
+* { -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box; }
+
 body {
-    font: 300 100%/1.5em "Gotham", "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+    font: 300 125%/1.618 "Open Sans", "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
     text-align: center;
+    text-rendering: optimizeLegibility;
+}
+
+h1 {
+    font-size: 2.618em;
+    font-weight: 800;
+    margin: 1em 0 0.618em;
+    text-transform: uppercase;
+}
+
+h2 {
+    @include caslon;
+    font-size: 1.618em;
+    margin: 0.618em 0 0.3em;
+}
+
+p {
+    font-size: 1em;
+    margin: 20px 0;
+}
+
+em {
+    @include caslon;
 }
 
 .container {
@@ -75,8 +110,14 @@ body {
     width: 984px;
 }
 
+.three_column {
+    float: left;
+    margin: 0 10px;
+    width: 308px;
+}
+
 header {
-    @include border_bottom($border1);
+    @include border(bottom);
     background: $white;
     overflow: hidden;
     position: fixed;
@@ -87,12 +128,16 @@ header {
 
     img {
         float: left;
-        padding: 25px 0;
+        margin: 25px 0;
+        padding-left: 10px
     }
 }
 
 nav {
     float: right;
+    font-size: 0.858em;
+    padding-right: 10px;
+    text-transform: uppercase;
 
     ul {
         margin: 0;
@@ -104,14 +149,15 @@ nav {
         display: inline-block;
         font-size: 1em;
         line-height: 100px;
-        margin: 0 0 0 30px;
+        margin: 0 0 0 32px;
 
         a {
             color: $black;
             text-decoration: none;
+            -webkit-transition: all .2s linear;
 
             &:hover {
-                text-decoration: underline;
+                color: $color;
             }
         }
     }
@@ -146,15 +192,64 @@ nav {
 }
 
 .banner_prev {
-    background: url('../img/banner_prev.png');
+    @include retina_background(banner_prev);
     background-size: 200px 400px;
     left: 0;
 }
 
 .banner_next {
-    background: url('../img/banner_next.png');
+    @include retina_background(banner_next);
     background-size: 200px 400px;
     right: 0;
+}
+
+.about {
+    background: #fff;
+    padding: 40px 0 45px;
+    width: 100%;
+
+    .container {
+        width: 700px;
+    }
+
+    h1 {
+        color: $color;
+        float: left;
+        line-height: 100%;
+        margin: 10px 20px 10px 10px;
+        text-align: right;
+        width: auto;
+    }
+
+    p {
+        margin: 0;
+        padding: 15px 0 10px 10px;
+        text-align: left;
+    }
+}
+
+.process {
+    @include border(top);
+    @include border(bottom);
+    background: $smoke;
+    width: 100%;
+}
+
+.process_icon {
+    @include retina_background(process_icons);
+    background-color: $color;
+    background-position: 0 0;
+    background-size: 924px 222px;
+    height: 222px;
+    width: 308px;
+
+    &#production {
+        background-position: -308px 0;
+    }
+
+    &#efficient {
+        background-position: -616px 0;
+    }
 }
 
 
