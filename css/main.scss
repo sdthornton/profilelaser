@@ -5,6 +5,8 @@ $white: #fff;
 $smoke: #f3f3f3;
 $black: #111;
 $color: #125a98;
+$dark_color: darken($color, 10%);
+$accent: #e18539;
 
 /* ==========================================================================
    HTML5 Boilerplate Base Styles
@@ -80,12 +82,17 @@ body {
     font: 300 125%/1.618 "Open Sans", "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
     text-align: center;
     text-rendering: optimizeLegibility;
+    
+    > section:not(.banner) {
+        padding: 52px 0;
+    }
 }
 
 h1 {
     font-size: 2.618em;
     font-weight: 800;
-    margin: 1em 0 0.618em;
+    margin: 0 0 11px;
+    margin: 0 0 .53rem;
     text-transform: uppercase;
 }
 
@@ -165,10 +172,11 @@ nav {
 
 .banner {
     height: 400px;
-    margin: 100px 0 0;
     overflow: hidden;
-    position: relative;
+    position: fixed;
+    top: 100px;
     width: 100%;
+    z-index: -1;
 
     img {
         left: 0;
@@ -204,8 +212,8 @@ nav {
 }
 
 .about {
-    background: #fff;
-    padding: 40px 0 45px;
+    background: $white;
+    margin-top: 500px;
     width: 100%;
 
     .container {
@@ -249,6 +257,20 @@ nav {
 
     &#efficient {
         background-position: -616px 0;
+    }
+}
+
+.talk {
+    background: $white;
+}
+
+.clients {
+    @include border(top, darken($color, 10%));
+    @include border(bottom, darken($color, 10%));
+    background: $color;
+
+    h1 {
+        color: $white;
     }
 }
 

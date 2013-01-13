@@ -65,3 +65,16 @@ if (pixelRatio > 1) {
 		}
 	});
 };
+
+
+$(window).scroll(function() {
+	var x = $(window).scrollTop();
+	if (x < 0) { x = 0 };
+	$('.banner').css('top', 100-x/16 + 'px');
+});
+
+/*$(window).scroll(function() {
+	var x = $(window).scrollTop();
+	if (x > 400) { $('.about').css({position: 'fixed', top: '100px'}); }
+	else { $('.about').css({position: 'absolute', top: '500px'}); }
+});*/
