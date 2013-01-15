@@ -3,21 +3,24 @@
 
 $white: #fff;
 $smoke: #f3f3f3;
+$light_gray: #999;
+$gray: #666;
+$dark_gray: #333;
 $black: #111;
 $color: #125a98;
 $dark_color: darken($color, 10%);
-$accent: #e18539;
+$accent: #da7d31;
 
 /* ==========================================================================
    HTML5 Boilerplate Base Styles
    ========================================================================== */
-
 html,
+body,
 button,
 input,
 select,
 textarea {
-    color: #222;
+    color: $gray;
 }
 
 ::-moz-selection {
@@ -63,7 +66,6 @@ textarea {
     z-index: 999;
 }
 
-
 /* ==========================================================================
    Custom styles
 
@@ -79,20 +81,29 @@ textarea {
 * { -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box; }
 
 body {
+    background: $black;
     font: 300 125%/1.618 "Open Sans", "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
     text-align: center;
     text-rendering: optimizeLegibility;
     
     > section:not(.banner) {
-        padding: 52px 0;
+        padding: 72.713px 0;
+        overflow: auto;
+        width: 100%;
     }
 }
 
+header, footer {
+    width: 100%;
+}
+
 h1 {
+    color: $dark_gray;
     font-size: 2.618em;
     font-weight: 800;
+    line-height: 100%;
     margin: 0 0 11px;
-    margin: 0 0 .53rem;
+    margin: 0 0 1.618rem;
     text-transform: uppercase;
 }
 
@@ -102,18 +113,45 @@ h2 {
     margin: 0.618em 0 0.3em;
 }
 
+h3 {
+    font-size: 1em;
+    margin: 0 0 .858em;
+    text-transform: uppercase;
+}
+
 p {
     font-size: 1em;
-    margin: 20px 0;
+    margin: 0;
+}
+
+strong {
+    color: $dark_gray;
 }
 
 em {
     @include caslon;
 }
 
+a {
+    @include transition(#{color, background});
+    color: $accent;
+    text-decoration: none;
+}
+
+nav ul {
+    margin: 0;
+    padding: 0;
+
+    li {
+        margin: 0;
+        padding: 0;
+    }
+}
+
 .container {
     margin: 0 auto;
     overflow: auto;
+    position: relative;
     width: 984px;
 }
 
@@ -123,58 +161,73 @@ em {
     width: 308px;
 }
 
+.button {
+    background: $accent;
+    border-radius: 8px;
+    color: $white;
+    display: block;
+    height: 60px;
+    line-height: 60px;
+    text-decoration: none;
+    width: 150px;
+
+    &:hover {
+        background: lighten($accent, 10%);
+    }
+}
+
+//Header and Nav
 header {
     @include border(bottom);
     background: $white;
     overflow: hidden;
     position: fixed;
-    max-height: 100px;
+    max-height: 80px;
     top: 0;
-    width: 100%;
     z-index: 99;
 
     img {
         float: left;
-        margin: 25px 0;
+        margin: 15px 0;
         padding-left: 10px
     }
-}
 
-nav {
-    float: right;
-    font-size: 0.858em;
-    padding-right: 10px;
-    text-transform: uppercase;
+    nav {
+        float: right;
+        font-size: 0.858em;
+        font-weight: 300;
+        padding-right: 10px;
+        text-transform: uppercase;
 
-    ul {
-        margin: 0;
-        padding: 0;
-    }
+        li {
+            color: $gray;
+            display: inline-block;
+            font-size: 1em;
+            line-height: 80px;
+            margin: 0 0 0 32px;
 
-    li {
-        color: $black;
-        display: inline-block;
-        font-size: 1em;
-        line-height: 100px;
-        margin: 0 0 0 32px;
+            a {
+                color: $gray;
+                text-decoration: none;
 
-        a {
-            color: $black;
-            text-decoration: none;
-            -webkit-transition: all .2s linear;
+                &:hover {
+                    color: $accent;
+                }
 
-            &:hover {
-                color: $color;
+                &.current_page {
+                    color: $accent;
+                }
             }
         }
     }
 }
 
+//Banner Section - Home Page
 .banner {
     height: 400px;
     overflow: hidden;
     position: fixed;
-    top: 100px;
+    top: 80px;
     width: 100%;
     z-index: -1;
 
@@ -211,9 +264,10 @@ nav {
     right: 0;
 }
 
+//About Us, Who We Are Section - Home Page
 .about {
     background: $white;
-    margin-top: 500px;
+    margin-top: 480px;
     width: 100%;
 
     .container {
@@ -221,21 +275,27 @@ nav {
     }
 
     h1 {
+        @include open_sans;
         color: $color;
         float: left;
         line-height: 100%;
-        margin: 10px 20px 10px 10px;
+        margin: 0 20px 10px 10px;
         text-align: right;
         width: auto;
     }
 
     p {
         margin: 0;
-        padding: 15px 0 10px 10px;
+        padding: 0 0 10px 10px;
         text-align: left;
+    }
+
+    .button {
+        float: right;
     }
 }
 
+//Process Section - Home Page
 .process {
     @include border(top);
     @include border(bottom);
@@ -246,116 +306,158 @@ nav {
 .process_icon {
     @include retina_background(process_icons);
     background-color: $color;
-    background-position: 0 0;
-    background-size: 924px 222px;
-    height: 222px;
-    width: 308px;
+    background-size: 615px 148px;
+    height: 148px;
+    margin: 20px auto 0;
+    width: 205px;
 
     &#production {
-        background-position: -308px 0;
+        background-position: -205px 0;
     }
 
     &#efficient {
-        background-position: -616px 0;
+        background-position: -410px 0;
     }
 }
 
-.talk {
+//Partners Section - Home Page
+.partners {
     background: $white;
+
+    .button {
+        display: inline-block;
+        margin: 10px 20px 0;
+    }
+}
+
+//Talk Section - Home Page
+.talk {
+    @include border(top);
+    background: $smoke;
+
+    .container {
+        overflow: hidden;
+        width: 700px;
+
+        .no-js & {
+            height: auto;
+        }
+    }
+}
+
+.talk_box {
+    @include opacity(0);
+    overflow: auto;
+    position: absolute;
+    top: 0;
+    visibility: hidden;
+    width: 700px;
+
+    &:first-child {
+        @include opacity(1.0);
+        position: relative;
+        visibility: visible;
+    }
+
+    p {
+        @include caslon;
+        font-size: 1.389em;
+    }
+
+    span {
+        float: right;
+    }
 }
 
 .clients {
     @include border(top, darken($color, 10%));
-    @include border(bottom, darken($color, 10%));
+    @include caslon;
     background: $color;
 
     h1 {
-        color: $white;
+        color: $dark_color;
+        color: rgba(0,0,0,.55);
+        font-size: 1.618em;
+        font-weight: 300;
+        margin: 0 0 1em;
+        text-transform: none;
+
+        &:after {
+            content: "...";
+        }
     }
 }
 
 
-/* ==========================================================================
-   Media Queries
-   ========================================================================== */
-
-@media only screen and (min-width: 35em) {
-    /* Style adjustments for viewports that meet the condition */
+//Gallery Page
+.gallery {
+    background: $smoke;
+    margin: 80px 0 0;
 }
 
-@media only screen and (-webkit-min-device-pixel-ratio: 1.5),
-       only screen and (min-resolution: 144dpi) {
-    /* Style adjustments for high resolution devices */
+#gallery_images img {
+    float: left;
+    margin: 10px;
+}
+
+.pagination {
+    margin: 10px 0 0;
+    padding: 0;
+
+    li {
+        display: inline-block;
+        margin: 0 4px;
+    }
+
+    .current_page a {
+        color: $black;
+        cursor: default;
+    }
 }
 
 
-/* ==========================================================================
-   Print styles
-   ========================================================================== */
+//Contact Page
+.contact_us {
+    background: $smoke;
+    margin-top: 80px;
+}
 
-@media print {
-    * {
-        background: transparent !important;
-        color: #000 !important; /* Black prints faster: h5bp.com/s */
-        box-shadow: none !important;
-        text-shadow: none !important;
+.map {
+    background: $color;
+    font-size: 0.858em;
+    height: 400px;
+}
+
+
+//Footer
+footer {
+    background: $black;
+    bottom: 0;
+    color: $smoke;
+    font-size: 0.8em;
+    padding: 52.358px 0 72.713px;
+    text-align: left;
+
+    nav, section {
+        float: left;
+        padding: 0 10px;
+        width: 20%;
     }
 
-    a,
-    a:visited {
-        text-decoration: underline;
+    .copyright {
+        padding: 0 10px;
+        width: 40%;
     }
 
-    a[href]:after {
-        content: " (" attr(href) ")";
-    }
+    a {
+        color: $light_gray;
+        display: inline-block;
 
-    abbr[title]:after {
-        content: " (" attr(title) ")";
-    }
-
-    /*
-     * Don't show links for images, or javascript/internal links
-     */
-
-    .ir a:after,
-    a[href^="javascript:"]:after,
-    a[href^="#"]:after {
-        content: "";
-    }
-
-    pre,
-    blockquote {
-        border: 1px solid #999;
-        page-break-inside: avoid;
-    }
-
-    thead {
-        display: table-header-group; /* h5bp.com/t */
-    }
-
-    tr,
-    img {
-        page-break-inside: avoid;
-    }
-
-    img {
-        max-width: 100% !important;
-    }
-
-    @page {
-        margin: 0.5cm;
-    }
-
-    p,
-    h2,
-    h3 {
-        orphans: 3;
-        widows: 3;
-    }
-
-    h2,
-    h3 {
-        page-break-after: avoid;
+        &:hover {
+            color: $smoke;
+        }
     }
 }
+
+@import "media";
+@import "print";

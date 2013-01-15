@@ -1,5 +1,5 @@
 @mixin border ($side, $color:#e6e6e6, $width:1px) {
-	border-#{$side}: solid $width $color;
+	
 }
 
 @mixin opacity ($opacity) {
@@ -17,8 +17,13 @@
 	user-select: none;
 }
 
+@mixin raleway {
+	font: 400 3.636em "Raleway", "Open Sans", "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+}
+
 @mixin open_sans {
-	font-family: "Open Sans", "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+	font: 800 2.618em "Open Sans", "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+	text-transform: uppercase;
 }
 
 @mixin caslon {
@@ -27,11 +32,22 @@
 	font-weight: 300;
 }
 
-@mixin retina_background ($image, $type:png) {
-	background-image: url('../img/#{$image}.#{$type}');
+@mixin retina_background ($image, $type:"png", $position:"0 0", $repeat:no-repeat) {
+	background: url('../img/#{$image}.#{$type}') $position $repeat;
 
 	@media only screen and (-webkit-min-device-pixel-ratio: 1.5),
     only screen and (min-resolution: 144dpi) {
     	background-image: url('../img/#{$image}@2x.#{$type}');
     }
+}
+
+@mixin transition ($property:all, $duration:.2s, $type:linear) {
+	-webkit-transition: $duration $type;
+	-moz-transition: $duration $type;
+	-o-transition: $duration $type;
+	transition: $duration $type;
+	-webkit-transition-property: $property;
+	-moz-transition-property: $property;
+	-o-transition-property: $property;
+	transition-property: $property;
 }
