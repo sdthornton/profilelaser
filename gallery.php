@@ -16,10 +16,9 @@
   <script>document.cookie='resolution='+Math.max(screen.width,screen.height)+("devicePixelRatio" in window ? ","+devicePixelRatio : ",1")+'; path=/';</script>
 
   <link href='http://fonts.googleapis.com/css?family=Open+Sans:300,600,800' rel='stylesheet' type='text/css'>
-  <link href='http://fonts.googleapis.com/css?family=Raleway:300,400' rel='stylesheet' type='text/css'>
 
-  <link rel="stylesheet" href="/css/main.css">
-  <script src="/js/vendor/modernizr-2.6.2.min.js"></script>
+  <link rel="stylesheet" href="css/main.css">
+  <script src="js/vendor/modernizr-2.6.2.min.js"></script>
 </head>
 <body class="gallery_page">
 
@@ -41,10 +40,10 @@
   <?php include '_footer.php'; ?>
 
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
-  <script>window.jQuery || document.write('<script src="/js/vendor/jquery-1.8.3.min.js"><\/script>')</script>
+  <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.8.3.min.js"><\/script>')</script>
 
-  <script src="/js/plugins.js"></script>
-  <script src="/js/main.js"></script>
+  <script src="js/plugins.js"></script>
+  <script src="js/main.js"></script>
 
   <!-- Google Analytics -->
   <script>
