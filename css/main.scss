@@ -1,4 +1,5 @@
 @import "normalize";
+@import "font-awesome";
 @import "lib_mixins";
 
 $white: #fff;
@@ -8,7 +9,6 @@ $gray: #666;
 $dark_gray: #333;
 $black: #111;
 $color: #125a98;
-$dark_color: darken($color, 10%);
 $accent: #da7d31;
 
 /* ==========================================================================
@@ -24,12 +24,12 @@ textarea {
 }
 
 ::-moz-selection {
-    background: #b3d4fc;
+    background: lighten($color, 50%);
     text-shadow: none;
 }
 
 ::selection {
-    background: #b3d4fc;
+    background: lighten($color, 50%);
     text-shadow: none;
 }
 
@@ -87,7 +87,7 @@ body {
     text-rendering: optimizeLegibility;
     
     > section:not(.banner) {
-        padding: 72.713px 0;
+        padding: 52.358px 0;
         overflow: auto;
         width: 100%;
     }
@@ -124,10 +124,6 @@ p {
     margin: 0;
 }
 
-strong {
-    color: $dark_gray;
-}
-
 em {
     @include caslon;
 }
@@ -157,8 +153,13 @@ nav ul {
 
 .three_column {
     float: left;
-    margin: 0 10px;
-    width: 308px;
+    padding: 0 10px;
+    width: 33.33%;
+}
+
+.sub_head {
+    margin: 0 auto;
+    width: 580px;
 }
 
 .button {
@@ -178,13 +179,17 @@ nav ul {
 
 //Header and Nav
 header {
-    @include border(bottom);
     background: $white;
+    box-shadow: 0 1px 2px rgba(0,0,0,.1);
     overflow: hidden;
     position: fixed;
     max-height: 80px;
     top: 0;
     z-index: 99;
+
+    &.lt-ie9 {
+        @include border(bottom);
+    }
 
     img {
         float: left;
@@ -213,9 +218,14 @@ header {
                 &:hover {
                     color: $accent;
                 }
+            }
 
-                &.current_page {
-                    color: $accent;
+            &.current_page a {
+                @include border(top, $color, 5px);
+                padding-top: 23px;
+
+                &:hover {
+                    color: $gray;
                 }
             }
         }
@@ -267,11 +277,12 @@ header {
 //About Us, Who We Are Section - Home Page
 .about {
     background: $white;
+    box-shadow: 0 0 15px rgba(0,0,0,.35);
     margin-top: 480px;
     width: 100%;
 
     .container {
-        width: 700px;
+        width: 580px;
     }
 
     h1 {
@@ -279,15 +290,19 @@ header {
         color: $color;
         float: left;
         line-height: 100%;
-        margin: 0 20px 10px 10px;
+        margin: 0 20px 0 0;
         text-align: right;
         width: auto;
     }
 
     p {
         margin: 0;
-        padding: 0 0 10px 10px;
+        padding: 10px 0;
         text-align: left;
+    
+        &:first-of-type {
+            padding-top: 0;
+        }
     }
 
     .button {
@@ -301,22 +316,28 @@ header {
     @include border(bottom);
     background: $smoke;
     width: 100%;
+
+    h3 {
+        @include caslon;
+        font-size: 1.1em;
+        text-transform: none;
+    }
 }
 
 .process_icon {
     @include retina_background(process_icons);
-    background-color: $color;
-    background-size: 615px 148px;
-    height: 148px;
-    margin: 20px auto 0;
-    width: 205px;
+    background-size: 675px 150px;
+    border-radius: 10px;
+    height: 150px;
+    margin: 44.94px auto 0;
+    width: 225px;
 
     &#production {
-        background-position: -205px 0;
+        background-position: -225px 0;
     }
 
     &#efficient {
-        background-position: -410px 0;
+        background-position: -450px 0;
     }
 }
 
@@ -324,34 +345,48 @@ header {
 .partners {
     background: $white;
 
+    .container {
+        width: 580px;
+    }
+
     .button {
         display: inline-block;
         margin: 10px 20px 0;
     }
 }
 
-//Talk Section - Home Page
-.talk {
-    @include border(top);
-    background: $smoke;
+//Clients Section - Home Page
+.clients {
+    @include border(top, darken($color, 10%));
+    background: $color;
+    color: #fff;
 
-    .container {
-        overflow: hidden;
-        width: 700px;
+    h1 {
+        color: $white;
+    }
 
-        .no-js & {
-            height: auto;
-        }
+    img {
+        margin: 20px 0 45px;
+    }
+}
+
+#talk_box_container {
+    overflow: hidden;
+    width: 806px;
+
+    .no-js & {
+        height: auto;
     }
 }
 
 .talk_box {
     @include opacity(0);
     overflow: auto;
+    padding: 0;
     position: absolute;
     top: 0;
     visibility: hidden;
-    width: 700px;
+    width: 806px;
 
     &:first-child {
         @include opacity(1.0);
@@ -366,25 +401,6 @@ header {
 
     span {
         float: right;
-    }
-}
-
-.clients {
-    @include border(top, darken($color, 10%));
-    @include caslon;
-    background: $color;
-
-    h1 {
-        color: $dark_color;
-        color: rgba(0,0,0,.55);
-        font-size: 1.618em;
-        font-weight: 300;
-        margin: 0 0 1em;
-        text-transform: none;
-
-        &:after {
-            content: "...";
-        }
     }
 }
 
@@ -420,12 +436,126 @@ header {
 .contact_us {
     background: $smoke;
     margin-top: 80px;
+
+    h2 {
+        @include open_sans;
+        font-size: 1.618em;
+        font-style: italic;
+        margin: 0 0 20px;
+    }
 }
 
-.map {
+#map {
     background: $color;
     font-size: 0.858em;
     height: 400px;
+    margin: 52.358px 0;
+    padding: 0;
+}
+
+.general_contact {
+    float: left;
+    padding-right: 35px;
+    text-align: left;
+    width: 378px;
+
+    a {
+        color: $gray;
+    }
+
+    [class^="icon-"], [class*=" icon-"] {
+        display: inline-block;
+        font-size: 1.389em;
+        padding-top: 5px;
+        vertical-align: top;
+    }
+
+    .icon-envelope-alt {
+        font-size: 1em;
+    }
+
+    .contact_text {
+        display: inline-block;
+        padding: 0 0 11px 15px;
+    }
+}
+
+.contact_form {
+    float: left;
+    padding: 0;
+    width: 606px;
+}
+
+#errors, #success {
+    display: none;
+
+    &.visible {
+        display: block; 
+    }
+}
+
+#name, label[for="name"] {
+    position: absolute;
+    visibility: hidden;
+}
+
+#contact_form {
+    div {
+        float: left;
+        overflow: auto;
+        padding: 5px 10px 10px;
+        width: 50%;
+    }
+
+    .anti_robot {
+        height: 0;
+        position: absolute;
+        visibility: hidden;
+        width: 0;
+    }
+
+    .message_div {
+        width: 100%;
+    }
+
+    label {
+        clear: both;
+        float: left;
+        font-size: 0.858em;
+        padding-bottom: 5px;
+    }
+
+    input:not(#submit), textarea {
+        border: none;
+        clear: both;
+        float: left;
+        padding: 10px;
+        width: 100%;
+    }
+
+    textarea {
+        height: 150px;
+    }
+}
+
+
+.req-field-desc {
+    float: left;
+    font-size: 0.858em;
+    margin-left: 10px;
+}
+
+#submit {
+    @include transition;
+    background: $color;
+    border: none;
+    clear: both;
+    float: right;
+    margin-right: 10px;
+
+    &:hover {
+        background: darken($color, 5%);
+    }
 }
 
 
@@ -434,7 +564,7 @@ footer {
     background: $black;
     bottom: 0;
     color: $smoke;
-    font-size: 0.8em;
+    font-size: 0.858em;
     padding: 52.358px 0 72.713px;
     text-align: left;
 

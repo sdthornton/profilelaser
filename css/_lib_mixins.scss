@@ -1,5 +1,5 @@
 @mixin border ($side, $color:#e6e6e6, $width:1px) {
-	
+	border-#{$side}: solid $width $color;
 }
 
 @mixin opacity ($opacity) {

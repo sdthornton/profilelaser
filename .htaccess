@@ -421,7 +421,7 @@ FileETag None
 # same name does not exist.
 # webmasterworld.com/apache/3808792.htm
 
-Options -MultiViews
+Options +MultiViews
 
 
 # ----------------------------------------------------------------------
