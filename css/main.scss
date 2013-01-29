@@ -263,13 +263,13 @@ header {
 }
 
 .banner_prev {
-    @include retina_background(banner_prev);
+    background: url('../img/banner_prev.png') 0 0 no-repeat;
     background-size: 200px 400px;
     left: 0;
 }
 
 .banner_next {
-    @include retina_background(banner_next);
+    background: url('../img/banner_next.png') 0 0 no-repeat;
     background-size: 200px 400px;
     right: 0;
 }
@@ -325,7 +325,7 @@ header {
 }
 
 .process_icon {
-    @include retina_background(process_icons);
+    background: url('../img/process_icons.png') 0 0 no-repeat;
     background-size: 675px 150px;
     border-radius: 10px;
     height: 150px;
@@ -551,6 +551,7 @@ header {
     border: none;
     clear: both;
     float: right;
+    margin-bottom: 5px;
     margin-right: 10px;
 
     &:hover {
