@@ -301,7 +301,8 @@ if (contact_page) {
 /* ==========================================================================
    Automatically Fill in Location on Contact Page
    ========================================================================== */
-if (contact_page && navigator.geolocation) {
+var locationField = document.getElementById('location').value === '';
+if (contact_page && navigator.geolocation && locationField) {
 	window.onload = function() {
 		navigator.geolocation.getCurrentPosition(function(position) {
 			"use strict";

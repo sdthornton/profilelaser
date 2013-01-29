@@ -483,6 +483,7 @@ header {
 .contact_form {
     float: left;
     padding: 0;
+    text-align: left;
     width: 606px;
 }
 
@@ -508,10 +509,9 @@ header {
     }
 
     .anti_robot {
-        height: 0;
+        @include opacity(0);
         position: absolute;
         visibility: hidden;
-        width: 0;
     }
 
     .message_div {
@@ -554,7 +554,7 @@ header {
     margin-right: 10px;
 
     &:hover {
-        background: darken($color, 5%);
+        background: lighten($color, 10%);
     }
 }
 
