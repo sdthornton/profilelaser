@@ -67,7 +67,7 @@
             endif;
             ?>
         </ul>
-        <p id="success" class="<?php echo ($sr && $cf['form_ok']) ? 'visible' : ''; ?>">Thanks for your message! We will get back to you ASAP!</p>
+        <p id="success" class="<?php echo ($sr && $cf['form_ok']) ? 'visible' : ''; ?>">Thanks for your message! We will get back to you ASAP.</p>
         <form id="contact_form" method="post" action="contact_form.php">
 
           <div class="anti_robot"><label for="name">This field is to protect against robots. If you are a human, simply leave this field blank.</label>

@@ -464,6 +464,9 @@ formSubmitButton.on('click', function() {
 				showNotice('success');
 				form.get(0).reset();
 				loading.hide();
+				var hideSuccess = setTimeout(function() {
+					$('#success').fadeOut();
+				}, 3000);
 			}
 		});
 	}
