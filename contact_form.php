@@ -11,52 +11,59 @@ if( isset($_POST) ){
     //$time = date('H:i:s');
     
     //form data
-    $name = $_POST['name']; 
+    $nospam = $_POST['name'];
+    $name = $_POST['real_name'];
+    $company = $_POST['company'];
     $email = $_POST['email'];
-    $telephone = $_POST['telephone'];
-    $enquiry = $_POST['enquiry'];
+    $phone = $_POST['phone'];
     $message = $_POST['message'];
+    $location = $_POST['location'];
     
     //validate form data
-    
-    //validate name is not empty
-    if(empty($name)){
+    if(!empty($nospam)) {
+        $formok = false;
+        $errors[] = "Sorry robot, no spamming today!";
+    }
+
+    if(empty($name)) {
         $formok = false;
         $errors[] = "You have not entered a name";
     }
-    
-    //validate email address is not empty
-    if(empty($email)){
+
+    if(empty($email)) {
         $formok = false;
         $errors[] = "You have not entered an email address";
     //validate email address is valid
-    }elseif(!filter_var($email, FILTER_VALIDATE_EMAIL)){
+    } elseif(!filter_var($email, FILTER_VALIDATE_EMAIL)){
         $formok = false;
         $errors[] = "You have not entered a valid email address";
     }
-    
-    //validate message is not empty
-    if(empty($message)){
+
+    if(empty($message)) {
         $formok = false;
         $errors[] = "You have not entered a message";
-    }
-    //validate message is greater than 20 charcters
-    elseif(strlen($message) < 20){
+    } elseif(strlen($message) < 20) {
         $formok = false;
         $errors[] = "Your message must be greater than 20 characters";
     }
+
+    if(empty($location)) {
+        $formok = false;
+        $errors[] = "Please enter your location (just the city and state)";
+    }
     
     //send email if all is ok
-    if($formok){
+    if($formok) {
         $headers = "From: website@website.com" . "\r\n";
         $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
         
         $emailbody = "<p>You have recieved a new message from the enquiries form on your website.</p>
-                      <p><strong>Name: </strong> {$name} </p>
-                      <p><strong>Email Address: </strong> {$email} </p>
-                      <p><strong>Telephone: </strong> {$telephone} </p>
-                      <p><strong>Enquiry: </strong> {$enquiry} </p>
-                      <p><strong>Message: </strong> {$message} </p>";
+                      <p><strong>Name:</strong> {$name}<br>
+                      <strong>Company:</strong> {$company}<br>
+                      <strong>Email Address:</strong> {$email}<br>
+                      <strong>Phone Number:</strong> {$phone}<br>
+                      <strong>Location:</strong> {$location}</p>
+                      <p><strong>Message: </strong> {$message}</p>";
         
         mail("sdthornton@live.com","New Enquiry",$emailbody,$headers);
         
@@ -65,11 +72,13 @@ if( isset($_POST) ){
     //what we need to return back to our form
     $returndata = array(
         'posted_form_data' => array(
+            'nospam' => $nospam,
             'name' => $name,
+            'company' => $company,
             'email' => $email,
-            'telephone' => $telephone,
-            'enquiry' => $enquiry,
-            'message' => $message
+            'phone' => $phone,
+            'message' => $message,
+            'location' => $location
         ),
         'form_ok' => $formok,
         'errors' => $errors
@@ -77,7 +86,7 @@ if( isset($_POST) ){
         
     
     //if this is not an ajax request
-    if(empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) !== 'xmlhttprequest'){
+    if(empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) !== 'xmlhttprequest') {
         //set session variables
         session_start();
         $_SESSION['cf_returndata'] = $returndata;

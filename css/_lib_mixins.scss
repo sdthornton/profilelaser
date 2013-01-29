@@ -32,15 +32,6 @@
 	font-weight: 300;
 }
 
-@mixin retina_background ($image, $type:"png", $position:"0 0", $repeat:no-repeat) {
-	background: url('../img/#{$image}.#{$type}') $position $repeat;
-
-	@media only screen and (-webkit-min-device-pixel-ratio: 1.5),
-    only screen and (min-resolution: 144dpi) {
-    	background-image: url('../img/#{$image}@2x.#{$type}');
-    }
-}
-
 @mixin transition ($property:all, $duration:.2s, $type:linear) {
 	-webkit-transition: $duration $type;
 	-moz-transition: $duration $type;
