@@ -1,96 +1,105 @@
 <?php
-if(isset($_POST)) {
-	//Form Validation
-	$formok = true;
-	$errors = array();
+if( isset($_POST) ){
+    
+    //form validation vars
+    $formok = true;
+    $errors = array();
+    
+    //sumbission data
+    $ipaddress = $_SERVER['REMOTE_ADDR'];
+    //$date = date('d/m/Y');
+    //$time = date('H:i:s');
+    
+    //form data
+    $nospam = $_POST['name'];
+    $name = $_POST['real_name'];
+    $company = $_POST['company'];
+    $email = $_POST['email'];
+    $phone = $_POST['phone'];
+    $message = $_POST['message'];
+    $location = $_POST['location'];
+    
+    //validate form data
+    if(!empty($nospam)) {
+        $formok = false;
+        $errors[] = "Sorry robot, no spamming for you today! If you are not a robot, but are in fact human, and you are seeing this error, it means you have accidentally filled out our hidden anti spam field. Simply leave that blank and try to resubmit the form.";
+    }
 
-	//Submission Data
-	//$ipaddress = $_SERVER['REMOTE_ADDR'];
-	//$date = date('d/m/y');
-	//$time = date('H:i:s');
+    if(empty($name)) {
+        $formok = false;
+        $errors[] = "You have not entered a name";
+    }
 
-	//Form Data
-	$nospam = $_POST['name'];
-	$name = $_POST['real_name'];
-	$from = $_POST['email'];
-	$to = "sdthornton@live.com";
-	$company = $_POST['company'];
-	$phone = $_POST['phone'];
-	$location = $_POST['location'];
-	$message = $_POST['message'];
-	$subject = "Hello world";
+    if(empty($email)) {
+        $formok = false;
+        $errors[] = "You have not entered an email address";
+    //validate email address is valid
+    } elseif(!filter_var($email, FILTER_VALIDATE_EMAIL)){
+        $formok = false;
+        $errors[] = "You have not entered a valid email address";
+    }
 
-	//Validations
-	if(isset($nospam)) {
-		$formok = false;
-		$errors[] = "Sorry Mr. Robot, but no spamming for you today!";
-	}
+    if(empty($message)) {
+        $formok = false;
+        $errors[] = "You have not entered a message";
+    } elseif(strlen($message) < 20) {
+        $formok = false;
+        $errors[] = "Your message must be greater than 20 characters";
+    }
 
-	if(empty($name)) {
-		$formok = false;
-		$errors[] = "Please enter your name.";
-	}
+    if(empty($location)) {
+        $formok = false;
+        $errors[] = "Please enter your location (just the city and state)";
+    }
 
-	if(empty($email)) {
-		$formok = false;
-		$errors[] = "Please enter an email address.";
-	} elseif(!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-		$formok = false;
-		$errors[] = "Please enter a valid email address.";
-	}
+    if(empty($company)) {
+        $company = 'None provided.';
+    }
 
-	if(empty($location)) {
-		$formok = false;
-		$errors[] = "Please enter your location.";
-	}
-
-	if(empty($message)) {
-		$formok = false;
-		$errors[] = "Please write us a message.";
-	} elseif(strlen($message) < 20) {
-		$formok = false;
-		$errors[] = "Please leave a message greater than 20 characters.";
-	}
-
-	//Send Email (after validation)
-	if($formok) {
-		$headers = "From: {$from}" . "\r\n";
-		$headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
-		$emailbody = "
-			<p>You've received a new message from the contact section of your website.</p>
-			<p><strong>Name:</strong> {$name}</p>
-			<strong>Company:</strong> {$company}<br>
-			<strong>Email Address:</strong> {$from}<br>
-			<strong>Phone Number:</strong> {$phone}<br>
-			<strong>Location:</strong> {$location}</p>
-			<p>{$message}</p>
-			";
-			//<p><small>Message sent from IP Address: {$ipaddress} on {$date} at {$time}.</small></p>";
-		mail($to,$subject,$emailbody,$headers);
-	}
-
-	//Return Back to Form
-	$returndata = array(
-		'posted_from_data' => array(
-			'name' => $real_name,
-			'comapny' => $company,
-			'email' => $email,
-			'phone' => $phone,
-			'location' => $location,
-			'message' => $message
-		),
-		'form_ok' => $form_ok,
-		'errors' => $errors
-	);
-
-	//If Not an AJAX Request
-	if(empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) !== 'xmlhttprequest') {
-		//Set Session Variable
-		session_start();
-		$_SESSION['cf_returndata'] = $returndata;
-
-		//Redirect Back to Form
-		header('location: ' . $_SERVER['HTTP_REFERER']);
-	}
+    if(empty($phone)) {
+        $phone = 'None provided.';
+    }
+    
+    //send email if all is ok
+    if($formok) {
+        $headers = "From: website@website.com" . "\r\n";
+        $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
+        
+        $emailbody = "<p>You have recieved a new message from the enquiries form on your website.</p>
+                      <p><strong>Name:</strong> {$name}<br>
+                      <strong>Company:</strong> {$company}<br>
+                      <strong>Email Address:</strong> {$email}<br>
+                      <strong>Phone Number:</strong> {$phone}<br>
+                      <strong>Location:</strong> {$location}</p>
+                      <p><strong>Message: </strong> {$message}</p>";
+        
+        mail("sdthornton@live.com","New Enquiry",$emailbody,$headers);
+        
+    }
+    
+    //what we need to return back to our form
+    $returndata = array(
+        'posted_form_data' => array(
+            'nospam' => $nospam,
+            'name' => $name,
+            'company' => $company,
+            'email' => $email,
+            'phone' => $phone,
+            'message' => $message,
+            'location' => $location
+        ),
+        'form_ok' => $formok,
+        'errors' => $errors
+    );
+        
+    
+    //if this is not an ajax request
+    if(empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) !== 'xmlhttprequest') {
+        //set session variables
+        session_start();
+        $_SESSION['cf_returndata'] = $returndata;
+        
+        //redirect back to form
+        header('location: ' . $_SERVER['HTTP_REFERER']);
+    }
 }
-?>

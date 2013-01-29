@@ -263,13 +263,13 @@ header {
 }
 
 .banner_prev {
-    @include retina_background(banner_prev);
+    background: url('../img/banner_prev.png') 0 0 no-repeat;
     background-size: 200px 400px;
     left: 0;
 }
 
 .banner_next {
-    @include retina_background(banner_next);
+    background: url('../img/banner_next.png') 0 0 no-repeat;
     background-size: 200px 400px;
     right: 0;
 }
@@ -325,7 +325,7 @@ header {
 }
 
 .process_icon {
-    @include retina_background(process_icons);
+    background: url('../img/process_icons.png') 0 0 no-repeat;
     background-size: 675px 150px;
     border-radius: 10px;
     height: 150px;
@@ -483,6 +483,7 @@ header {
 .contact_form {
     float: left;
     padding: 0;
+    text-align: left;
     width: 606px;
 }
 
@@ -508,10 +509,9 @@ header {
     }
 
     .anti_robot {
-        height: 0;
+        @include opacity(0);
         position: absolute;
         visibility: hidden;
-        width: 0;
     }
 
     .message_div {
@@ -523,6 +523,11 @@ header {
         float: left;
         font-size: 0.858em;
         padding-bottom: 5px;
+    }
+
+    .required {
+        color: #a00;
+        font-size: 0.8em;
     }
 
     input:not(#submit), textarea {
@@ -538,11 +543,35 @@ header {
     }
 }
 
+#errors {
+    font-size: 0.858em;
+    list-style: none;
+    margin: 0 0 7px;
+    padding: 0 10px;
+
+    li:not(#info) {
+        color: #a00;
+        padding: 5px;
+
+        &:before {
+            content: "\2022";
+            font-weight: bold;
+            padding-right: 10px;
+        }
+    }
+
+    #info {
+        font-style: italic;
+        font-weight: bold;
+        list-style: none;
+    }
+}
 
 .req-field-desc {
+    color: #a00;
     float: left;
-    font-size: 0.858em;
-    margin-left: 10px;
+    font-size: 0.8em;
+    margin: 10px 0 0 10px;
 }
 
 #submit {
@@ -551,10 +580,11 @@ header {
     border: none;
     clear: both;
     float: right;
+    margin-bottom: 5px;
     margin-right: 10px;
 
     &:hover {
-        background: darken($color, 5%);
+        background: lighten($color, 10%);
     }
 }
 

@@ -1,3 +1,5 @@
+<?php session_start(); ?>
+
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
@@ -47,56 +49,55 @@
           //init variables
           $cf = array();
           $sr = false;
-          if(isset($_SESSION['cf_returndata'])) {
+          
+          if(isset($_SESSION['cf_returndata'])){
             $cf = $_SESSION['cf_returndata'];
             $sr = true;
           }
         ?>
-
-        <ul id="errors" class="<?php echo ($sr && $cf['form_ok']) ? 'visible' : ''; ?>">
-          <li id="error_info">Sorry, there were some problems with your submission:</li>
-          <?php
-          if(isset($cf['errors']) && count($cf['errors']) > 0) :
-            foreach ($cf['errors'] as $error) :
-          ?>
-          <li><?php echo $error ?></li>
-          <?php
-            endforeach;
-          endif;
-          ?>
+        <ul id="errors" class="<?php echo ($sr && !$cf['form_ok']) ? 'visible' : ''; ?>">
+            <li id="info">Sorry, there were problems with your form submission:</li>
+            <?php 
+            if(isset($cf['errors']) && count($cf['errors']) > 0) :
+              foreach($cf['errors'] as $error) :
+            ?>
+            <li><?php echo $error ?></li>
+            <?php
+              endforeach;
+            endif;
+            ?>
         </ul>
-
-        <p id="success" class="<?php echo ($sr && $cf['form_ok']) ? 'visible' : ''; ?>">Thanks for your message! We will get back to you ASAP!</p> 
-
+        <p id="success" class="<?php echo ($sr && $cf['form_ok']) ? 'visible' : ''; ?>">Thanks for your message! We will get back to you ASAP!</p>
         <form id="contact_form" method="post" action="contact_form.php">
 
           <div class="anti_robot"><label for="name">This field is to protect against robots. If you are a human, simply leave this field blank.</label>
-          <input type="text" id="name" name="name"></div>
+          <input type="text" id="name" name="name" value="<?php echo ($sr && !$cf['form_ok']) ? $cf['posted_form_data']['nospam'] : '' ?>"></div>
 
           <div><label for="real_name">Name: <span class="required">*</span></label>
-          <input type="text" id="real_name" name="real_name" required></div>
+          <input type="text" id="real_name" name="real_name" value="<?php echo ($sr && !$cf['form_ok']) ? $cf['posted_form_data']['name'] : '' ?>" required></div>
 
           <div><label for="company">Company:</label>
-          <input type="text" id="company" name="company"></div>
+          <input type="text" id="company" name="company" value="<?php echo ($sr && !$cf['form_ok']) ? $cf['posted_form_data']['company'] : '' ?>"></div>
 
           <div><label for="email">Email: <span class="required">*</span></label>
-          <input type="email" id="email" name="email" required></div>
+          <input type="email" id="email" name="email" value="<?php echo ($sr && !$cf['form_ok']) ? $cf['posted_form_data']['email'] : '' ?>" required></div>
 
           <div><label for="phone">Phone Number:</label>
-          <input type="tel" id="phone" name="phone"></div>
+          <input type="tel" id="phone" name="phone" value="<?php echo ($sr && !$cf['form_ok']) ? $cf['posted_form_data']['phone'] : '' ?>"></div>
 
           <div class="message_div"><label for="message">Message: <span class="required">*</span></label>
-          <textarea id="message" name="message" required data-minlength="20"></textarea></div>
+          <textarea id="message" name="message" required data-minlength="20"><?php echo ($sr && !$cf['form_ok']) ? $cf['posted_form_data']['message'] : '' ?></textarea></div>
 
           <div><label for="location">Location (City and State): <span class="required">*</span></label>
-          <input type="text" id="location" name="location" required></div>
+          <input type="text" id="location" name="location" value="<?php echo ($sr && !$cf['form_ok']) ? $cf['posted_form_data']['location'] : '' ?>" required></div>
 
-          <span class="loading"></span>
+          <span id="loading"></span>
 
           <input type="submit" value="Submit" id="submit" class="button">
 
           <p class="req-field-desc"><span class="required">*</span> indicates a required field</p>
         </form>
+        <?php unset($_SESSION['cf_returndata']); ?>
       </section>
     </div>
   </section>
