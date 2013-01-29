@@ -22,7 +22,7 @@ if( isset($_POST) ){
     //validate form data
     if(!empty($nospam)) {
         $formok = false;
-        $errors[] = "Sorry robot, no spamming today!";
+        $errors[] = "Sorry robot, no spamming for you today! If you are not a robot, but are in fact human, and you are seeing this error, it means you have accidentally filled out our hidden anti spam field. Simply leave that blank and try to resubmit the form.";
     }
 
     if(empty($name)) {
@@ -50,6 +50,14 @@ if( isset($_POST) ){
     if(empty($location)) {
         $formok = false;
         $errors[] = "Please enter your location (just the city and state)";
+    }
+
+    if(empty($company)) {
+        $company = 'None provided.';
+    }
+
+    if(empty($phone)) {
+        $phone = 'None provided.';
     }
     
     //send email if all is ok

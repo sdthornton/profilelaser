@@ -325,6 +325,176 @@ if (contact_page && navigator.geolocation && locationField) {
 
 
 /* ==========================================================================
+   AJAX for Contact Page Submission
+   ========================================================================== */
+var form = $('#contact_form'),
+	formElements = form.find('input[type!="submit"],textarea'),
+	formSubmitButton = form.find('[type="submit"]'),
+	errorNotice = $('#errors'),
+	successNotice = $('#success'),
+	loading = $('#loading'),
+	errorMessages = {
+		nospam: 'Sorry robot, no spamming for you today! If you are not a robot, but are in fact human, and you are seeing this error, it means you have accidentally filled out our hidden anti spam field. Simply leave that blank and try to resubmit the form.',
+		required: ' is a required field',
+		realname: 'Please enter your name',
+		email: 'Please enter an email address',
+		bademail: 'Please enter a valid email address',
+		message: 'Please write us a message',
+		minlength: ' must be greater than '
+	}
+
+formSubmitButton.on('click', function() {
+	var formok = true,
+		errors = [];
+		
+	formElements.each(function() {
+		var name = this.name,
+			nameUC = name.ucfirst(),
+			value = this.value,
+			type = this.getAttribute('type'),
+			isRequired = this.getAttribute('required'),
+			minLength = this.getAttribute('data-minlength');
+		
+		//if HTML5 formfields are supported			
+		if( (this.validity) && !this.validity.valid ){
+			formok = false;
+			
+			console.log(this.validity);
+			
+			if(this.validity.valueMissing) {
+				if (this.name == 'real_name') {
+					errors.push(errorMessages.realname);
+				} else if (this.name == 'email') {
+					errors.push(errorMessages.email);
+				} else if (this.name == 'message') {
+					errors.push(errorMessages.message);
+				} else if (this.name == 'location') {
+					errors.push(errorMessages.location);
+				} else {
+					errors.push(nameUC + errorMessages.required);
+				}
+			} else if(this.validity.typeMismatch && type == 'email') {
+				errors.push(errorMessages.bademail);
+			}
+			
+			this.focus();
+			return false;
+		}
+		
+		//if this is a required element
+		if(isRequired) {	
+			//if HTML5 input required attribute is not supported
+			if(!Modernizr.input.required) {
+				if(value == '') {
+					this.focus();
+					formok = false;
+
+					if (this.name == 'real_name') {
+						errors.push(errorMessages.realname);
+					} else if (this.name == 'email') {
+						errors.push(errorMessages.email);
+					} else if (this.name == 'message') {
+						errors.push(errorMessages.message);
+					} else if (this.name == 'location') {
+						errors.push(errorMessages.location);
+					} else {
+						errors.push(nameUC + errorMessages.required);
+					}
+
+					return false;
+				}
+			}
+		}
+
+		//if HTML5 input email input is not supported
+		if(type == 'email') { 	
+			if(!Modernizr.inputtypes.email) { 
+				var emailRegEx = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/; 
+			 	if( !emailRegEx.test(value) ){	
+					this.focus();
+					formok = false;
+					errors.push(errorMessages.bademail);
+					return false;
+				}
+			}
+		}
+		
+		//check minimum lengths
+		if(minLength) {
+			if (value.length < parseInt(minLength) ) {
+				this.focus();
+				formok = false;
+				errors.push(nameUC + errorMessages.minlength + minLength + ' characters');
+				return false;
+			}
+		}
+
+		//Spam blocker
+		if(name == 'name') {
+			if (this.value != '') {
+				formok = false;
+				errors.push(errorMessages.nospam);
+				return false;
+			}
+		}
+	});
+	
+	if(!formok) {
+		//animate required field notice
+		$('.req-field-desc')
+			.stop()
+			.animate({
+				marginLeft: '+=' + 5
+			},150,function(){
+				$(this).animate({
+					marginLeft: '-=' + 5
+				},150);
+			});
+		
+		//show error message 
+		showNotice('error',errors);
+
+	} else {
+		loading.show();
+		$.ajax({
+			url: form.attr('action'),
+			type: form.attr('method'),
+			data: form.serialize(),
+			success: function(){
+				showNotice('success');
+				form.get(0).reset();
+				loading.hide();
+			}
+		});
+	}
+	
+	return false; //this stops submission off the form and also stops browsers showing default error messages
+	
+});
+
+//other misc functions
+function showNotice(type,data)
+{
+	if(type == 'error'){
+		successNotice.hide();
+		errorNotice.find("li[id!='info']").remove();
+		for(x in data){
+			errorNotice.append('<li>'+data[x]+'</li>');	
+		}
+		errorNotice.show();
+	}
+	else {
+		errorNotice.hide();
+		successNotice.show();	
+	}
+}
+
+String.prototype.ucfirst = function() {
+	return this.charAt(0).toUpperCase() + this.slice(1);
+}
+
+
+/* ==========================================================================
    Mobile JS
    ========================================================================== */
 if (!mobile) {

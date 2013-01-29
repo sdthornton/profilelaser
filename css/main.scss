@@ -525,6 +525,11 @@ header {
         padding-bottom: 5px;
     }
 
+    .required {
+        color: #a00;
+        font-size: 0.8em;
+    }
+
     input:not(#submit), textarea {
         border: none;
         clear: both;
@@ -538,11 +543,35 @@ header {
     }
 }
 
+#errors {
+    font-size: 0.858em;
+    list-style: none;
+    margin: 0 0 7px;
+    padding: 0 10px;
+
+    li:not(#info) {
+        color: #a00;
+        padding: 5px;
+
+        &:before {
+            content: "\2022";
+            font-weight: bold;
+            padding-right: 10px;
+        }
+    }
+
+    #info {
+        font-style: italic;
+        font-weight: bold;
+        list-style: none;
+    }
+}
 
 .req-field-desc {
+    color: #a00;
     float: left;
-    font-size: 0.858em;
-    margin-left: 10px;
+    font-size: 0.8em;
+    margin: 10px 0 0 10px;
 }
 
 #submit {

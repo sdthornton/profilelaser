@@ -56,7 +56,7 @@
           }
         ?>
         <ul id="errors" class="<?php echo ($sr && !$cf['form_ok']) ? 'visible' : ''; ?>">
-            <li id="info">There were some problems with your form submission:</li>
+            <li id="info">Sorry, there were problems with your form submission:</li>
             <?php 
             if(isset($cf['errors']) && count($cf['errors']) > 0) :
               foreach($cf['errors'] as $error) :
