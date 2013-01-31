@@ -112,12 +112,25 @@ if (home_page) {
 /* ==========================================================================
    Parallax and Other window.scroll events
    ========================================================================== */
-   $('.banner').addClass('in_front');
 if (home_page && !mobile) {
+	$('.banner').addClass('in_front');
+	$('.process_icon').css('opacity', '0');
+	$('.why_icon').css('opacity', '0');
+
+	var windowHeight = $(window).height();
+	var processIconOffset = $('.process_icon').offset().top;
+	var whyIconOffset = $('.why_icon').offset().top;
+	var iconHeight = $('.process_icon').height();
+	var processIconBottomOffset = processIconOffset + iconHeight;
+	var whyIconBottomOffset = whyIconOffset + iconHeight;
+	var processIconShown = processIconBottomOffset - windowHeight;
+	var whyIconShown = whyIconBottomOffset - windowHeight;
+
 	$(window).scroll(function() {
 		"use strict";
 
 		var scroll = $(window).scrollTop();
+
 		if (scroll < 0) { 
 			scroll = 0;
 		} else if (scroll >= 500 && $('.banner').hasClass('in_front')) {
@@ -129,6 +142,14 @@ if (home_page && !mobile) {
 		}
 
 		document.getElementById('banner_img').style.top = (-scroll/8) + 'px';
+
+		if(scroll > processIconShown) {
+			$('.process_icon').animate({opacity: '1.0'}, 500);
+		}
+
+		if(scroll > whyIconShown) {
+			$('.why_icon').animate({opacity: '1.0'}, 500);
+		}
 	});
 }
 

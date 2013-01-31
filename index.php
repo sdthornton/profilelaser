@@ -88,21 +88,21 @@
       <p>Laser cutting might be just what your project needs! Laser cutting offers an accurate and affordable way to produce almost any shape in sheet metal or plate.</p>
 
       <section class="three_column">
-        <div id="afford" class="process_icon"></div>
+        <div id="afford" class="why_icon"></div>
 
         <h2>Affordability</h2>
         <p>Because of high feed rates, efficient layout of parts on the sheet, no special tooling requirements, and very little material wasted, pieces can be cut at a low cost.</p>
       </section>
 
       <section class="three_column">
-        <div id="accuracy" class="process_icon"></div>
+        <div id="accuracy" class="why_icon"></div>
 
         <h2>Accuracy</h2>
         <p>Lasers are remarkably accurate. Your parts can be cut within a thousandth of an inch and the first part will be exactly like the last, whether cutting two pieces or thousands.</p>
       </section>
 
       <section class="three_column">
-        <div id="flexibility" class="process_icon"></div>
+        <div id="flexibility" class="why_icon"></div>
 
         <h2>Flexibility</h2>
         <p>A laser is equally well-suited for prototyping or production, cutting or etching. A laser can be compared to an artist’s brush&mdash;in capable hands it’s limited only by the imagination.</p>
