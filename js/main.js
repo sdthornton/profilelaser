@@ -244,12 +244,11 @@ if (gallery_page) {
 				if (parseInt(page,10) !== 1) { $('.pagination li').first().before('<li><a href="?page='+(parseInt(page,10)-1)+'&per_page='+per_page+'">&larr;</a></li>'); }
 				if (parseInt(page,10) !== last_page) { $('.pagination li').last().after('<li><a href="?page='+(parseInt(page,10)+1)+'&per_page='+per_page+'">&rarr;</a></li>'); }
 			}
-
-			
 		}
 	);
 
-	window.onload = function() { "use strict"; new Masonry(document.getElementById('gallery_images'), { columnWidth: 0 }); };
+	var galleryMason = new Masonry(document.getElementById('gallery_images'), { columnWidth: 0 });
+	galleryMason.reload();
 }
 
 
