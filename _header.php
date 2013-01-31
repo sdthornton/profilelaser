@@ -8,9 +8,9 @@
 
       <nav>
         <ul>
-          <li id="home_link"><a href="index.html">Home</a></li>
-          <li id="gallery_link"><a href="gallery.html">Gallery</a></li>
-          <li id="contact_link"><a href="contact.html">Contact</a></li>
+          <li id="home_link"><a href="../">Home</a></li>
+          <li id="gallery_link"><a href="gallery">Gallery</a></li>
+          <li id="contact_link"><a href="contact">Contact</a></li>
         </ul>
       </nav>
     </div>

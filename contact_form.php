@@ -11,6 +11,8 @@ if( isset($_POST) ){
     //$time = date('H:i:s');
     
     //form data
+    $to = "sdthornton@live.com";
+    $from = $_POST['email'];
     $nospam = $_POST['name'];
     $name = $_POST['real_name'];
     $company = $_POST['company'];
@@ -53,19 +55,19 @@ if( isset($_POST) ){
     }
 
     if(empty($company)) {
-        $company = 'None provided.';
+        $company = 'None provided';
     }
 
     if(empty($phone)) {
-        $phone = 'None provided.';
+        $phone = 'None provided';
     }
     
     //send email if all is ok
     if($formok) {
-        $headers = "From: website@website.com" . "\r\n";
+        $headers = "From: {$from}" . "\r\n";
         $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
         
-        $emailbody = "<p>You have recieved a new message from the enquiries form on your website.</p>
+        $emailbody = "<p><i>You have recieved a new message from the enquiries form on your website.</i></p>
                       <p><strong>Name:</strong> {$name}<br>
                       <strong>Company:</strong> {$company}<br>
                       <strong>Email Address:</strong> {$email}<br>
@@ -73,7 +75,7 @@ if( isset($_POST) ){
                       <strong>Location:</strong> {$location}</p>
                       <p><strong>Message: </strong> {$message}</p>";
         
-        mail("sdthornton@live.com","New Enquiry",$emailbody,$headers);
+        mail($to, "New Message via Website", $emailbody, $headers);
         
     }
     
