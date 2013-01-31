@@ -48,17 +48,17 @@ var mobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile/i.test(navigato
 /* ==========================================================================
    Rotates through the quotes in the Talk section
    ========================================================================== */
-var talkHeights = [];
-
-$('.talk_box').each(function() {
-	"use strict";
-
-	talkHeights.push($(this).outerHeight());
-});
-
-var talkHeight = Math.max.apply(null, talkHeights);
-
 if (home_page) {
+	var talkHeights = [];
+
+	$('.talk_box').each(function() {
+		"use strict";
+
+		talkHeights.push($(this).outerHeight());
+	});
+
+	var talkHeight = Math.max.apply(null, talkHeights);
+
 	window.onload = function() { "use strict"; document.getElementById('talk_box_container').style.height = talkHeight+'px'; };
 
 	$('.talk_box').each(function() {
@@ -86,7 +86,8 @@ function nextTalk() {
 	});
 }
 
-if (home_page) {
+var talkLength = $('.talk_box').length;
+if (home_page && talkLength > 1) {
 	setInterval(nextTalk, 8000);
 }
 
@@ -102,23 +103,23 @@ if (home_page) {
 		$(this).disableSelection();
 
 		var windowWidth = $(window).width();
-		var left = parseInt($('.banner_img').css('left'),10);
+		var left = parseInt($('#banner_img').css('left'),10);
 		var next = left - 400;
 		var full = Math.abs(next) + windowWidth;
 		var last = windowWidth - 2400;
 
 		if (full > 2400) {
 			if (left === last) {
-				$('.banner_img').animate({
+				$('#banner_img').animate({
 					left: '0'
 				});
 			} else {
-				$('.banner_img').animate({
+				$('#banner_img').animate({
 					left: last + 'px'
 				});
 			}
 		} else {
-			$('.banner_img').animate({
+			$('#banner_img').animate({
 				left: next + 'px'
 			});
 		}
@@ -131,23 +132,23 @@ if (home_page) {
 		$(this).disableSelection();
 
 		var windowWidth = $(window).width();
-		var left = parseInt($('.banner_img').css('left'),10);
+		var left = parseInt($('#banner_img').css('left'),10);
 		var prev = left + 400;
 		var remainder = Math.abs(left % 400);
 		var last = windowWidth - 2400;
 
 		if (left < 0) {
 			if (remainder === 0) {
-				$('.banner_img').animate({
+				$('#banner_img').animate({
 					left: prev + 'px'
 				});
 			} else {
-				$('.banner_img').animate({
+				$('#banner_img').animate({
 					left: (left + remainder) + 'px'
 				});
 			}
 		} else {
-			$('.banner_img').animate({
+			$('#banner_img').animate({
 				left: last + 'px'
 			});
 		}
@@ -158,23 +159,18 @@ if (home_page) {
 /* ==========================================================================
    Parallax and Other window.scroll events
    ========================================================================== */
-$(window).scroll(function() {
-	"use strict";
+if (home_page && !mobile) {
+	$(window).scroll(function() {
+		"use strict";
 
-	var scroll = $(window).scrollTop();
-	if (scroll < 0) { scroll = 0; }
-	$('.banner img').css('top', -scroll/8 + 'px');
+		var scroll = $(window).scrollTop();
+		if (scroll < 0) { scroll = 0; }
+		if (scroll > 500) { scroll = 500; document.getElementsByClassName('banner')[0].style.zIndex = '-3'; }
+		if (scroll < 500) { document.getElementsByClassName('banner')[0].style.zIndex = '-1'; }
 
-	/*if (scroll >= 420 && !$('header').hasClass('small_header')) {
-		$('header').animate({height: '60px'}, 200).addClass('small_header');
-		$('header nav li').animate({lineHeight: '60px'}, 200);
-		$('header img').animate({height: '40px', width: '193.6px', margin: '10px 0'}, 200);
-	} else if (scroll < 420 && $('header').hasClass('small_header')) {
-		$('header').animate({height: '80px'}, 200).removeClass('small_header');
-		$('header nav li').animate({lineHeight: '80px'}, 200);
-		$('header img').animate({height: '50px', width: '242px', margin: '15px 0'}, 200);
-	}*/
-});
+		document.getElementById('banner_img').style.top = (-scroll/8) + 'px';
+	});
+}
 
 
 /* ==========================================================================
@@ -197,7 +193,7 @@ if (gallery_page) {
 
 			$.each(data.items.slice(img_start, img_end), function(i,item){
 				var img_src = (item.media.m).replace('_m.', '_b.');
-				$('<a href="'+item.link+'" target="_blank" title="'+item.title+'"><img src="'+img_src+'" class="item" width="472" alt="'+item.title+'" /></a>').appendTo("#gallery_images");
+				$('<a href="'+item.link+'" target="_blank" title="'+item.title+'"><img src="'+img_src+'" class="item" width="308" alt="'+item.title+'" /></a>').appendTo("#gallery_images");
 			});
 
 			if (data.items.length > per_page) {
@@ -220,12 +216,12 @@ if (gallery_page) {
 				if (parseInt(page,10) !== 1) { $('.pagination li').first().before('<li><a href="?page='+(parseInt(page,10)-1)+'&per_page='+per_page+'">&larr;</a></li>'); }
 				if (parseInt(page,10) !== last_page) { $('.pagination li').last().after('<li><a href="?page='+(parseInt(page,10)+1)+'&per_page='+per_page+'">&rarr;</a></li>'); }
 			}
-		}
-	).complete( window.onload = function() {
-		"use strict";
 
-		new Masonry(document.getElementById('gallery_images'), { columnWidth: 0 });
-	});
+			
+		}
+	);
+
+	window.onload = function() { new Masonry(document.getElementById('gallery_images'), { columnWidth: 0 }); };
 }
 
 
@@ -236,19 +232,38 @@ function googleMap() {
 	"use strict";
 
 	var profileLaser = new google.maps.LatLng(45.53856,-122.674016);
-	var mapOptions = {
-		backgroundColor: '#125a98',
-		center: profileLaser,
-		disableDefaultUI: true,
-		zoom: 17,
-		zoomControl: true,
-		zoomControlOptions: {
-			style: google.maps.ZoomControlStyle.SMALL
-		},
-		streetViewControl: true,
-		scrollwheel: false,
-		mapTypeId: google.maps.MapTypeId.ROADMAP
-	};
+
+	if (mobile) {
+		var mapOptions = {
+			backgroundColor: '#125a98',
+			center: profileLaser,
+			draggable: false,
+			disableDefaultUI: true,
+			zoom: 17,
+			zoomControl: true,
+			zoomControlOptions: {
+				style: google.maps.ZoomControlStyle.SMALL
+			},
+			streetViewControl: true,
+			scrollwheel: false,
+			mapTypeId: google.maps.MapTypeId.ROADMAP
+		};
+	} else {
+		var mapOptions = {
+			backgroundColor: '#125a98',
+			center: profileLaser,
+			draggable: true,
+			disableDefaultUI: true,
+			zoom: 17,
+			zoomControl: true,
+			zoomControlOptions: {
+				style: google.maps.ZoomControlStyle.SMALL
+			},
+			streetViewControl: true,
+			scrollwheel: false,
+			mapTypeId: google.maps.MapTypeId.ROADMAP
+		};
+	}
 
 	var mapStyle = [
 		{
@@ -274,7 +289,7 @@ function googleMap() {
 	);
 
 	
-	var setMarker = setTimeout(function() {
+	setTimeout(function() {
 		var marker = new google.maps.Marker({
 			position: profileLaser,
 			map: map,
@@ -301,25 +316,27 @@ if (contact_page) {
 /* ==========================================================================
    Automatically Fill in Location on Contact Page
    ========================================================================== */
-var locationField = document.getElementById('location').value === '';
-if (contact_page && navigator.geolocation && locationField) {
-	window.onload = function() {
-		navigator.geolocation.getCurrentPosition(function(position) {
+if (contact_page) {
+	var locationField = document.getElementById('location').value === '';
+	if (navigator.geolocation && locationField) {
+		window.onload = function() {
 			"use strict";
 
-			var latitude = position.coords.latitude;
-			var longitude = position.coords.longitude;
-			var locationAPI = "http://maps.googleapis.com/maps/api/geocode/json?latlng="+latitude+","+longitude+"&sensor=false";
+			navigator.geolocation.getCurrentPosition(function(position) {
+				var latitude = position.coords.latitude;
+				var longitude = position.coords.longitude;
+				var locationAPI = "http://maps.googleapis.com/maps/api/geocode/json?latlng="+latitude+","+longitude+"&sensor=false";
 
-			$.getJSON(locationAPI,
-				function(data) {
-					var city = data.results[2].address_components[1].long_name;
-					var state = data.results[2].address_components[2].short_name;
+				$.getJSON(locationAPI,
+					function(data) {
+						var city = data.results[2].address_components[1].long_name;
+						var state = data.results[2].address_components[2].short_name;
 
-					document.getElementById('location').value = city+', '+state;
-				}
-			);
-		});
+						document.getElementById('location').value = city+', '+state;
+					}
+				);
+			});
+		};
 	}
 }
 
@@ -327,173 +344,221 @@ if (contact_page && navigator.geolocation && locationField) {
 /* ==========================================================================
    AJAX for Contact Page Submission
    ========================================================================== */
-var form = $('#contact_form'),
-	formElements = form.find('input[type!="submit"],textarea'),
-	formSubmitButton = form.find('[type="submit"]'),
-	errorNotice = $('#errors'),
-	successNotice = $('#success'),
-	loading = $('#loading'),
-	errorMessages = {
-		nospam: 'Sorry robot, no spamming for you today! If you are not a robot, but are in fact human, and you are seeing this error, it means you have accidentally filled out our hidden anti spam field. Simply leave that blank and try to resubmit the form.',
-		required: ' is a required field',
-		realname: 'Please enter your name',
-		email: 'Please enter an email address',
-		bademail: 'Please enter a valid email address',
-		message: 'Please write us a message',
-		minlength: ' must be greater than '
-	}
+if (contact_page) {
+	var form = $('#contact_form'),
+		formElements = form.find('input[type!="submit"],textarea'),
+		formSubmitButton = form.find('[type="submit"]'),
+		errorNotice = $('#errors'),
+		successNotice = $('#success'),
+		loading = $('#loading'),
+		errorMessages = {
+			nospam: 'Sorry robot, no spamming for you today! If you are not a robot, but are in fact human, and you are seeing this error, it means you have accidentally filled out our hidden anti spam field. Simply leave that blank and try to resubmit the form.',
+			required: ' is a required field',
+			realname: 'Please enter your name',
+			email: 'Please enter an email address',
+			bademail: 'Please enter a valid email address',
+			message: 'Please write us a message',
+			minlength: ' must be greater than '
+		};
 
-formSubmitButton.on('click', function() {
-	var formok = true,
-		errors = [];
-		
-	formElements.each(function() {
-		var name = this.name,
-			nameUC = name.ucfirst(),
-			value = this.value,
-			type = this.getAttribute('type'),
-			isRequired = this.getAttribute('required'),
-			minLength = this.getAttribute('data-minlength');
-		
-		//if HTML5 formfields are supported			
-		if( (this.validity) && !this.validity.valid ){
-			formok = false;
-			
-			console.log(this.validity);
-			
-			if(this.validity.valueMissing) {
-				if (this.name == 'real_name') {
-					errors.push(errorMessages.realname);
-				} else if (this.name == 'email') {
-					errors.push(errorMessages.email);
-				} else if (this.name == 'message') {
-					errors.push(errorMessages.message);
-				} else if (this.name == 'location') {
-					errors.push(errorMessages.location);
-				} else {
-					errors.push(nameUC + errorMessages.required);
-				}
-			} else if(this.validity.typeMismatch && type == 'email') {
-				errors.push(errorMessages.bademail);
-			}
-			
-			this.focus();
-			return false;
-		}
-		
-		//if this is a required element
-		if(isRequired) {	
-			//if HTML5 input required attribute is not supported
-			if(!Modernizr.input.required) {
-				if(value == '') {
-					this.focus();
-					formok = false;
+	formSubmitButton.on('click', function() {
+		"use strict";
 
-					if (this.name == 'real_name') {
+		var formok = true,
+			errors = [];
+			
+		formElements.each(function() {
+			var name = this.name,
+				nameUC = name.ucfirst(),
+				value = this.value,
+				type = this.getAttribute('type'),
+				isRequired = this.getAttribute('required'),
+				minLength = this.getAttribute('data-minlength');
+			
+			//if HTML5 formfields are supported			
+			if( (this.validity) && !this.validity.valid ){
+				formok = false;
+				
+				console.log(this.validity);
+				
+				if(this.validity.valueMissing) {
+					if (this.name === 'real_name') {
 						errors.push(errorMessages.realname);
-					} else if (this.name == 'email') {
+					} else if (this.name === 'email') {
 						errors.push(errorMessages.email);
-					} else if (this.name == 'message') {
+					} else if (this.name === 'message') {
 						errors.push(errorMessages.message);
-					} else if (this.name == 'location') {
+					} else if (this.name === 'location') {
 						errors.push(errorMessages.location);
 					} else {
 						errors.push(nameUC + errorMessages.required);
 					}
+				} else if(this.validity.typeMismatch && type === 'email') {
+					errors.push(errorMessages.bademail);
+				}
+				
+				this.focus();
+				return false;
+			}
+			
+			//if this is a required element
+			if(isRequired) {	
+				//if HTML5 input required attribute is not supported
+				if (!Modernizr.input.required) {
+					if(value === '') {
+						this.focus();
+						formok = false;
 
-					return false;
+						if (this.name === 'real_name') {
+							errors.push(errorMessages.realname);
+						} else if (this.name === 'email') {
+							errors.push(errorMessages.email);
+						} else if (this.name === 'message') {
+							errors.push(errorMessages.message);
+						} else if (this.name === 'location') {
+							errors.push(errorMessages.location);
+						} else {
+							errors.push(nameUC + errorMessages.required);
+						}
+
+						return false;
+					}
 				}
 			}
-		}
 
-		//if HTML5 input email input is not supported
-		if(type == 'email') { 	
-			if(!Modernizr.inputtypes.email) { 
-				var emailRegEx = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/; 
-			 	if( !emailRegEx.test(value) ){	
+			//if HTML5 input email input is not supported
+			if(type === 'email') {
+				if (!Modernizr.inputtypes.email) {
+					var emailRegEx = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/; 
+					if (!emailRegEx.test(value)) {
+						this.focus();
+						formok = false;
+						errors.push(errorMessages.bademail);
+						return false;
+					}
+				}
+			}
+			
+			//check minimum lengths
+			if(minLength) {
+				if (value.length < parseInt(minLength, 10)) {
 					this.focus();
 					formok = false;
-					errors.push(errorMessages.bademail);
+					errors.push(nameUC + errorMessages.minlength + minLength + ' characters');
 					return false;
 				}
 			}
-		}
-		
-		//check minimum lengths
-		if(minLength) {
-			if (value.length < parseInt(minLength) ) {
-				this.focus();
-				formok = false;
-				errors.push(nameUC + errorMessages.minlength + minLength + ' characters');
-				return false;
-			}
-		}
 
-		//Spam blocker
-		if(name == 'name') {
-			if (this.value != '') {
-				formok = false;
-				errors.push(errorMessages.nospam);
-				return false;
-			}
-		}
-	});
-	
-	if(!formok) {
-		//animate required field notice
-		$('.req-field-desc')
-			.stop()
-			.animate({
-				marginLeft: '+=' + 5
-			},150,function(){
-				$(this).animate({
-					marginLeft: '-=' + 5
-				},150);
-			});
-		
-		//show error message 
-		showNotice('error',errors);
-
-	} else {
-		loading.show();
-		$.ajax({
-			url: form.attr('action'),
-			type: form.attr('method'),
-			data: form.serialize(),
-			success: function(){
-				showNotice('success');
-				form.get(0).reset();
-				loading.hide();
-				var hideSuccess = setTimeout(function() {
-					$('#success').fadeOut();
-				}, 3000);
+			//Spam blocker
+			if(name === 'name') {
+				if (this.value !== '') {
+					formok = false;
+					errors.push(errorMessages.nospam);
+					return false;
+				}
 			}
 		});
-	}
-	
-	return false; //this stops submission off the form and also stops browsers showing default error messages
-	
-});
+		
+		if(!formok) {
+			//animate required field notice
+			$('.req-field-desc')
+				.stop()
+				.animate({
+					marginLeft: '+=' + 5
+				},150,function(){
+					$(this).animate({
+						marginLeft: '-=' + 5
+					},150);
+				});
+			
+			//show error message 
+			showNotice('error',errors);
 
-//other misc functions
-function showNotice(type,data)
-{
-	if(type == 'error'){
-		successNotice.hide();
-		errorNotice.find("li[id!='info']").remove();
-		for(x in data){
-			errorNotice.append('<li>'+data[x]+'</li>');	
+		} else {
+			loading.show();
+			$.ajax({
+				url: form.attr('action'),
+				type: form.attr('method'),
+				data: form.serialize(),
+				success: function(){
+					showNotice('success');
+					form.get(0).reset();
+					loading.hide();
+				}
+			});
 		}
-		errorNotice.show();
-	}
-	else {
-		errorNotice.hide();
-		successNotice.show();	
+		
+		return false; //this stops submission off the form and also stops browsers showing default error messages
+		
+	});
+
+	var showNotice = function(type,data) {
+		"use strict";
+
+		if (type === 'error') {
+			successNotice.hide();
+			errorNotice.find("li[id!='info']").remove();
+
+			var i;
+			for (i=0; i < data.length; i++) {
+				errorNotice.append('<li>'+data[i]+'</li>');
+			}
+			errorNotice.show();
+		}
+		else {
+			errorNotice.hide();
+			successNotice.show().delay(4000).slideUp('slow');
+		}
+	};
+
+	String.prototype.ucfirst = function() {
+		"use strict";
+
+		return this.charAt(0).toUpperCase() + this.slice(1);
+	};
+}
+
+
+/* ==========================================================================
+   Footer Positioning
+   ========================================================================== */
+var footer = document.getElementsByTagName('footer')[0];
+var bottomSection = document.getElementsByClassName('bottom_section')[0];
+
+function footerPosition() {
+	"use strict";
+
+	var footerHeight = $('footer').outerHeight();
+	bottomSection.style.marginBottom = footerHeight+'px';
+
+	var windowHeight = $(window).height();
+	var pageHeight = $('html').outerHeight();
+	
+	if ((pageHeight - footerHeight) < windowHeight) {
+		footer.style.bottom = 'auto';
+		footer.style.position = 'relative';
+		footer.style.zIndex = '0';
+		$('footer').addClass('relative_footer');
+
+		bottomSection.style.marginBottom = '0';
+	} else if ($('footer').hasClass('relative_footer')) {
+		footer.style.bottom = '0';
+		footer.style.position = 'fixed';
+		footer.style.zIndex = '-2';
+		$('footer').removeClass('relative_footer');
+
+		bottomSection.style.marginBottom = footerHeight+'px';
 	}
 }
 
-String.prototype.ucfirst = function() {
-	return this.charAt(0).toUpperCase() + this.slice(1);
+if (!mobile) {
+	$(window).load(function() {
+		"use strict"; footerPosition();
+	});
+
+	$(window).resize(function() {
+		"use strict"; footerPosition();
+	});
 }
 
 
@@ -502,6 +567,17 @@ String.prototype.ucfirst = function() {
    ========================================================================== */
 if (!mobile) {
 	$('.tel_link').on('click', function(e) {
+		"use strict";
+
 		e.preventDefault();
 	}).css('cursor', 'default');
+}
+
+if (mobile) {
+	document.getElementsByClassName('banner')[0].style.position = 'absolute';
+	
+	footer.style.bottom = 'auto';
+	footer.style.position = 'relative';
+	footer.style.zIndex = '0';
+	bottomSection.style.marginBottom = '0';
 }

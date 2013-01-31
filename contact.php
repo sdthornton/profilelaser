@@ -28,7 +28,7 @@
 
 
   <!-- Start Page Content -->
-  <section class="contact_us">
+  <section class="contact_us bottom_section">
     <h1>Get In Touch</h1>
 
     <section id="map" class="map"></section>
@@ -37,11 +37,11 @@
       <section class="general_contact">
         <h2>Send Us a Message or Stop On By</h2>
 
-        <a href="http://maps.google.com/?q=2138+N+Interstate+Ave+Portland+OR+97227" target="_blank"><span class="icon-map-marker"></span><span class="contact_text">2138 N. Interstate Ave<br>Portland, OR 97227</span></a><br>
+        <a href="http://maps.google.com/?q=2138+N+Interstate+Ave+Portland+OR+97227" target="_blank"><span class="icon-location"></span><span class="contact_text">2138 N. Interstate Ave<br>Portland, OR 97227</span></a><br>
 
         <a href="tel:5032926044" class="tel_link"><span class="icon-phone"></span><span class="contact_text">(503) 292-6044</span></a><br>
 
-        <a href="mailto:&#115;&#97;&#108;&#101;&#115;&#64;&#112;&#114;&#111;&#102;&#105;&#108;&#101;&#108;&#97;&#115;&#101;&#114;&#46;&#99;&#111;&#109;"><span class="icon-envelope-alt"></span><span class="contact_text">&#115;&#97;&#108;&#101;&#115;&#64;&#112;&#114;&#111;&#102;&#105;&#108;&#101;&#108;&#97;&#115;&#101;&#114;&#46;&#99;&#111;&#109;</span></a>
+        <a href="mailto:&#115;&#97;&#108;&#101;&#115;&#64;&#112;&#114;&#111;&#102;&#105;&#108;&#101;&#108;&#97;&#115;&#101;&#114;&#46;&#99;&#111;&#109;"><span class="icon-mail-alt"></span><span class="contact_text">&#115;&#97;&#108;&#101;&#115;&#64;&#112;&#114;&#111;&#102;&#105;&#108;&#101;&#108;&#97;&#115;&#101;&#114;&#46;&#99;&#111;&#109;</span></a>
       </section>
 
       <section class="contact_form">
@@ -106,19 +106,5 @@
 
   <?php include '_footer.php'; ?>
 
-  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
-  <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.8.3.min.js"><\/script>')</script>
-
-  <script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyDKYaeLXuKtODPEm_6sQsdfYRpsaCovgyk&sensor=false"></script>
-  <script src="js/plugins.js"></script>
-  <script src="js/main.js"></script>
-
-  <!-- Google Analytics -->
-  <script>
-    var _gaq=[['_setAccount','UA-37457373-1'],['_trackPageview']];
-    (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
-    g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
-    s.parentNode.insertBefore(g,s)}(document,'script'));
-  </script>
 </body>
 </html>

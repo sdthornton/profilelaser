@@ -1,5 +1,7 @@
+@charset "UTF-8";
+
 @import "normalize";
-@import "font-awesome";
+@import "icon_font";
 @import "lib_mixins";
 
 $white: #fff;
@@ -7,9 +9,10 @@ $smoke: #f3f3f3;
 $light_gray: #999;
 $gray: #666;
 $dark_gray: #333;
-$black: #111;
+$black: #151515;
 $color: #125a98;
 $accent: #da7d31;
+$footer_height: 340px;
 
 /* ==========================================================================
    HTML5 Boilerplate Base Styles
@@ -86,8 +89,8 @@ body {
     text-align: center;
     text-rendering: optimizeLegibility;
     
-    > section:not(.banner) {
-        padding: 52.358px 0;
+    > section:not(.banner):not(.clients) {
+        padding: 72.713px 0;
         overflow: auto;
         width: 100%;
     }
@@ -102,14 +105,22 @@ h1 {
     font-size: 2.618em;
     font-weight: 800;
     line-height: 100%;
-    margin: 0 0 11px;
-    margin: 0 0 1.618rem;
+    margin: 0 0 0.618em;
     text-transform: uppercase;
+
+    .sub_head {
+        color: $color;
+        display: block;
+        font-size: 0.382em;
+        font-size: 1rem;
+        line-height: 100%;
+        margin-top: 5px;
+    }
 }
 
 h2 {
-    @include caslon;
-    font-size: 1.618em;
+    font-size: 1.5em;
+    font-weight: 600;
     margin: 0.618em 0 0.3em;
 }
 
@@ -157,11 +168,6 @@ nav ul {
     width: 33.33%;
 }
 
-.sub_head {
-    margin: 0 auto;
-    width: 580px;
-}
-
 .button {
     background: $accent;
     border-radius: 8px;
@@ -180,7 +186,7 @@ nav ul {
 //Header and Nav
 header {
     background: $white;
-    box-shadow: 0 1px 2px rgba(0,0,0,.1);
+    box-shadow: 0 0 5px rgba(0,0,0,0.5);
     overflow: hidden;
     position: fixed;
     max-height: 80px;
@@ -240,11 +246,11 @@ header {
     top: 80px;
     width: 100%;
     z-index: -1;
+}
 
-    img {
-        left: 0;
-        position: absolute;
-    }
+#banner_img {
+    left: 0;
+    position: absolute;
 }
 
 .scroll_banner {
@@ -274,11 +280,15 @@ header {
     right: 0;
 }
 
+.clients {
+    background: $smoke;
+    margin-top: 480px;
+    padding: 20px;
+}
+
 //About Us, Who We Are Section - Home Page
 .about {
     background: $white;
-    box-shadow: 0 0 15px rgba(0,0,0,.35);
-    margin-top: 480px;
     width: 100%;
 
     .container {
@@ -301,7 +311,7 @@ header {
         text-align: left;
     
         &:first-of-type {
-            padding-top: 0;
+            padding-top: 5px;
         }
     }
 
@@ -312,10 +322,13 @@ header {
 
 //Process Section - Home Page
 .process {
-    @include border(top);
-    @include border(bottom);
     background: $smoke;
     width: 100%;
+
+    .container > p {
+        margin: 0 auto;
+        width: 580px;
+    }
 
     h3 {
         @include caslon;
@@ -324,26 +337,48 @@ header {
     }
 }
 
-.process_icon {
-    background: url('../img/process_icons.png') 0 0 no-repeat;
-    background-size: 675px 150px;
-    border-radius: 10px;
-    height: 150px;
-    margin: 44.94px auto 0;
-    width: 225px;
+.process_icon, .why_icon {
+    background: $color url('../img/process_icons.png') 0 0 no-repeat;
+    background-size: 1200px 200px;
+    border-radius: 100px;
+    height: 200px;
+    margin: 44.940px auto 0;
+    width: 200px;
+}
 
-    &#production {
-        background-position: -225px 0;
-    }
+#production {
+    background-position: -200px 0;
+}
 
-    &#efficient {
-        background-position: -450px 0;
+#efficient {
+    background-position: -400px 0;
+}
+
+#afford {
+    background-position: -600px 0;
+}
+
+#accuracy {
+    background-position: -800px 0;
+}
+
+#flexibility {
+    background-position: -1000px 0;
+}
+
+.why {
+    background: $white;
+
+    .container > p {
+        margin: 0 auto;
+        width: 580px;
     }
 }
 
 //Partners Section - Home Page
 .partners {
-    background: $white;
+    background: $smoke;
+    position: relative;
 
     .container {
         width: 580px;
@@ -356,17 +391,12 @@ header {
 }
 
 //Clients Section - Home Page
-.clients {
-    @include border(top, darken($color, 10%));
+.talk {
     background: $color;
     color: #fff;
 
     h1 {
         color: $white;
-    }
-
-    img {
-        margin: 20px 0 45px;
     }
 }
 
@@ -412,8 +442,13 @@ header {
 }
 
 #gallery_images img {
+    @include transition;
     float: left;
     margin: 10px;
+
+    &:hover {
+        @include opacity(0.85);
+    }
 }
 
 .pagination {
@@ -449,7 +484,7 @@ header {
     background: $color;
     font-size: 0.858em;
     height: 400px;
-    margin: 52.358px 0;
+    margin: 45px 0 52.358px;
     padding: 0;
 }
 
@@ -466,11 +501,16 @@ header {
     [class^="icon-"], [class*=" icon-"] {
         display: inline-block;
         font-size: 1.389em;
+        line-height: 100%;
         padding-top: 5px;
         vertical-align: top;
     }
 
-    .icon-envelope-alt {
+    .icon-phone {
+        margin-left: -2px;
+    }
+
+    .icon-mail-alt {
         font-size: 1em;
     }
 
@@ -596,23 +636,38 @@ header {
 
 
 //Footer
+.bottom_section {
+    box-shadow: 0 5px 15px #000;
+    margin-bottom: $footer_height;
+}
+
 footer {
     background: $black;
     bottom: 0;
-    color: $smoke;
-    font-size: 0.858em;
-    padding: 52.358px 0 72.713px;
+    color: $light_gray;
+    font-size: 0.8em;
+    padding: 52.358px 0;
+    position: fixed;
     text-align: left;
+    z-index: -2;
 
-    nav, section {
-        float: left;
-        padding: 0 10px;
-        width: 20%;
+    h3 {
+        border-bottom: solid 1px $gray;
+        color: $smoke;
     }
 
     .copyright {
-        padding: 0 10px;
-        width: 40%;
+        color: $gray;
+        font-size: 0.9em;
+        margin-top: 52px;
+        text-align: center;
+        width: 100%;
+    }
+
+    nav, section {
+        float: left;
+        padding: 0 20px;
+        width: 25%;
     }
 
     a {

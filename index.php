@@ -28,26 +28,30 @@
   <!-- Start Page Content -->
   <section class="banner">
     <div class="banner_prev scroll_banner"></div>
-    <img src="img/banner.jpg" class="banner_img" width="2400" height="400" alt="A site banner - showing off Profile Laser's work and equipment.">
+    <img src="img/banner.jpg" id="banner_img" width="2400" height="400" alt="A site banner - showing off Profile Laser's work and equipment.">
     <div class="banner_next scroll_banner"></div>
+  </section>
+
+  <section class="clients">
+    <img src="img/client_logos.png" width="964" height="60" alt="Names of companies we have worked with, including GE, Intel, Siemens, Tri-Met, City of Portland, PDX Airport, ODOT, Square D and the Rose Quarter.">
   </section>
 
   <section class="about">
     <div class="container">
       <h1>Who<br>We<br>Are</h1>
-
       <p>Profile Laser is a family-owned and operated laser cutting service. We specialize in cutting and etching stainless steel and carbon steel and cutting aluminum for a diverse set of customers. From lighting fixtures to electrical enclosures to craft brewing tanks, we take care of the needs of our customers. We work efficiently and effectively to maintain quick turn-around times and tight tolerances.</p>
 
       <p>Profile laser began in 2011 but our team has an extensive background in the laser-cutting industry. We’re experienced designers, programmers and operators and we’ll use our talents to produce the best possible product within the design specifications and time restrictions given. We’re proud of our high quality work and we look forward to seeing what we can create for you!</p>
 
       <a href="#" class="button">Contact Us</a>
+    </div>
   </section>
 
   <section class="process">
     <div class="container">
-      <h1>Our Process</h1>
+      <h1>What We Do<br><span class="sub_head">And Why We're the Best</span></h1>
 
-      <p class="sub_head">The laser cutting process starts with you. At Profile Laser, we make sure we pay attention to every customer no matter the size of the job. </p>
+      <p>The laser cutting process starts with you. At Profile Laser, we make sure we pay attention to every customer no matter the size of the job. </p>
 
       <section class="three_column">
         <div id="design" class="process_icon"></div>
@@ -70,15 +74,54 @@
       <section class="three_column">
         <div id="efficient" class="process_icon"></div>
 
-        <h2>Faster Turnaround</h2>
-        <h3>...before you can say, "Best laser cutting company around."</h3>
+        <h2>Fast Turnaround</h2>
+        <h3>Before you can say, "Best laser cutting company around."</h3>
 
         <p>We boast some of the fastest turnaround times and most accurate parts in the industry. When your project is finished we will sort parts for customer pick-up or package them carefully for shipment.</p>
       </section>
     </div>
   </section>
 
-  <section class="partners">
+  <section class="why">
+    <div class="container">
+      <h1>Why Laser Cutting?<br><span class="sub_head">What's So Great About It?</span></h1>
+      <p>Laser cutting might be just what your project needs! Laser cutting offers an accurate and affordable way to produce almost any shape in sheet metal or plate.</p>
+
+      <section class="three_column">
+        <div id="afford" class="process_icon"></div>
+
+        <h2>Affordability</h2>
+        <p>Because of high feed rates, efficient layout of parts on the sheet, no special tooling requirements, and very little material wasted, pieces can be cut at a low cost.</p>
+      </section>
+
+      <section class="three_column">
+        <div id="accuracy" class="process_icon"></div>
+
+        <h2>Accuracy</h2>
+        <p>Lasers are remarkably accurate. Your parts can be cut within a thousandth of an inch and the first part will be exactly like the last, whether cutting two pieces or thousands.</p>
+      </section>
+
+      <section class="three_column">
+        <div id="flexibility" class="process_icon"></div>
+
+        <h2>Flexibility</h2>
+        <p>A laser is equally well-suited for prototyping or production, cutting or etching. A laser can be compared to an artist’s brush&mdash;in capable hands it’s limited only by the imagination.</p>
+      </section>
+    </div>
+  </section>
+
+  <section class="talk">
+    <h1>Our Happy Clients</h1>
+
+    <div id="talk_box_container" class="container">
+      <div class="talk_box">
+        <p>&ldquo;Working with Profile Laser was the greatest experience of my life. I'm certainly going to use them for all my laser cutting needs.&rdquo;</p>
+        <span>- John Doe</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="partners bottom_section">
     <div class="container">
       <h1>Our Partners</h1>
 
@@ -88,45 +131,10 @@
       <a href="http://www.roymfg.com/" target="_blank" class="button">Visit Roy</a>
     </div>
   </section>
-
-  <section class="clients">
-    <h1>Our Happy Clients</h1>
-    <img src="img/client_logos.png" width="964" height="60" alt="Names of companies we have worked with, including GE, Intel, Siemens, Tri-Met, City of Portland, PDX Airport, ODOT, Square D and the Rose Quarter.">
-
-    <div id="talk_box_container" class="container">
-      <div class="talk_box">
-        <p>&ldquo;Working with Profile Laser was the greatest experience of my life. I'm certainly going to use them for all my laser cutting needs.&rdquo;</p>
-        <span>- John Doe</span>
-      </div>
-
-      <div class="talk_box">
-        <p>&ldquo;Four score and seven years ago Profile Laser brought forth on this continent, a new company, conceived in brilliance, and dedicated to the proposition that not all laser cuts are equal.&rdquo;</p>
-        <span>- Abraham Lincoln</span>
-      </div>
-
-      <div class="talk_box">
-        <p>&ldquo;My fellow Americans, ask not what Profile Laser can do for you, ask what you can do for Profile Laser.&rdquo;</p>
-        <span>- John F. Kennedy</span>
-      </div>
-    </div>
-  </section>
   <!-- End Page Content -->
 
 
   <?php include '_footer.php'; ?>
 
-  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
-  <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.8.3.min.js"><\/script>')</script>
-
-  <script src="js/plugins.js"></script>
-  <script src="js/main.js"></script>
-
-  <!-- Google Analytics -->
-  <script>
-    var _gaq=[['_setAccount','UA-37457373-1'],['_trackPageview']];
-    (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
-    g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
-    s.parentNode.insertBefore(g,s)}(document,'script'));
-  </script>
 </body>
 </html>

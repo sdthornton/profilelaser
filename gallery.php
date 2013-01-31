@@ -26,7 +26,7 @@
 
 
   <!-- Start Page Content -->
-  <section class="gallery">
+  <section class="gallery bottom_section">
     <div class="container">
       <h1>Gallery</h1>
       
@@ -39,18 +39,5 @@
 
   <?php include '_footer.php'; ?>
 
-  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
-  <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.8.3.min.js"><\/script>')</script>
-
-  <script src="js/plugins.js"></script>
-  <script src="js/main.js"></script>
-
-  <!-- Google Analytics -->
-  <script>
-    var _gaq=[['_setAccount','UA-37457373-1'],['_trackPageview']];
-    (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
-    g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
-    s.parentNode.insertBefore(g,s)}(document,'script'));
-  </script>
 </body>
 </html>
