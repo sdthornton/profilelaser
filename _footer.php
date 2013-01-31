@@ -20,7 +20,7 @@
 
       <nav>
         <h3>Site Map</h3>
-        <a href="/">Home</a><br>
+        <a href="index">Home</a><br>
         <a href="gallery">Gallery</a><br>
         <a href="contact">Contact</a><br>
       </nav>
