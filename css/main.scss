@@ -205,17 +205,19 @@ header {
 
     nav {
         float: right;
-        font-size: 0.858em;
-        font-weight: 300;
+        font-size: 0.8em;
+        font-weight: 600;
         padding-right: 10px;
         text-transform: uppercase;
 
         li {
             color: $gray;
             display: inline-block;
+            *display: inline;
             font-size: 1em;
             line-height: 80px;
             margin: 0 0 0 32px;
+            zoom: 1;
 
             a {
                 color: $gray;
@@ -227,12 +229,7 @@ header {
             }
 
             &.current_page a {
-                @include border(top, $color, 5px);
-                padding-top: 23px;
-
-                &:hover {
-                    color: $gray;
-                }
+                color: $accent;
             }
         }
     }
@@ -240,6 +237,7 @@ header {
 
 //Banner Section - Home Page
 .banner {
+    background: $color;
     height: 400px;
     overflow: hidden;
     position: fixed;
@@ -281,7 +279,9 @@ header {
 }
 
 .clients {
+    @include border(bottom, darken($smoke, 5%));
     background: $smoke;
+    box-shadow: 0 0 15px rgba(0,0,0,0.5);
     margin-top: 480px;
     padding: 20px;
 }
@@ -322,6 +322,8 @@ header {
 
 //Process Section - Home Page
 .process {
+    @include border(top, darken($smoke, 5%));
+    @include border(bottom, darken($smoke, 5%));
     background: $smoke;
     width: 100%;
 
@@ -375,25 +377,14 @@ header {
     }
 }
 
-//Partners Section - Home Page
-.partners {
-    background: $smoke;
-    position: relative;
-
-    .container {
-        width: 580px;
-    }
-
-    .button {
-        display: inline-block;
-        margin: 10px 20px 0;
-    }
-}
-
 //Clients Section - Home Page
 .talk {
+    @include border(top, darken($color, 5%));
+    @include border(bottom, darken($color, 5%));
     background: $color;
     color: #fff;
+    position: relative;
+    z-index: 1;
 
     h1 {
         color: $white;
@@ -431,6 +422,24 @@ header {
 
     span {
         float: right;
+        text-align: right;
+    }
+}
+
+//Partners Section - Home Page
+.partners {
+    background: $smoke;
+    position: relative;
+
+    .container {
+        width: 580px;
+    }
+
+    .button {
+        display: inline-block;
+        *display: inline;
+        margin: 10px 20px 0;
+        zoom: 1;
     }
 }
 
@@ -457,7 +466,9 @@ header {
 
     li {
         display: inline-block;
+        *display: inline;
         margin: 0 4px;
+        zoom: 1;
     }
 
     .current_page a {
@@ -500,10 +511,12 @@ header {
 
     [class^="icon-"], [class*=" icon-"] {
         display: inline-block;
+        *display: inline;
         font-size: 1.389em;
         line-height: 100%;
         padding-top: 5px;
         vertical-align: top;
+        zoom: 1;
     }
 
     .icon-phone {
@@ -516,7 +529,9 @@ header {
 
     .contact_text {
         display: inline-block;
+        *display: inline;
         padding: 0 0 11px 15px;
+        zoom: 1;
     }
 }
 
@@ -673,6 +688,8 @@ footer {
     a {
         color: $light_gray;
         display: inline-block;
+        *display: inline;
+        zoom: 1;
 
         &:hover {
             color: $smoke;
