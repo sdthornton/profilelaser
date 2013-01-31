@@ -46,6 +46,94 @@ var mobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile/i.test(navigato
 
 
 /* ==========================================================================
+   Sets up prev and next buttons on Home Page banner
+   ========================================================================== */
+if (home_page) {
+	//Scrolls home page banner to the right
+	$('.banner_next').on('click', function() {
+		"use strict";
+
+		$(this).disableSelection();
+
+		var windowWidth = $(window).width();
+		var left = parseInt($('#banner_img').css('left'),10);
+		var next = left - 400;
+		var full = Math.abs(next) + windowWidth;
+		var last = windowWidth - 3200;
+
+		if (full > 3200) {
+			if (left === last) {
+				$('#banner_img').animate({
+					left: '0'
+				});
+			} else {
+				$('#banner_img').animate({
+					left: last + 'px'
+				});
+			}
+		} else {
+			$('#banner_img').animate({
+				left: next + 'px'
+			});
+		}
+	});
+
+	//Scrolls home page banner to the left
+	$('.banner_prev').on('click', function() {
+		"use strict";
+
+		$(this).disableSelection();
+
+		var windowWidth = $(window).width();
+		var left = parseInt($('#banner_img').css('left'),10);
+		var prev = left + 400;
+		var remainder = Math.abs(left % 400);
+		var last = windowWidth - 3200;
+
+		if (left < 0) {
+			if (remainder === 0) {
+				$('#banner_img').animate({
+					left: prev + 'px'
+				});
+			} else {
+				$('#banner_img').animate({
+					left: (left + remainder) + 'px'
+				});
+			}
+		} else {
+			$('#banner_img').animate({
+				left: last + 'px'
+			});
+		}
+	});
+}
+
+
+/* ==========================================================================
+   Parallax and Other window.scroll events
+   ========================================================================== */
+   $('.banner').addClass('in_front');
+if (home_page && !mobile) {
+	$(window).scroll(function() {
+		"use strict";
+
+		var scroll = $(window).scrollTop();
+		if (scroll < 0) { 
+			scroll = 0;
+		} else if (scroll >= 500 && $('.banner').hasClass('in_front')) {
+			scroll = 500;
+			document.getElementsByClassName('banner')[0].style.zIndex = '-3';
+			$('.banner').addClass('in_back').removeClass('in_front');
+		} else if (scroll < 500 && $('.banner').hasClass('in_back')) {
+			document.getElementsByClassName('banner')[0].style.zIndex = '-1'; $('.banner').addClass('in_front').removeClass('in_back');
+		}
+
+		document.getElementById('banner_img').style.top = (-scroll/8) + 'px';
+	});
+}
+
+
+/* ==========================================================================
    Rotates through the quotes in the Talk section
    ========================================================================== */
 if (home_page) {
@@ -88,88 +176,7 @@ function nextTalk() {
 
 var talkLength = $('.talk_box').length;
 if (home_page && talkLength > 1) {
-	setInterval(nextTalk, 8000);
-}
-
-
-/* ==========================================================================
-   Sets up prev and next buttons on Home Page banner
-   ========================================================================== */
-if (home_page) {
-	//Scrolls home page banner to the right
-	$('.banner_next').on('click', function() {
-		"use strict";
-
-		$(this).disableSelection();
-
-		var windowWidth = $(window).width();
-		var left = parseInt($('#banner_img').css('left'),10);
-		var next = left - 400;
-		var full = Math.abs(next) + windowWidth;
-		var last = windowWidth - 2400;
-
-		if (full > 2400) {
-			if (left === last) {
-				$('#banner_img').animate({
-					left: '0'
-				});
-			} else {
-				$('#banner_img').animate({
-					left: last + 'px'
-				});
-			}
-		} else {
-			$('#banner_img').animate({
-				left: next + 'px'
-			});
-		}
-	});
-
-	//Scrolls home page banner to the left
-	$('.banner_prev').on('click', function() {
-		"use strict";
-
-		$(this).disableSelection();
-
-		var windowWidth = $(window).width();
-		var left = parseInt($('#banner_img').css('left'),10);
-		var prev = left + 400;
-		var remainder = Math.abs(left % 400);
-		var last = windowWidth - 2400;
-
-		if (left < 0) {
-			if (remainder === 0) {
-				$('#banner_img').animate({
-					left: prev + 'px'
-				});
-			} else {
-				$('#banner_img').animate({
-					left: (left + remainder) + 'px'
-				});
-			}
-		} else {
-			$('#banner_img').animate({
-				left: last + 'px'
-			});
-		}
-	});
-}
-
-
-/* ==========================================================================
-   Parallax and Other window.scroll events
-   ========================================================================== */
-if (home_page && !mobile) {
-	$(window).scroll(function() {
-		"use strict";
-
-		var scroll = $(window).scrollTop();
-		if (scroll < 0) { scroll = 0; }
-		if (scroll > 500) { scroll = 500; document.getElementsByClassName('banner')[0].style.zIndex = '-3'; }
-		if (scroll < 500) { document.getElementsByClassName('banner')[0].style.zIndex = '-1'; }
-
-		document.getElementById('banner_img').style.top = (-scroll/8) + 'px';
-	});
+	setInterval(nextTalk, 10000);
 }
 
 
@@ -221,7 +228,7 @@ if (gallery_page) {
 		}
 	);
 
-	window.onload = function() { new Masonry(document.getElementById('gallery_images'), { columnWidth: 0 }); };
+	window.onload = function() { "use strict"; new Masonry(document.getElementById('gallery_images'), { columnWidth: 0 }); };
 }
 
 

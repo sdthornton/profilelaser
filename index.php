@@ -28,7 +28,7 @@
   <!-- Start Page Content -->
   <section class="banner">
     <div class="banner_prev scroll_banner"></div>
-    <img src="img/banner.jpg" id="banner_img" width="2400" height="400" alt="A site banner - showing off Profile Laser's work and equipment.">
+    <img src="img/banner.jpg" id="banner_img" width="3200" height="400" alt="A site banner - showing off Profile Laser's work and equipment.">
     <div class="banner_next scroll_banner"></div>
   </section>
 
@@ -115,8 +115,18 @@
 
     <div id="talk_box_container" class="container">
       <div class="talk_box">
-        <p>&ldquo;Working with Profile Laser was the greatest experience of my life. I'm certainly going to use them for all my laser cutting needs.&rdquo;</p>
-        <span>- John Doe</span>
+        <p>&ldquo;I wanted to send a special note of thanks&hellip; The plaque that you created and prepared for us was just what [we] needed. We sincerely appreciate the efforts you put forth.&rdquo;</p>
+        <span>- Beth Toussaint, <b>GE Energy</b></span>
+      </div>
+
+      <div class="talk_box">
+        <p>&ldquo;My fellow Americans: Ask not what Profile Laser can do for you&mdash;ask what you can do for Profile Laser.&rdquo;</p>
+        <span>- JFK, <b>Former President</b></span>
+      </div>
+
+      <div class="talk_box">
+        <p>&ldquo;Four score and seven years ago our father brought forth on this continent, a new company, conceived in Excellence, and dedicated to the proposition that not all laser company's are created equal.&rdquo;</p>
+        <span>- Abraham Lincoln, <b>Former President</b></span>
       </div>
     </div>
   </section>
