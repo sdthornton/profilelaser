@@ -43,7 +43,7 @@
 
       <p>Profile laser began in 2011 but our team has an extensive background in the laser-cutting industry. We’re experienced designers, programmers and operators and we’ll use our talents to produce the best possible product within the design specifications and time restrictions given. We’re proud of our high quality work and we look forward to seeing what we can create for you!</p>
 
-      <a href="#" class="button">Contact Us</a>
+      <a href="contact" class="button">Contact Us</a>
     </div>
   </section>
 

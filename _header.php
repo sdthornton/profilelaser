@@ -4,7 +4,7 @@
 
   <header>
     <div class="container">
-      <a href="#"><img src="img/logo.png" width="300" height="50"></a>
+      <a href="index"><img src="img/logo.png" width="300" height="50"></a>
 
       <nav>
         <ul>
