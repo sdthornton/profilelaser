@@ -385,6 +385,7 @@ if (contact_page) {
 			email: 'Please enter an email address',
 			bademail: 'Please enter a valid email address',
 			message: 'Please write us a message',
+			location: 'Please enter your location (just the city and state)',
 			minlength: ' must be greater than '
 		};
 
