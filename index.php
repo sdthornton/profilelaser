@@ -115,18 +115,18 @@
 
     <div id="talk_box_container" class="container">
       <div class="talk_box">
+        <p>&ldquo;Profile Laser is a fantastic company that you can rely on to meet deadlines and provide a quality product every time. The Profile Laser team is always helpful and accommodating to our varying needs. The whole staff is a pleasure to work with!&rdquo;</p>
+        <span>- Metalcraft Fabrication, Inc</span>
+      </div>
+      
+      <div class="talk_box">
+        <p>&ldquo;Profile Laser has turned out to be very instrumental in our success as a machining job shop. Whether one part, or hundreds, Profile Laser has continued to come through time and time again with quality, pricing and delivery. Profile Laser has shown to be a perfect fit to our budget and high-quality standards.&rdquo;</p>
+        <span>- Hillcore Machine Inc</span>
+      </div>
+
+      <div class="talk_box">
         <p>&ldquo;I wanted to send a special note of thanks&hellip; The plaque that you created and prepared for us was just what [we] needed. We sincerely appreciate the efforts you put forth.&rdquo;</p>
-        <span>- Beth Toussaint, <b>GE Energy</b></span>
-      </div>
-
-      <div class="talk_box">
-        <p>&ldquo;My fellow Americans: Ask not what Profile Laser can do for you&mdash;ask what you can do for Profile Laser.&rdquo;</p>
-        <span>- JFK, <b>Former President</b></span>
-      </div>
-
-      <div class="talk_box">
-        <p>&ldquo;Four score and seven years ago our father brought forth on this continent, a new company, conceived in Excellence, and dedicated to the proposition that not all laser company's are created equal.&rdquo;</p>
-        <span>- Abraham Lincoln, <b>Former President</b></span>
+        <span>- GE Energy</span>
       </div>
     </div>
   </section>
