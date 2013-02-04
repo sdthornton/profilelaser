@@ -208,7 +208,7 @@ function nextTalk() {
 
 var talkLength = $('.talk_box').length;
 if (home_page && talkLength > 1) {
-	setInterval(nextTalk, 10000);
+	setInterval(nextTalk, 15000);
 }
 
 
