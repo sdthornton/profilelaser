@@ -255,8 +255,10 @@ if (gallery_page) {
 				var last_page = ($('.pagination li').last().index())+1;
 
 				$('.pagination li').eq(page-1).addClass('current_page').click(function(e) { e.preventDefault(); });
-				if (parseInt(page,10) !== 1) { $('.pagination li').first().before('<li><a href="?page='+(parseInt(page,10)-1)+'&per_page='+per_page+'">&larr;</a></li>'); }
-				if (parseInt(page,10) !== last_page) { $('.pagination li').last().after('<li><a href="?page='+(parseInt(page,10)+1)+'&per_page='+per_page+'">&rarr;</a></li>'); }
+				$('.pagination li').eq(page-2).children('a').first().attr('rel', 'prev');
+				$('.pagination li').eq(page).children('a').first().attr('rel', 'next');
+				if (parseInt(page,10) !== 1) { $('.pagination li').first().before('<li><a href="?page='+(parseInt(page,10)-1)+'&per_page='+per_page+'" rel="prev">&larr;</a></li>'); }
+				if (parseInt(page,10) !== last_page) { $('.pagination li').last().after('<li><a href="?page='+(parseInt(page,10)+1)+'&per_page='+per_page+'" rel="next">&rarr;</a></li>'); }
 			}
 		}
 	);
