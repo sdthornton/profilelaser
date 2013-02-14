@@ -34,7 +34,7 @@
       <p class="loading_error">There seems to be an issue loading the images. If you have a slow internet connection, you might just keep waiting. Otherwise, try <a href="javascript:void(0)" onclick="window.location.href = 'gallery'; window.location.reload(true);">refreshing</a> the page.</p>
       <img class="loader" src="img/loader.gif" width="64" height="64" alt="Loading images, please wait">
 
-      <section id="gallery_images">
+      <section id="gallery_images" class="gallery_images">
       </section>
     </div>
   </section>

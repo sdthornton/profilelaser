@@ -19,6 +19,9 @@
   vertical-align: top;
 }
 
+.icon-menu:before { content: '\2630'; } /* '☰' */
+.icon-print:before { content: '\e716'; } /* '' */
 .icon-location:before { content: '\e724'; } /* '' */
+.icon-spin3:before { content: '\e832'; } /* '' */
 .icon-mail-alt:before { content: '\f0e0'; } /* '' */
 .icon-phone:before { content: '📞'; } /* '\1f4de' */

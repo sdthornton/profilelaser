@@ -2,7 +2,7 @@
     <div class="container">
       <section class="pride">
         <h3>Profile Laser, LLC</h3>
-        <span>The best precision laser cutting company this side of the Atlantic is proud to operate in Portland, OR</span><br>
+        <span>The best-precision-laser-cutting-company-this-side-of-the-Atlantic is proud to operate in Portland, OR</span><br>
       </section>
 
       <section class="contact_info">

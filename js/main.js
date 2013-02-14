@@ -29,12 +29,16 @@ function getParamByName(name, defaultParam) {
 }
 
 function getElementsByClassName(classname) {
+	"use strict";
 	var a = [];
-    var re = new RegExp('(^| )'+classname+'( |$)');
-    var els = document.body.getElementsByTagName("*");
-    for(var i=0,j=els.length; i<j; i++)
-        if(re.test(els[i].className))a.push(els[i]);
-    return a;
+	var re = new RegExp('(^| )'+classname+'( |$)');
+	var els = document.body.getElementsByTagName("*");
+	for (var i=0,j=els.length; i<j; i++) {
+		if (re.test(els[i].className)) {
+			a.push(els[i]);
+		}
+	}
+	return a;
 }
 
 var retina = window.devicePixelRatio >= 1.5;
@@ -53,13 +57,13 @@ if (home_page) {
 }
 
 //Checks if mobile device
-var mobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile/i.test(navigator.userAgent);
+var mobile = /(alcatel|amoi|android|avantgo|blackberry|benq|cell|cricket|docomo|elaine|htc|iemobile|iphone|ipad|ipaq|ipod|j2me|java|midp|mini|mmp|mobi|motorola|nec-|nokia|palm|panasonic|philips|phone|playbook|sagem|sharp|sie-|silk|smartphone|sony|symbian|t-mobile|telus|up\.browser|up\.link|vodafone|wap|webos|wireless|xda|xoom|zte)/i.test(navigator.userAgent);
 
 
 /* ==========================================================================
    Sets up prev and next buttons on Home Page banner
    ========================================================================== */
-if (home_page) {
+if (home_page && !mobile) {
 	//Scrolls home page banner to the right
 	$('.banner_next').on('click', function() {
 		"use strict";
@@ -149,7 +153,8 @@ if (home_page && !mobile) {
 			getElementsByClassName('banner')[0].style.zIndex = '-3';
 			$('.banner').addClass('in_back').removeClass('in_front');
 		} else if (scroll < 500 && $('.banner').hasClass('in_back')) {
-			getElementsByClassName('banner')[0].style.zIndex = '-1'; $('.banner').addClass('in_front').removeClass('in_back');
+			getElementsByClassName('banner')[0].style.zIndex = '-1';
+			$('.banner').addClass('in_front').removeClass('in_back');
 		}
 
 		document.getElementById('banner_img').style.top = (-scroll/8) + 'px';
@@ -230,11 +235,8 @@ if (gallery_page) {
 			"use strict";
 
 			$.each(data.items.slice(img_start, img_end), function(i,item) {
-				if(retina) {
-					var img_src = (item.media.m).replace('_m.', '_b.');
-				} else {
-					var img_src = (item.media.m).replace('_m.', '.');
-				}
+				var img_src = (retina) ? (item.media.m).replace('_m.', '_b.') : (item.media.m).replace('_m.', '.');
+
 				$('<div class="box"><a href="'+item.link+'" target="_blank" title="'+item.title+'"><img src="'+img_src+'" class="item" width="308" alt="'+item.title+'" /></a></div>').appendTo("#gallery_images");
 			});
 
@@ -263,12 +265,21 @@ if (gallery_page) {
 		}
 	);
 		window.setTimeout(function() {
+			"use strict";
 			$('.loading_error').fadeIn('slow');
 		}, 5000);
 
 		$(window).load(function() {
+			"use strict";
 			$('.loading_error').remove();
 			$('.loader').hide();
+			$('#gallery_images').show().masonry({
+				itemSelector: '.box'
+			});
+		});
+
+		$(window).resize(function() {
+			"use strict";
 			$('#gallery_images').show().masonry({
 				itemSelector: '.box'
 			});
@@ -281,11 +292,11 @@ if (gallery_page) {
    ========================================================================== */
 function googleMap() {
 	"use strict";
-
 	var profileLaser = new google.maps.LatLng(45.53856,-122.674016);
+	var mapOptions;
 
 	if (mobile) {
-		var mapOptions = {
+		mapOptions = {
 			backgroundColor: '#125a98',
 			center: profileLaser,
 			draggable: false,
@@ -300,7 +311,7 @@ function googleMap() {
 			mapTypeId: google.maps.MapTypeId.ROADMAP
 		};
 	} else {
-		var mapOptions = {
+		mapOptions = {
 			backgroundColor: '#125a98',
 			center: profileLaser,
 			draggable: true,
