@@ -136,7 +136,7 @@
     </div>
   </section>
 
-  <section class="partners bottom_section">
+  <section class="partners bottom_section <?php if($mobile == true): ?>mobile_bottom_section<?php endif ?>">
     <div class="container">
       <h1>Our Partners</h1>
 

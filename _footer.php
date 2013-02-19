@@ -1,4 +1,4 @@
-  <footer>
+  <footer <?php if($mobile == true): ?>class="mobile_footer"<?php endif ?>>
     <div class="container">
       <section class="pride">
         <h3>Profile Laser, LLC</h3>

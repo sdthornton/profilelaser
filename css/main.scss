@@ -285,7 +285,7 @@ header {
     box-shadow: 0 0 15px rgba(0,0,0,0.5);
     margin-top: 480px;
     min-width: 100%;
-    padding: 20px;
+    padding: 20px 0;
     width: 100%;
 }
 
@@ -468,18 +468,19 @@ header {
 
 .gallery_images {
     display: none;
-    min-width: 984px;
-    width: 984px;
+    width: 100%;
 
     .box {
         @include transition(all, 0.3s);
         float: left;
+        padding: 10px;
+        width: 33.33%;
     }
 
     img {
         float: left;
-        margin: 10px;
-        width: 308px;
+        height: auto;
+        width: 100%;
 
         &:hover {
             @include opacity(0.85);
@@ -520,7 +521,7 @@ header {
 }
 
 #map {
-    background: $color;
+    background: $smoke;
     font-size: 0.858em;
     height: 400px;
     margin: 45px 0 52.358px;
@@ -694,6 +695,10 @@ header {
 .bottom_section {
     box-shadow: 0 5px 15px #000;
     margin-bottom: $footer_height;
+
+    &.mobile_bottom_section {
+        margin-bottom: 0;
+    }
 }
 
 footer {
@@ -705,6 +710,12 @@ footer {
     position: fixed;
     text-align: left;
     z-index: -2;
+
+    &.mobile_footer {
+        bottom: auto;
+        position: relative;
+        z-index: 0;
+    }
 
     h3 {
         border-bottom: solid 1px $gray;

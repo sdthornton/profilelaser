@@ -4,33 +4,45 @@
 // Below 1044px | 768px Container - iPad, no gutter
 @media only screen and (max-width: 63.938em) {
 	.container {
-		width: 768px;
+		padding: 0 20px;
+		width: 100%;
+
+		.about &, .partners & {
+			padding: 0;
+		}
 
 		.talk & {
-			width: 748px;
+			padding: 0;
+			width: 708px;
 		}
 	}
 
-	.clients img {
-		height: 48px;
-		width: 748px;
+	.clients {
+		padding: 20px 30px;
+
+		img {
+			height: auto;
+			width: 100%;
+		}
 	}
 
 	.talk_box {
-		width: 748px;
+		width: 708px;
 	}
 
-	.gallery_images img {
-		width: 236px;
+	.gallery_images {
+		.box {
+			width: 50%;
+		}
 	}
 
 	.general_contact {
-		padding-right: 10px;
-		width: 300px;
+		padding-right: 35px;
+		width: 40%;
 	}
 
 	.contact_form {
-		width: 468px;
+		width: 60%;
 	}
 
 	footer h3 {

@@ -63,63 +63,69 @@ var mobile = /(alcatel|amoi|android|avantgo|blackberry|benq|cell|cricket|docomo|
 /* ==========================================================================
    Sets up prev and next buttons on Home Page banner
    ========================================================================== */
-if (home_page && !mobile) {
-	//Scrolls home page banner to the right
-	$('.banner_next').on('click', function() {
-		"use strict";
+function nextImg() {
+	"use strict";
+	var windowWidth = $(window).width();
+	var left = parseInt($('#banner_img').css('left'),10);
+	var next = left - 400;
+	var full = Math.abs(next) + windowWidth;
+	var last = windowWidth - 3200;
 
-		$(this).disableSelection();
-
-		var windowWidth = $(window).width();
-		var left = parseInt($('#banner_img').css('left'),10);
-		var next = left - 400;
-		var full = Math.abs(next) + windowWidth;
-		var last = windowWidth - 3200;
-
-		if (full > 3200) {
-			if (left === last) {
-				$('#banner_img').animate({
-					left: '0'
-				});
-			} else {
-				$('#banner_img').animate({
-					left: last + 'px'
-				});
-			}
-		} else {
+	if (full > 3200) {
+		if (left === last) {
 			$('#banner_img').animate({
-				left: next + 'px'
+				left: '0'
 			});
-		}
-	});
-
-	//Scrolls home page banner to the left
-	$('.banner_prev').on('click', function() {
-		"use strict";
-
-		$(this).disableSelection();
-
-		var windowWidth = $(window).width();
-		var left = parseInt($('#banner_img').css('left'),10);
-		var prev = left + 400;
-		var remainder = Math.abs(left % 400);
-		var last = windowWidth - 3200;
-
-		if (left < 0) {
-			if (remainder === 0) {
-				$('#banner_img').animate({
-					left: prev + 'px'
-				});
-			} else {
-				$('#banner_img').animate({
-					left: (left + remainder) + 'px'
-				});
-			}
 		} else {
 			$('#banner_img').animate({
 				left: last + 'px'
 			});
 		}
+	} else {
+		$('#banner_img').animate({
+			left: next + 'px'
+		});
+	}	
+}
+
+function prevImg() {
+	"use strict";
+	var windowWidth = $(window).width();
+	var left = parseInt($('#banner_img').css('left'),10);
+	var prev = left + 400;
+	var remainder = Math.abs(left % 400);
+	var last = windowWidth - 3200;
+
+	if (left < 0) {
+		if (remainder === 0) {
+			$('#banner_img').animate({
+				left: prev + 'px'
+			});
+		} else {
+			$('#banner_img').animate({
+				left: (left + remainder) + 'px'
+			});
+		}
+	} else {
+		$('#banner_img').animate({
+			left: last + 'px'
+		});
+	}
+}
+
+if (home_page && !mobile) {
+	//Scrolls home page banner to the right
+	$('.banner_next').on('click', function() {
+		"use strict";
+		$(this).disableSelection();
+		nextImg();
+	});
+
+	//Scrolls home page banner to the left
+	$('.banner_prev').on('click', function() {
+		"use strict";
+		$(this).disableSelection();
+		prevImg();
 	});
 }
 
@@ -312,7 +318,7 @@ function googleMap() {
 		};
 	} else {
 		mapOptions = {
-			backgroundColor: '#125a98',
+			backgroundColor: '#f3f3f3',
 			center: profileLaser,
 			draggable: true,
 			disableDefaultUI: true,
@@ -347,10 +353,8 @@ function googleMap() {
 		null,
 		null,
 		new google.maps.Size(80, 45)
-
 	);
 
-	
 	window.setTimeout(function() {
 		var marker = new google.maps.Marker({
 			position: profileLaser,

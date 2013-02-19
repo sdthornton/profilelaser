@@ -15,7 +15,7 @@ $mobile = detect_mobile();
   <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
 <![endif]-->
 
-<?php if($mobile !== true): ?>
+<?php if($mobile == true): ?>
   <header>
     <div class="container">
       <a href="index"><img src="img/logo.png" width="300" height="50"></a>

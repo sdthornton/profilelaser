@@ -28,7 +28,7 @@
 
 
   <!-- Start Page Content -->
-  <section class="contact_us bottom_section">
+  <section class="contact_us bottom_section <?php if($mobile == true): ?>mobile_bottom_section<?php endif ?>">
     <h1>Get In Touch</h1>
 
     <section id="map" class="map"></section>
@@ -90,7 +90,7 @@
           <div class="message_div"><label for="message">Message: <span class="required">*</span></label>
           <textarea id="message" name="message" required data-minlength="20"><?php echo ($sr && !$cf['form_ok']) ? $cf['posted_form_data']['message'] : '' ?></textarea></div>
 
-          <div><label for="location">Location (City and State): <span class="required">*</span></label>
+          <div><label for="location">Location (City & State): <span class="required">*</span></label>
           <input type="text" id="location" name="location" value="<?php echo ($sr && !$cf['form_ok']) ? $cf['posted_form_data']['location'] : '' ?>" required></div>
 
           <span id="loading"></span>

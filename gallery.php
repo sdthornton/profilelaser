@@ -26,7 +26,7 @@
 
 
   <!-- Start Page Content -->
-  <section class="gallery bottom_section">
+  <section class="gallery bottom_section <?php if($mobile == true): ?>mobile_bottom_section<?php endif ?>">
     <div class="container">
       <h1>Gallery</h1>
       
