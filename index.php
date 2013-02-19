@@ -115,6 +115,11 @@
 
     <div id="talk_box_container" class="container">
       <div class="talk_box">
+        <p>&ldquo;Profile Laser has exceeded our expectations in every way possible, from the design of the mounting systems we need for our LED lighting to delivery of the finished product, we couldn't be better served. Profile Laser has won our business on every level.&rdquo;</p>
+        <span>- Olino Energy</span>
+      </div>
+      
+      <div class="talk_box">
         <p>&ldquo;Profile Laser is a fantastic company that you can rely on to meet deadlines and provide a quality product every time. The Profile Laser team is always helpful and accommodating to our varying needs. The whole staff is a pleasure to work with!&rdquo;</p>
         <span>- Metalcraft Fabrication, Inc</span>
       </div>
@@ -131,7 +136,7 @@
     </div>
   </section>
 
-  <section class="partners bottom_section">
+  <section class="partners bottom_section <?php if($mobile == true): ?>mobile_bottom_section<?php endif ?>">
     <div class="container">
       <h1>Our Partners</h1>
 

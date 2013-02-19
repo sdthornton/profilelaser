@@ -29,12 +29,16 @@ function getParamByName(name, defaultParam) {
 }
 
 function getElementsByClassName(classname) {
+	"use strict";
 	var a = [];
-    var re = new RegExp('(^| )'+classname+'( |$)');
-    var els = document.body.getElementsByTagName("*");
-    for(var i=0,j=els.length; i<j; i++)
-        if(re.test(els[i].className))a.push(els[i]);
-    return a;
+	var re = new RegExp('(^| )'+classname+'( |$)');
+	var els = document.body.getElementsByTagName("*");
+	for (var i=0,j=els.length; i<j; i++) {
+		if (re.test(els[i].className)) {
+			a.push(els[i]);
+		}
+	}
+	return a;
 }
 
 var retina = window.devicePixelRatio >= 1.5;
@@ -53,69 +57,75 @@ if (home_page) {
 }
 
 //Checks if mobile device
-var mobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile/i.test(navigator.userAgent);
+var mobile = /(alcatel|amoi|android|avantgo|blackberry|benq|cell|cricket|docomo|elaine|htc|iemobile|iphone|ipad|ipaq|ipod|j2me|java|midp|mini|mmp|mobi|motorola|nec-|nokia|palm|panasonic|philips|phone|playbook|sagem|sharp|sie-|silk|smartphone|sony|symbian|t-mobile|telus|up\.browser|up\.link|vodafone|wap|webos|wireless|xda|xoom|zte)/i.test(navigator.userAgent);
 
 
 /* ==========================================================================
    Sets up prev and next buttons on Home Page banner
    ========================================================================== */
-if (home_page) {
-	//Scrolls home page banner to the right
-	$('.banner_next').on('click', function() {
-		"use strict";
+function nextImg() {
+	"use strict";
+	var windowWidth = $(window).width();
+	var left = parseInt($('#banner_img').css('left'),10);
+	var next = left - 400;
+	var full = Math.abs(next) + windowWidth;
+	var last = windowWidth - 3200;
 
-		$(this).disableSelection();
-
-		var windowWidth = $(window).width();
-		var left = parseInt($('#banner_img').css('left'),10);
-		var next = left - 400;
-		var full = Math.abs(next) + windowWidth;
-		var last = windowWidth - 3200;
-
-		if (full > 3200) {
-			if (left === last) {
-				$('#banner_img').animate({
-					left: '0'
-				});
-			} else {
-				$('#banner_img').animate({
-					left: last + 'px'
-				});
-			}
-		} else {
+	if (full > 3200) {
+		if (left === last) {
 			$('#banner_img').animate({
-				left: next + 'px'
+				left: '0'
 			});
-		}
-	});
-
-	//Scrolls home page banner to the left
-	$('.banner_prev').on('click', function() {
-		"use strict";
-
-		$(this).disableSelection();
-
-		var windowWidth = $(window).width();
-		var left = parseInt($('#banner_img').css('left'),10);
-		var prev = left + 400;
-		var remainder = Math.abs(left % 400);
-		var last = windowWidth - 3200;
-
-		if (left < 0) {
-			if (remainder === 0) {
-				$('#banner_img').animate({
-					left: prev + 'px'
-				});
-			} else {
-				$('#banner_img').animate({
-					left: (left + remainder) + 'px'
-				});
-			}
 		} else {
 			$('#banner_img').animate({
 				left: last + 'px'
 			});
 		}
+	} else {
+		$('#banner_img').animate({
+			left: next + 'px'
+		});
+	}	
+}
+
+function prevImg() {
+	"use strict";
+	var windowWidth = $(window).width();
+	var left = parseInt($('#banner_img').css('left'),10);
+	var prev = left + 400;
+	var remainder = Math.abs(left % 400);
+	var last = windowWidth - 3200;
+
+	if (left < 0) {
+		if (remainder === 0) {
+			$('#banner_img').animate({
+				left: prev + 'px'
+			});
+		} else {
+			$('#banner_img').animate({
+				left: (left + remainder) + 'px'
+			});
+		}
+	} else {
+		$('#banner_img').animate({
+			left: last + 'px'
+		});
+	}
+}
+
+if (home_page && !mobile) {
+	//Scrolls home page banner to the right
+	$('.banner_next').on('click', function() {
+		"use strict";
+		$(this).disableSelection();
+		nextImg();
+	});
+
+	//Scrolls home page banner to the left
+	$('.banner_prev').on('click', function() {
+		"use strict";
+		$(this).disableSelection();
+		prevImg();
 	});
 }
 
@@ -149,7 +159,8 @@ if (home_page && !mobile) {
 			getElementsByClassName('banner')[0].style.zIndex = '-3';
 			$('.banner').addClass('in_back').removeClass('in_front');
 		} else if (scroll < 500 && $('.banner').hasClass('in_back')) {
-			getElementsByClassName('banner')[0].style.zIndex = '-1'; $('.banner').addClass('in_front').removeClass('in_back');
+			getElementsByClassName('banner')[0].style.zIndex = '-1';
+			$('.banner').addClass('in_front').removeClass('in_back');
 		}
 
 		document.getElementById('banner_img').style.top = (-scroll/8) + 'px';
@@ -230,11 +241,8 @@ if (gallery_page) {
 			"use strict";
 
 			$.each(data.items.slice(img_start, img_end), function(i,item) {
-				if(retina) {
-					var img_src = (item.media.m).replace('_m.', '_b.');
-				} else {
-					var img_src = (item.media.m).replace('_m.', '.');
-				}
+				var img_src = (retina) ? (item.media.m).replace('_m.', '_b.') : (item.media.m).replace('_m.', '.');
+
 				$('<div class="box"><a href="'+item.link+'" target="_blank" title="'+item.title+'"><img src="'+img_src+'" class="item" width="308" alt="'+item.title+'" /></a></div>').appendTo("#gallery_images");
 			});
 
@@ -263,12 +271,21 @@ if (gallery_page) {
 		}
 	);
 		window.setTimeout(function() {
+			"use strict";
 			$('.loading_error').fadeIn('slow');
 		}, 5000);
 
 		$(window).load(function() {
+			"use strict";
 			$('.loading_error').remove();
 			$('.loader').hide();
+			$('#gallery_images').show().masonry({
+				itemSelector: '.box'
+			});
+		});
+
+		$(window).resize(function() {
+			"use strict";
 			$('#gallery_images').show().masonry({
 				itemSelector: '.box'
 			});
@@ -281,11 +298,11 @@ if (gallery_page) {
    ========================================================================== */
 function googleMap() {
 	"use strict";
-
 	var profileLaser = new google.maps.LatLng(45.53856,-122.674016);
+	var mapOptions;
 
 	if (mobile) {
-		var mapOptions = {
+		mapOptions = {
 			backgroundColor: '#125a98',
 			center: profileLaser,
 			draggable: false,
@@ -300,8 +317,8 @@ function googleMap() {
 			mapTypeId: google.maps.MapTypeId.ROADMAP
 		};
 	} else {
-		var mapOptions = {
-			backgroundColor: '#125a98',
+		mapOptions = {
+			backgroundColor: '#f3f3f3',
 			center: profileLaser,
 			draggable: true,
 			disableDefaultUI: true,
@@ -336,10 +353,8 @@ function googleMap() {
 		null,
 		null,
 		new google.maps.Size(80, 45)
-
 	);
 
-	
 	window.setTimeout(function() {
 		var marker = new google.maps.Marker({
 			position: profileLaser,

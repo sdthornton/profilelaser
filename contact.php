@@ -28,7 +28,7 @@
 
 
   <!-- Start Page Content -->
-  <section class="contact_us bottom_section">
+  <section class="contact_us bottom_section <?php if($mobile == true): ?>mobile_bottom_section<?php endif ?>">
     <h1>Get In Touch</h1>
 
     <section id="map" class="map"></section>
@@ -37,11 +37,13 @@
       <section class="general_contact">
         <h2>Send Us a Message or Stop On By</h2>
 
-        <a href="http://maps.google.com/?q=2138+N+Interstate+Ave+Portland+OR+97227" target="_blank"><span class="icon-location"></span><span class="contact_text">2138 N. Interstate Ave<br>Portland, OR 97227</span></a><br>
+        <div class="contact_page_text"><a href="http://maps.google.com/?q=2138+N+Interstate+Ave+Portland+OR+97227" target="_blank"><span class="icon-location"></span><span class="contact_text">2138 N. Interstate Ave<br>Portland, OR 97227</span></a></div>
 
-        <a href="tel:5032926044" class="tel_link"><span class="icon-phone"></span><span class="contact_text">(503) 292-6044</span></a><br>
+        <div class="contact_page_text"><a href="tel:5032926044" class="tel_link"><span class="icon-phone"></span><span class="contact_text">(503) 292-6044</span></a></div>
 
-        <a href="mailto:&#115;&#97;&#108;&#101;&#115;&#64;&#112;&#114;&#111;&#102;&#105;&#108;&#101;&#108;&#97;&#115;&#101;&#114;&#46;&#99;&#111;&#109;"><span class="icon-mail-alt"></span><span class="contact_text">&#115;&#97;&#108;&#101;&#115;&#64;&#112;&#114;&#111;&#102;&#105;&#108;&#101;&#108;&#97;&#115;&#101;&#114;&#46;&#99;&#111;&#109;</span></a>
+        <div class="contact_page_text"><span class="icon-print"></span><span class="contact_text">Fax: (503) 284-0016</span></div>
+
+        <div class="contact_page_text"><a href="mailto:&#115;&#97;&#108;&#101;&#115;&#64;&#112;&#114;&#111;&#102;&#105;&#108;&#101;&#108;&#97;&#115;&#101;&#114;&#46;&#99;&#111;&#109;"><span class="icon-mail-alt"></span><span class="contact_text">&#115;&#97;&#108;&#101;&#115;&#64;&#112;&#114;&#111;&#102;&#105;&#108;&#101;&#108;&#97;&#115;&#101;&#114;&#46;&#99;&#111;&#109;</span></a></div>
       </section>
 
       <section class="contact_form">
@@ -88,7 +90,7 @@
           <div class="message_div"><label for="message">Message: <span class="required">*</span></label>
           <textarea id="message" name="message" required data-minlength="20"><?php echo ($sr && !$cf['form_ok']) ? $cf['posted_form_data']['message'] : '' ?></textarea></div>
 
-          <div><label for="location">Location (City and State): <span class="required">*</span></label>
+          <div><label for="location">Location (City & State): <span class="required">*</span></label>
           <input type="text" id="location" name="location" value="<?php echo ($sr && !$cf['form_ok']) ? $cf['posted_form_data']['location'] : '' ?>" required></div>
 
           <span id="loading"></span>

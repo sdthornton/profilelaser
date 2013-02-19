@@ -1,3 +1,72 @@
 /* ==========================================================================
    Media Styles
    ========================================================================== */
+// Below 1044px | 768px Container - iPad, no gutter
+@media only screen and (max-width: 63.938em) {
+	.container {
+		padding: 0 20px;
+		width: 100%;
+
+		.about &, .partners & {
+			padding: 0;
+		}
+
+		.talk & {
+			padding: 0;
+			width: 708px;
+		}
+	}
+
+	.clients {
+		padding: 20px 30px;
+
+		img {
+			height: auto;
+			width: 100%;
+		}
+	}
+
+	.talk_box {
+		width: 708px;
+	}
+
+	.gallery_images {
+		.box {
+			width: 50%;
+		}
+	}
+
+	.general_contact {
+		padding-right: 35px;
+		width: 40%;
+	}
+
+	.contact_form {
+		width: 60%;
+	}
+
+	footer h3 {
+		font-size: .95em;
+	}
+}
+
+// 600px - Mobile Deviceds
+@media only screen and (max-width: 37.5em) {
+	.container {
+		width: 600px;
+	}
+}
+
+// 480px - iPhone landscape
+@media only screen and (max-width: 30em) {
+	.container {
+		width: 480px;
+	}
+}
+
+//320px - iPhone
+@media only screen and (max-width: 20em) {
+	.container {
+		width: 320px;
+	}
+}
