@@ -12,7 +12,7 @@ $dark_gray: #333;
 $black: #151515;
 $color: #125a98;
 $accent: #da7d31;
-$footer_height: 340px;
+$footer_height: 320px;
 
 /* ==========================================================================
    HTML5 Boilerplate Base Styles
@@ -88,16 +88,31 @@ body {
     font: 300 125%/1.618 "Open Sans", "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
     text-align: center;
     text-rendering: optimizeLegibility;
-    
-    > section:not(.banner):not(.clients) {
-        min-width: 100%;
-        overflow: hidden;
-        padding: 72.713px 0;
-        width: 100%;
-    }
+    -webkit-font-smoothing: subpixel-antialiased;
 }
 
-header, footer {
+.about,
+.process,
+.why,
+.talk,
+.partners,
+.gallery,
+.contact_us {
+    min-width: 100%;
+    overflow: hidden;
+    padding: 3.636em 0;
+    position: relative;
+    width: 100%;
+    z-index: 2;
+}
+
+.clients {
+    position: relative;
+    z-index: 2;
+}
+
+header,
+footer {
     width: 100%;
 }
 
@@ -158,7 +173,7 @@ nav ul {
 
 .container {
     margin: 0 auto;
-    overflow: auto;
+    overflow: hidden;
     position: relative;
     width: 984px;
 }
@@ -185,6 +200,62 @@ nav ul {
 }
 
 //Header and Nav
+.mobile_nav_check {
+    display: none;
+}
+
+.mobile_nav {
+    background: $black;
+    display: none;
+    height: 100%;
+    overflow: auto;
+    position: fixed;
+    width: 0;
+
+    li {
+        @include gradient(#333, #222);
+        border-bottom: solid 1px darken(#222, 5%);
+        border-top: solid 1px lighten(#333, 5%);
+        color: $smoke;
+        float: left;
+        text-align: left;
+        width: 100%;
+
+        &:hover,
+        &:active {
+            @include gradient(#444, #222);
+            border-top-color: lighten(#444, 5%);
+            color: $white;
+        }
+    }
+
+    a {
+        color: $smoke;
+        display: block;
+        font-weight: 600;
+        line-height: 60px;
+        padding-left: 10%;
+        text-shadow: 0 1px 1px #000;
+        width: 100%;
+
+        &:hover,
+        &:active {
+            color: $white;
+        }
+    }
+}
+
+.toggle_mobile_nav {
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    cursor: pointer;
+    display: none;
+    float: left;
+    height: 80px;
+    margin: 0;
+    padding: 0;
+    width: 80px;
+}
+
 header {
     background: $white;
     box-shadow: 0 0 5px rgba(0,0,0,0.5);
@@ -196,12 +267,6 @@ header {
 
     &.lt-ie9 {
         @include border(bottom);
-    }
-
-    img {
-        float: left;
-        margin: 15px 0;
-        padding-left: 10px
     }
 
     nav {
@@ -236,18 +301,24 @@ header {
     }
 }
 
+.profile_logo {
+    float: left;
+    margin: 15px 0;
+    padding-left: 10px;
+}
+
 //Banner Section - Home Page
 .banner {
-    background: $color;
+    background: $white;
     height: 400px;
     overflow: hidden;
     position: fixed;
     top: 80px;
     width: 100%;
-    z-index: -1;
+    z-index: 1;
 }
 
-#banner_img {
+.banner_img {
     left: 0;
     position: absolute;
 }
@@ -342,7 +413,8 @@ header {
     }
 }
 
-.process_icon, .why_icon {
+.process_icon,
+.why_icon {
     background: $color url('../img/process_icons.png') 0 0 no-repeat;
     background-size: 1200px 200px;
     border-radius: 100px;
@@ -520,7 +592,7 @@ header {
     }
 }
 
-#map {
+.map {
     background: $smoke;
     font-size: 0.858em;
     height: 400px;
@@ -621,7 +693,8 @@ header {
     margin: 0 10px 20px;
 }
 
-#name, label[for="name"] {
+#name,
+label[for="name"] {
     position: absolute;
     visibility: hidden;
 }
@@ -636,8 +709,11 @@ header {
 
     .anti_robot {
         @include opacity(0);
+        margin: 0;
+        padding: 0;
         position: absolute;
         visibility: hidden;
+        width: 100%;
     }
 
     .message_div {
@@ -709,7 +785,7 @@ footer {
     padding: 52.358px 0;
     position: fixed;
     text-align: left;
-    z-index: -2;
+    z-index: 0;
 
     &.mobile_footer {
         bottom: auto;

@@ -61,6 +61,158 @@ var mobile = /(alcatel|amoi|android|avantgo|blackberry|benq|cell|cricket|docomo|
 
 
 /* ==========================================================================
+   Mobile and Small Screens
+   ========================================================================== */
+$('.mobile_nav ~ *').transition({ x:0 }, 0);
+$('#fastclick').fastClick(function(e) {
+	"use strict";
+	e.preventDefault();
+	e.stopPropagation();
+	if ($(this).hasClass('open')) {
+		$('.mobile_nav').css({ zIndex: '-2' });
+		$('.mobile_nav').delay(300).animate({ visibility: 'hidden' }, 0);
+		$('.mobile_nav ~ *').transition({ x:0 }, 300, 'ease');
+		$(this).removeClass('open').css({ opacity: '0.75' });
+	} else {
+		$('.mobile_nav ~ *').transition({ x:240 }, 300, 'ease');
+		$('.mobile_nav').css({ visibility: 'visible' });
+		$('.mobile_nav').delay(300).animate({ zIndex: '1' }, 0);
+		$(this).addClass('open').css({ opacity: '1.0' });
+	}
+});
+
+function mobileBannerPosition() {
+	"use strict";
+	var windowWidth = $(window).width();
+	var lefts = [0, windowWidth/2, windowWidth, windowWidth*1.5, windowWidth*2, windowWidth*2.5, windowWidth*3];
+	var left = lefts[Math.floor(Math.random()*lefts.length)];
+	if (windowWidth <= 640) {
+		$('.banner_img').animate({ left: -left }, 0, function() {
+			$('.banner_img').css({ visibility: 'visible' });
+		});
+	}
+}
+
+if (home_page) {
+	$(window).load(function() {
+		mobileBannerPosition();
+	});
+	$(window).resize(function() {
+		"use strict";
+		$('.banner_img').css({ left: '0', visibility: 'visible' });
+	});
+}
+
+
+/* ==========================================================================
+   Parallax and Other window.scroll events
+   ========================================================================== */
+if (home_page && !mobile) {
+	$('.banner').addClass('in_front');
+
+	if ($(window).width() >= 768) {
+		$('.process_icon').css('opacity', '0');
+		$('.why_icon').css('opacity', '0');
+	}
+
+	var windowHeight = $(window).height();
+	var processIconOffset = $('.process_icon').offset().top;
+	var whyIconOffset = $('.why_icon').offset().top;
+	var iconHeight = $('.process_icon').height();
+	var processIconBottomOffset = processIconOffset + iconHeight;
+	var whyIconBottomOffset = whyIconOffset + iconHeight;
+	var processIconShown = processIconBottomOffset - windowHeight;
+	var whyIconShown = whyIconBottomOffset - windowHeight;
+
+	$(window).scroll(function() {
+		"use strict";
+
+		var scroll = $(window).scrollTop();
+
+		if ($(window).width() >= 768) {
+			if (scroll < 0) { 
+				scroll = 0;
+			} else if (scroll >= 500 && $('.banner').hasClass('in_front')) {
+				scroll = 500;
+				getElementsByClassName('banner')[0].style.zIndex = '-1';
+				$('.banner').addClass('in_back').removeClass('in_front');
+			} else if (scroll < 500 && $('.banner').hasClass('in_back')) {
+				getElementsByClassName('banner')[0].style.zIndex = '0';
+				$('.banner').addClass('in_front').removeClass('in_back');
+			}
+
+			document.getElementById('banner_img').style.top = (-scroll/8) + 'px';
+		} else {
+			document.getElementById('banner_img').style.top = '0';
+			$('.banner').css({ zIndex: '1' }).addClass('in_front');
+		}
+
+		if (scroll > processIconShown) {
+			$('.process_icon').animate({opacity: '1.0'}, 500);
+		}
+
+		if (scroll > whyIconShown) {
+			$('.why_icon').animate({opacity: '1.0'}, 500);
+		}
+	});
+
+	$(window).resize(function() {
+		"use strict";
+		if ($(window).width() >= 768) {
+			$('.banner').css({ zIndex: '1' }).addClass('in_front');
+		}
+	});
+}
+
+
+/* ==========================================================================
+   Rotates through the quotes in the Talk section
+   ========================================================================== */
+if (home_page) {
+	var talkHeights = [];
+
+	$('.talk_box').each(function() {
+		"use strict";
+
+		talkHeights.push($(this).outerHeight());
+	});
+
+	var talkHeight = Math.max.apply(null, talkHeights);
+
+	window.onload = function() { "use strict"; document.getElementById('talk_box_container').style.height = talkHeight+'px'; };
+
+	$('.talk_box').each(function() {
+		"use strict";
+
+		var thisHeight = $(this).height();
+		var padding = (talkHeight - thisHeight)/2;
+		this.style.padding = padding+'px 0';
+	});
+
+	$('.talk_box').first().css('position', 'absolute').addClass('active_talk');
+	$('.talk_box').not('.active_talk').css({ display: 'none', visibility: 'visible' });
+}
+
+function nextTalk() {
+	"use strict";
+
+	var next = $('.active_talk').next();
+	if ($('.talk_box').last().hasClass('active_talk')) {
+		next = $('.talk_box').first();
+	}
+
+	$('.active_talk').removeClass('active_talk').animate({opacity: '0'}, 500).delay(500).fadeOut(0, function() {
+		next.show().animate({ opacity: '1.0' }, 500).addClass('active_talk');
+	});
+}
+
+var talkLength = $('.talk_box').length;
+if (home_page && talkLength > 1) {
+	setInterval(nextTalk, 15000);
+}
+
+
+/* ==========================================================================
    Sets up prev and next buttons on Home Page banner
    ========================================================================== */
 function nextImg() {
@@ -131,99 +283,6 @@ if (home_page && !mobile) {
 
 
 /* ==========================================================================
-   Parallax and Other window.scroll events
-   ========================================================================== */
-if (home_page && !mobile) {
-	$('.banner').addClass('in_front');
-	$('.process_icon').css('opacity', '0');
-	$('.why_icon').css('opacity', '0');
-
-	var windowHeight = $(window).height();
-	var processIconOffset = $('.process_icon').offset().top;
-	var whyIconOffset = $('.why_icon').offset().top;
-	var iconHeight = $('.process_icon').height();
-	var processIconBottomOffset = processIconOffset + iconHeight;
-	var whyIconBottomOffset = whyIconOffset + iconHeight;
-	var processIconShown = processIconBottomOffset - windowHeight;
-	var whyIconShown = whyIconBottomOffset - windowHeight;
-
-	$(window).scroll(function() {
-		"use strict";
-
-		var scroll = $(window).scrollTop();
-
-		if (scroll < 0) { 
-			scroll = 0;
-		} else if (scroll >= 500 && $('.banner').hasClass('in_front')) {
-			scroll = 500;
-			getElementsByClassName('banner')[0].style.zIndex = '-3';
-			$('.banner').addClass('in_back').removeClass('in_front');
-		} else if (scroll < 500 && $('.banner').hasClass('in_back')) {
-			getElementsByClassName('banner')[0].style.zIndex = '-1';
-			$('.banner').addClass('in_front').removeClass('in_back');
-		}
-
-		document.getElementById('banner_img').style.top = (-scroll/8) + 'px';
-
-		if(scroll > processIconShown) {
-			$('.process_icon').animate({opacity: '1.0'}, 500);
-		}
-
-		if(scroll > whyIconShown) {
-			$('.why_icon').animate({opacity: '1.0'}, 500);
-		}
-	});
-}
-
-
-/* ==========================================================================
-   Rotates through the quotes in the Talk section
-   ========================================================================== */
-if (home_page) {
-	var talkHeights = [];
-
-	$('.talk_box').each(function() {
-		"use strict";
-
-		talkHeights.push($(this).outerHeight());
-	});
-
-	var talkHeight = Math.max.apply(null, talkHeights);
-
-	window.onload = function() { "use strict"; document.getElementById('talk_box_container').style.height = talkHeight+'px'; };
-
-	$('.talk_box').each(function() {
-		"use strict";
-
-		var thisHeight = $(this).height();
-		var padding = (talkHeight - thisHeight)/2;
-		this.style.padding = padding+'px 0';
-	});
-
-	$('.talk_box').first().css('position', 'absolute').addClass('active_talk');
-	$('.talk_box').not('.active_talk').css({ display: 'none', visibility: 'visible' });
-}
-
-function nextTalk() {
-	"use strict";
-
-	var next = $('.active_talk').next();
-	if ($('.talk_box').last().hasClass('active_talk')) {
-		next = $('.talk_box').first();
-	}
-
-	$('.active_talk').removeClass('active_talk').animate({opacity: '0'}, 500).delay(500).fadeOut(0, function() {
-		next.show().animate({ opacity: '1.0' }, 500).addClass('active_talk');
-	});
-}
-
-var talkLength = $('.talk_box').length;
-if (home_page && talkLength > 1) {
-	setInterval(nextTalk, 15000);
-}
-
-
-/* ==========================================================================
    Flickr API
    ========================================================================== */
 if (gallery_page) {
@@ -273,22 +332,22 @@ if (gallery_page) {
 		window.setTimeout(function() {
 			"use strict";
 			$('.loading_error').fadeIn('slow');
-		}, 5000);
+		}, 8000);
 
 		$(window).load(function() {
 			"use strict";
 			$('.loading_error').remove();
 			$('.loader').hide();
-			$('#gallery_images').show().masonry({
-				itemSelector: '.box'
-			});
+			$('#gallery_images').show();
+			var gallery = new Masonry(document.getElementById('gallery_images'));
+			return gallery;
 		});
 
 		$(window).resize(function() {
 			"use strict";
-			$('#gallery_images').show().masonry({
-				itemSelector: '.box'
-			});
+			$('#gallery_images').show();
+			var gallery = new Masonry(document.getElementById('gallery_images'));
+			return gallery;
 		});
 }
 
@@ -365,7 +424,7 @@ function googleMap() {
 		});
 
 		var infowindow = new google.maps.InfoWindow({
-			content:"<b>Profile Laser, LLC</b><br>2138 N. Interstate Ave<br>Portland, OR 97225"
+			content:'<a href="http://maps.google.com/?q=2138+N+Interstate+Ave+Portland+OR+97227" target="_blank"><b>Profile Laser, LLC</b><br>2138 N. Interstate Ave<br>Portland, OR 97225"</a>'
 		});
 
 		google.maps.event.addListener(marker, 'click', function() {
@@ -380,9 +439,9 @@ if (contact_page) {
 
 
 /* ==========================================================================
-   Automatically Fill in Location on Contact Page
+   Automatically Fill in Location on Contact Page (currently not working)
    ========================================================================== */
-if (contact_page) {
+/*if (contact_page) {
 	var locationField = document.getElementById('location').value === '';
 	if (navigator.geolocation && locationField) {
 		window.onload = function() {
@@ -404,7 +463,7 @@ if (contact_page) {
 			});
 		};
 	}
-}
+}*/
 
 
 /* ==========================================================================
@@ -590,30 +649,22 @@ if (contact_page) {
    Footer Positioning
    ========================================================================== */
 var footer = document.getElementsByTagName('footer')[0];
-var bottomSection = document.getElementsByClassName('bottom_section')[0];
+var bottomSection = getElementsByClassName('bottom_section')[0];
 
 function footerPosition() {
 	"use strict";
-
 	var footerHeight = $('footer').outerHeight();
 	bottomSection.style.marginBottom = footerHeight+'px';
 	var windowHeight = $(window).height();
-	var pageHeight = $('html').outerHeight();
-	
-	if ((pageHeight - footerHeight) < windowHeight) {
-		footer.style.bottom = 'auto';
+	var headerHeight = $('header').height();
+	var bodyHeight = $('body').outerHeight();
+
+	if (footerHeight > (windowHeight - headerHeight) || (footerHeight + bodyHeight) < windowHeight) {
 		footer.style.position = 'relative';
-		footer.style.zIndex = '0';
-		$('footer').addClass('relative_footer');
-
-		bottomSection.style.marginBottom = '0';
-	} else if ($('footer').hasClass('relative_footer')) {
-		footer.style.bottom = '0';
+		$('.bottom_section').css('marginBottom', '0');
+	} else {
 		footer.style.position = 'fixed';
-		footer.style.zIndex = '-2';
-		$('footer').removeClass('relative_footer');
-
-		bottomSection.style.marginBottom = footerHeight+'px';
+		$('.bottom_section').css('marginBottom', footerHeight);
 	}
 }
 
@@ -625,6 +676,9 @@ if (!mobile) {
 	$(window).resize(function() {
 		"use strict"; footerPosition();
 	});
+} else {
+	$('.bottom_section').css({ marginBottom: '0' });
+	$('footer').css({ position: 'relative', zIndex: '1' });
 }
 
 
@@ -640,10 +694,5 @@ if (!mobile) {
 }
 
 if (mobile) {
-	getElementsByClassName('banner')[0].style.position = 'absolute';
-	
-	footer.style.bottom = 'auto';
-	footer.style.position = 'relative';
-	footer.style.zIndex = '0';
-	bottomSection.style.marginBottom = '0';
+	$('.scroll_banner').remove();
 }
