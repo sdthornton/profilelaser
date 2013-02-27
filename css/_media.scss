@@ -17,7 +17,21 @@
 		}
 	}
 
+	.banner {
+		height: 260px;
+	}
+
+	.banner_img {
+		height: 260px;
+		width: auto;
+	}
+
+	.scroll_banner {
+		display: none;
+	}
+
 	.clients {
+		margin-top: 340px;
 		padding: 20px 30px;
 
 		img {
@@ -37,7 +51,7 @@
 	}
 
 	.general_contact {
-		padding-right: 35px;
+		padding-right: 22px;
 		width: 40%;
 	}
 
@@ -50,23 +64,348 @@
 	}
 }
 
-// 600px - Mobile Deviceds
-@media only screen and (max-width: 37.5em) {
+// Below 768px | 640px - Some Tablets and Large Mobile Devices
+@media only screen and (max-width: 47.938em) {
+	header {
+		position: relative;
+	}
+
+	.banner {
+		height: auto;
+		position: relative;
+		top: 0;
+	}
+
+	.banner_img {
+		height: auto;
+		position: relative;
+		width: 266.6666%;
+	}
+
 	.container {
+		padding: 0 10px;
+
+		.talk & {
+			padding: 0;
+			width: 100%;
+		}
+	}
+
+	.scroll_banner {
+		display: none;
+	}
+
+	.clients {
+		margin-top: 0;
+		padding: 20px;
+	}
+
+	.three_column {
+		clear: both;
+		margin-bottom: 12px;
+		width: 100%;
+
+		&:last-child {
+			margin-bottom: 0;
+		}
+
+		p {
+			margin: 0 auto;
+			width: 580px;
+		}
+	}
+
+	.talk h1 {
+		padding: 0 20px;
+	}
+
+	.talk_box {
+		padding: 0;
+		width: 100%;
+
+		p {
+			padding: 0 20px;
+			width: 100%;
+		}
+
+		span {
+			padding-left: 20px;
+			padding-right: 20px;
+		}
+	}
+
+	.gallery {
+		margin-top: 0;
+	}
+
+	.map {
+		height: 300px;
+	}
+
+	.contact_us {
+		margin-top: 0;
+
+		h1 {
+			padding: 0 20px;
+		}
+	}
+
+	.general_contact {
+		margin-bottom: 35px;
+		padding: 0 10px;
+		text-align: center;
+		width: 100%;
+
+		h2 {
+			margin: 0 auto 20px;
+			width: 400px;
+		}
+	}
+
+	.contact_form {
+		float: none;
+		margin: 0 auto;
+		overflow: hidden;
 		width: 600px;
 	}
-}
 
-// 480px - iPhone landscape
-@media only screen and (max-width: 30em) {
-	.container {
-		width: 480px;
+	.bottom_section {
+		margin-bottom: 0;
+	}
+
+	footer {
+		text-align: center;
+
+		section,
+		nav {
+			margin-bottom: 35px;
+			width: 50%;
+		}
 	}
 }
 
-//320px - iPhone
-@media only screen and (max-width: 20em) {
+//640px and down (mobile devices, landscape and portrait)
+@media only screen and (max-width: 40em) {
+	html, body {
+		max-width: 100%;
+		overflow-x: hidden;
+		width: 100%;
+	}
+
+	body {
+		font-size: 100%;
+	}
+
+	.about,
+	.process,
+	.why,
+	.talk,
+	.partners,
+	.gallery,
+	.contact_us {
+		padding: 2em 0;
+	}
+
+	.mobile_nav {
+		display: block;
+		visibility: hidden;
+		width: 240px;
+		z-index: -2;
+	}
+
+	.toggle_mobile_nav {
+		@include opacity(0.75);
+		display: block;
+		height: 60px;
+		width: 60px;
+	}
+
+	header {
+		box-shadow: none;
+		max-height: 60px;
+		overflow: visible;
+
+		.container {
+			height: 60px;
+			padding: 0;
+			overflow: visible;
+		}
+	}
+
+	.logo_container {
+		background: #fff;
+		border-radius: 32px;
+		display: block;
+		height: 63px;
+		left: 50%;
+		margin-left: -31.5px;
+		margin-top: 16px;
+		padding-top: 2px;
+		position: absolute;
+		width: 63px;
+
+		a {
+			display: block;
+			margin: 0 auto;
+			overflow: hidden;
+			width: 45px;
+		}
+	}
+
+	.profile_logo {
+		float: none;
+		height: 60px;
+		margin: 0 auto;
+		padding: 5px 0;
+		width: auto;
+	}
+
+	.desktop_nav {
+		display: none;
+	}
+
+	.banner_img {
+		position: relative;
+		visibility: hidden;
+		width: 400%;
+	}
+
+	.clients {
+		display: none;
+	}
+
+	.process_icon,
+	.why_icon {
+		background-size: 900px 150px;
+		height: 150px;
+		width: 150px;
+	}
+
+	#production {
+	    background-position: -150px 0;
+	}
+
+	#efficient {
+	    background-position: -300px 0;
+	}
+
+	#afford {
+	    background-position: -450px 0;
+	}
+
+	#accuracy {
+	    background-position: -600px 0;
+	}
+
+	#flexibility {
+	    background-position: -750px 0;
+	}
+
+	.gallery_images .box {
+		padding: 10px 0;
+		width: 100%;
+	}
+
+	.contact_us .container {
+		padding: 0 10px;
+	}
+
+	footer {
+		font-size: 1em;
+
+		h3 {
+			font-size: 1em;
+		}
+	}
+}
+
+// 620px and down (break point for 580px single columns)
+@media only screen and (max-width: 38.750em) {
 	.container {
+		padding: 0 20px;
+
+		.about &,
+		.process &,
+		.partners & {
+			padding: 0 20px;
+			width: 100%;
+		}
+	}
+
+	.process,
+	.why {
+		.container > p {
+			padding-left: 0;
+			padding-right: 0;
+			width: 100%;
+		}
+	}
+
+	.three_column {
+		padding-left: 0;
+		padding-right: 0;
+
+		p {
+			width: 100%;
+		}
+	}
+
+	.contact_form {
+		width: 100%;
+	}
+
+	.contact_us h2 {
 		width: 320px;
 	}
+
+	footer {
+		.container {
+			padding: 0 10px;
+		}
+
+		nav,
+		section {
+			padding: 0 10px;
+		}
+	}
 }
+
+@media only screen and (max-width: 29.938em) {
+	.general_contact h2 {
+		width: 100%;
+	}
+
+	#contact_form div {
+		width: 100%;
+	}
+
+	#submit {
+		margin-top: 0.618em;
+	}
+
+	.req-field-desc {
+		display: none;
+	}
+
+	footer {
+		section,
+		nav {
+			width: 100%;
+		}
+
+		h3 {
+			clear: both;
+			display: inline-block;
+			margin-left: auto;
+			margin-right: auto;
+		}
+
+		span,
+		a:not(.site_design) {
+			clear: both;
+			float: left;
+			width: 100%;
+		}
+	}
+}
+

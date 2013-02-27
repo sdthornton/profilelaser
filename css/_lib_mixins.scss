@@ -32,7 +32,7 @@
 	font-weight: 300;
 }
 
-@mixin transition ($property:all, $duration:.2s, $type:linear) {
+@mixin transition ($property:all, $duration:.3s, $type:ease-in-out) {
 	-webkit-transition: $duration $type;
 	-moz-transition: $duration $type;
 	-o-transition: $duration $type;
@@ -41,4 +41,14 @@
 	-moz-transition-property: $property;
 	-o-transition-property: $property;
 	transition-property: $property;
+}
+
+@mixin gradient ($start, $stop) {
+	background: $start;
+	background: -moz-linear-gradient(top, $start 0%, $stop 100%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,$start), color-stop(100%,$stop));
+	background: -webkit-linear-gradient(top, $start 0%,$stop 100%);
+	background: -o-linear-gradient(top, $start 0%,$stop 100%);
+	background: -ms-linear-gradient(top, $start 0%,$stop 100%);
+	background: linear-gradient(to bottom, $start 0%,$stop 100%);
 }

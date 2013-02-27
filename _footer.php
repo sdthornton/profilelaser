@@ -1,7 +1,18 @@
+<?php
+function detect_mobile()
+{
+    if(preg_match('/(alcatel|amoi|android|avantgo|blackberry|benq|cell|cricket|docomo|elaine|htc|iemobile|iphone|ipad|ipaq|ipod|j2me|java|midp|mini|mmp|mobi|motorola|nec-|nokia|palm|panasonic|philips|phone|playbook|sagem|sharp|sie-|silk|smartphone|sony|symbian|t-mobile|telus|up\.browser|up\.link|vodafone|wap|webos|wireless|xda|xoom|zte)/i', $_SERVER['HTTP_USER_AGENT']))
+        return true;
+    else
+        return false;
+}
+$mobile = detect_mobile();
+?>
+
   <footer <?php if($mobile == true): ?>class="mobile_footer"<?php endif ?>>
     <div class="container">
       <section class="pride">
-        <h3>Profile Laser, LLC</h3>
+        <h3>Profile Laser</h3>
         <span>The best-precision-laser-cutting-company-this-side-of-the-Atlantic is proud to operate in Portland, OR</span><br>
       </section>
 
@@ -27,7 +38,7 @@
 
       <section class="copyright">
         &copy; Copyright 2013<br>
-        Site by <a href="http://sdthornton.com" target="_blank">Samuel Thornton Design</a>
+        Site by <a href="http://sdthornton.com" target="_blank" class="site_design">Samuel Thornton Design</a>
       </section>
     </div>
   </footer>
