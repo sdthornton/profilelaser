@@ -5,9 +5,9 @@
   <input type="checkbox" class="mobile_nav_check" id="mobile_nav_check">
   <nav class="mobile_nav">
     <ul>
-      <li id="home_link"><a href="index">Home</a></li>
-      <li id="gallery_link"><a href="gallery">Gallery</a></li>
-      <li id="contact_link"><a href="contact">Contact</a></li>
+      <li class="home_link"><a href="index">Home</a></li>
+      <li class="gallery_link"><a href="gallery">Gallery</a></li>
+      <li class="contact_link"><a href="contact">Contact</a></li>
     </ul>
   </nav>
   
@@ -19,9 +19,9 @@
 
       <nav class="desktop_nav">
         <ul>
-          <li id="home_link"><a href="index">Home</a></li>
-          <li id="gallery_link"><a href="gallery">Gallery</a></li>
-          <li id="contact_link"><a href="contact">Contact</a></li>
+          <li class="home_link"><a href="index">Home</a></li>
+          <li class="gallery_link"><a href="gallery">Gallery</a></li>
+          <li class="contact_link"><a href="contact">Contact</a></li>
         </ul>
       </nav>
     </div>

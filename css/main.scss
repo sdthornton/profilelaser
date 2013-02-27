@@ -444,7 +444,9 @@ header {
 }
 
 .why {
+    @include border(top, darken($smoke, 5%));
     background: $white;
+    margin-top: -1px;
 
     .container > p {
         margin: 0 auto;
@@ -458,6 +460,7 @@ header {
     @include border(bottom, darken($color, 5%));
     background: $color;
     color: #fff;
+    overflow: hidden;
     position: relative;
     z-index: 1;
 
@@ -747,6 +750,7 @@ label[for="name"] {
 
 .req-field-desc {
     color: #a00;
+    clear: left;
     float: left;
     font-size: 0.8em;
     margin: 10px 0 0 10px;
@@ -756,7 +760,7 @@ label[for="name"] {
     @include transition;
     background: $color;
     border: none;
-    clear: both;
+    clear: none;
     float: right;
     margin-bottom: 5px;
     margin-right: 10px;
