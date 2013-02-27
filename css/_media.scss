@@ -375,16 +375,24 @@
 		width: 100%;
 	}
 
-	#contact_form div {
-		width: 100%;
+	#contact_form {
+		div {
+			width: 100%;
+		}
+
+		input:not(#submit),
+		textarea {
+			border: solid 1px darken($smoke, 5%);
+		}
+	}
+
+	#errors {
+		text-align: center;
 	}
 
 	#submit {
-		margin-top: 0.618em;
-	}
-
-	.req-field-desc {
-		display: none;
+		clear: both;
+		margin-top: 1em;
 	}
 
 	footer {

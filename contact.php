@@ -72,10 +72,9 @@
           <input type="text" id="location" name="location" value="<?php echo ($sr && !$cf['form_ok']) ? $cf['posted_form_data']['location'] : '' ?>" required></div>
 
           <span id="loading"></span>
+          <p class="req-field-desc"><span class="required">*</span> indicates a required field</p>
 
           <input type="submit" value="Submit" id="submit" class="button">
-
-          <p class="req-field-desc"><span class="required">*</span> indicates a required field</p>
         </form>
         <?php unset($_SESSION['cf_returndata']); ?>
       </section>

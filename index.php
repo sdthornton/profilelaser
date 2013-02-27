@@ -104,7 +104,7 @@
       </div>
       
       <div class="talk_box">
-        <p>&ldquo;Profile Laser has turned out to be very instrumental in our success as a machining job shop. Whether one part, or hundreds, Profile Laser has continued to come through time and time again with quality, pricing and delivery. Profile Laser has shown to be a perfect fit to our budget and high-quality standards.&rdquo;</p>
+        <p>&ldquo;Profile Laser has turned out to be very instrumental in our success as a machining job shop. Profile Laser has continued to come through time and time again with quality, pricing and delivery. Profile Laser has shown to be a perfect fit to our budget and high-quality standards.&rdquo;</p>
         <span>- Hillcore Machine Inc</span>
       </div>
 
