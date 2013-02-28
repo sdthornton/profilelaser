@@ -311,7 +311,7 @@ FileETag None
   Options +FollowSymlinks
 # Options +SymLinksIfOwnerMatch
   RewriteEngine On
-# RewriteBase /
+  RewriteBase /
 </IfModule>
 
 
@@ -334,7 +334,6 @@ FileETag None
 
 # ----------------------------------------------------------------------
 
-# Option 1:
 # Rewrite "www.example.com -> example.com".
 
 <IfModule mod_rewrite.c>
@@ -508,8 +507,10 @@ AddCharset utf-8 .atom .css .js .json .rss .vtt .xml
 # ----------------------------------------------------------------------
 # Serve Retina Images
 # ----------------------------------------------------------------------
-RewriteCond %{REQUEST_URI} ^/img
-RewriteCond %{HTTP_COOKIE} resolution=([^;,]+),2
-RewriteCond %{REQUEST_URI} !@2x\.(jpe?g|gif|png)$
-RewriteCond %{DOCUMENT_ROOT}/$1@2x.$2 -f
-RewriteRule ([^.]+)\.(jpe?g|gif|png)$ $1@2x.$2
+<IfModule mod_rewrite.c>
+  RewriteCond %{REQUEST_URI} ^/img
+  RewriteCond %{HTTP_COOKIE} resolution=([^;,]+),2
+  RewriteCond %{REQUEST_URI} !@2x\.(jpe?g|gif|png)$
+  RewriteCond %{DOCUMENT_ROOT}/$1@2x.$2 -f
+  RewriteRule ([^.]+)\.(jpe?g|gif|png)$ $1@2x.$2
+</IfModule>
