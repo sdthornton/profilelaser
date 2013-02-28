@@ -46,6 +46,9 @@ if (home_page) {
 //Checks if mobile device
 var mobile = /(alcatel|amoi|android|avantgo|blackberry|benq|cell|cricket|docomo|elaine|htc|iemobile|iphone|ipad|ipaq|ipod|j2me|java|midp|mini|mmp|mobi|motorola|nec-|nokia|palm|panasonic|philips|phone|playbook|sagem|sharp|sie-|silk|smartphone|sony|symbian|t-mobile|telus|up\.browser|up\.link|vodafone|wap|webos|wireless|xda|xoom|zte)/i.test(navigator.userAgent);
 
+//Checks if Old IE
+var oldie = $.browser.msie && $.browser.version < 9;
+
 
 /* ==========================================================================
    Mobile and Small Screens
@@ -102,7 +105,8 @@ function bannerParallax() {
 			} else {
 				$('.banner').css({ visibility: 'visible' });
 			}
-			document.getElementById('banner_img').style.top = (-scroll/8) + 'px';
+			if (!oldie) { $('.banner_img').addClass('banner_img_scroll'); }
+			$('.banner_img_scroll').css('top', -scroll/8);
 		});
 	} else {
 		document.getElementById('banner_img').style.top = '0px';
@@ -675,3 +679,4 @@ if (!mobile) {
 if (mobile) {
 	$('.scroll_banner').remove();
 }
+

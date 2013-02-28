@@ -791,6 +791,10 @@ footer {
     text-align: left;
     z-index: 0;
 
+    & .container {
+        width: 1004px;
+    }
+
     &.mobile_footer {
         bottom: auto;
         position: relative;
@@ -829,4 +833,5 @@ footer {
 }
 
 @import "media";
+@import "ie";
 @import "print";
