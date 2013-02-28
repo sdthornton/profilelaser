@@ -80,6 +80,11 @@ function mobileBannerPosition() {
 		$('.banner_img').animate({ left: -left }, 0, function() {
 			$('.banner_img').css({ visibility: 'visible' });
 		});
+	} else {
+		$('.mobile_nav').css({ zIndex: '-2' });
+		$('.mobile_nav').delay(300).animate({ visibility: 'hidden' }, 0);
+		$('.mobile_nav ~ *').transition({ x:0 }, 300, 'ease');
+		$(this).removeClass('open').css({ opacity: '0.75' });
 	}
 }
 

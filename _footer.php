@@ -48,7 +48,7 @@ $mobile = detect_mobile();
 
   <script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyDKYaeLXuKtODPEm_6sQsdfYRpsaCovgyk&sensor=false"></script>
   <script src="js/plugins.js"></script>
-  <script src="js/main.js"></script>
+  <script src="js/main.20120227.js"></script>
 
   <!-- Google Analytics
   <script>
