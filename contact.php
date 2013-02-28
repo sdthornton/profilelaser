@@ -1,9 +1,8 @@
-<?php include '_head.php'; ?>
-
-<body class="contact_page">
-
-  <?php include '_header.php'; ?>
-
+<?php
+  $pageTitle = "Contact Us | ";
+  $bodyClass = "contact_page";
+  include '_header.php';
+?>
 
   <!-- Start Page Content -->
   <section class="contact_us bottom_section <?php if($mobile == true): ?>mobile_bottom_section<?php endif ?>">

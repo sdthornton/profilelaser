@@ -1,8 +1,7 @@
-<?php include '_head.php'; ?>
-
-<body class="home_page">
-
-  <?php include '_header.php'; ?>
+<?php
+  $bodyClass = "home_page";
+  include '_header.php';
+?>
 
   <!-- Start Page Content -->
   <section class="banner">
