@@ -105,7 +105,7 @@ function bannerParallax() {
 			} else {
 				$('.banner').css({ visibility: 'visible' });
 			}
-			if (!oldie) { $('.banner_img').addClass('banner_img_scroll'); };
+			if (!oldie) { $('.banner_img').addClass('banner_img_scroll'); }
 			$('.banner_img_scroll').css('top', -scroll/8);
 		});
 	} else {

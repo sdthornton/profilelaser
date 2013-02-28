@@ -10,7 +10,11 @@
   <meta name="description" content="">
   <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
 
-  <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+  <link rel="shortcut icon" href="favicon.ico">
+  <link rel="apple-touch-icon-precomposed" href="apple-touch-icon-precomposed.png">
+  <link rel="apple-touch-icon-precomposed" href="apple-touch-icon-72x72-precomposed.png">
+  <link rel="apple-touch-icon-precomposed" href="apple-touch-icon-114x114-precomposed.png">
+  <link rel="apple-touch-icon-precomposed" href="apple-touch-icon-144x144-precomposed.png">
 
   <!-- For serving Retina images with .htaccess -->
   <script>document.cookie='resolution='+Math.max(screen.width,screen.height)+("devicePixelRatio" in window ? ","+devicePixelRatio : ",1")+'; path=/';</script>
