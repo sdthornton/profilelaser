@@ -1,9 +1,8 @@
-<?php include '_head.php'; ?>
-
-<body class="gallery_page">
-
-  <?php include '_header.php'; ?>
-
+<?php
+  $pageTitle = "Gallery | ";
+  $bodyClass = "gallery_page";
+  include '_header.php';
+?>
 
   <!-- Start Page Content -->
   <section class="gallery bottom_section <?php if($mobile == true): ?>mobile_bottom_section<?php endif ?>">

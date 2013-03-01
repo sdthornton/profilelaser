@@ -11,7 +11,7 @@ if( isset($_POST) ){
     //$time = date('H:i:s');
     
     //form data
-    $to = "sdthornton@live.com";
+    $to = "sales@profilelaser.com";
     $from = $_POST['email'];
     $nospam = $_POST['name'];
     $name = $_POST['real_name'];

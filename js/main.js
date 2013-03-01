@@ -80,6 +80,11 @@ function mobileBannerPosition() {
 		$('.banner_img').animate({ left: -left }, 0, function() {
 			$('.banner_img').css({ visibility: 'visible' });
 		});
+	} else {
+		$('.mobile_nav').css({ zIndex: '-2' });
+		$('.mobile_nav').delay(300).animate({ visibility: 'hidden' }, 0);
+		$('.mobile_nav ~ *').transition({ x:0 }, 300, 'ease');
+		$('#fastclick').removeClass('open').css({ opacity: '0.75' });
 	}
 }
 
@@ -666,7 +671,7 @@ if (!mobile) {
 
 
 /* ==========================================================================
-   Mobile JS
+   Extra Mobile JS
    ========================================================================== */
 if (!mobile) {
 	$('.tel_link').on('click', function(e) {
@@ -679,4 +684,3 @@ if (!mobile) {
 if (mobile) {
 	$('.scroll_banner').remove();
 }
-

@@ -1,14 +1,3 @@
-<?php
-function detect_mobile()
-{
-    if(preg_match('/(alcatel|amoi|android|avantgo|blackberry|benq|cell|cricket|docomo|elaine|htc|iemobile|iphone|ipad|ipaq|ipod|j2me|java|midp|mini|mmp|mobi|motorola|nec-|nokia|palm|panasonic|philips|phone|playbook|sagem|sharp|sie-|silk|smartphone|sony|symbian|t-mobile|telus|up\.browser|up\.link|vodafone|wap|webos|wireless|xda|xoom|zte)/i', $_SERVER['HTTP_USER_AGENT']))
-        return true;
-    else
-        return false;
-}
-$mobile = detect_mobile();
-?>
-
   <footer <?php if($mobile == true): ?>class="mobile_footer"<?php endif ?>>
     <div class="container">
       <section class="pride">
@@ -31,7 +20,7 @@ $mobile = detect_mobile();
 
       <nav>
         <h3>Site Map</h3>
-        <a href="index">Home</a><br>
+        <a href="/">Home</a><br>
         <a href="gallery">Gallery</a><br>
         <a href="contact">Contact</a><br>
       </nav>
@@ -47,14 +36,12 @@ $mobile = detect_mobile();
   <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.8.3.min.js"><\/script>')</script>
 
   <script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyDKYaeLXuKtODPEm_6sQsdfYRpsaCovgyk&sensor=false"></script>
-  <script src="js/plugins.js"></script>
-  <script src="js/main.js"></script>
+  <script src="js/all.min.201302283.js"></script>
 
-  <!-- Google Analytics
+  <!-- Google Analytics -->
   <script>
     var _gaq=[['_setAccount','UA-37457373-1'],['_trackPageview']];
     (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
     g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
     s.parentNode.insertBefore(g,s)}(document,'script'));
   </script>
-  -->

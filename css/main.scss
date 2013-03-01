@@ -81,6 +81,25 @@ textarea {
    308px @ 1:1.618
    ========================================================================== */
 
+.no-js-warning {
+    background: $dark_gray;
+    color: $white;
+    display: none;
+    font-size: 1em;
+    font-weight: bold;
+    height: 80px;
+    line-height: 80px;
+    position: absolute;
+    text-align: center;
+    top: 0;
+    width: 100%;
+    z-index: 9999;
+
+    .no-js & {
+        display: block;
+    }
+}
+
 * { -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box; }
 
 body {
@@ -790,10 +809,6 @@ footer {
     position: fixed;
     text-align: left;
     z-index: 0;
-
-    & .container {
-        width: 1004px;
-    }
 
     &.mobile_footer {
         bottom: auto;
