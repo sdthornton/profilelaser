@@ -28,7 +28,8 @@ $mobile = detect_mobile();
   <link rel="apple-touch-icon-precomposed" href="apple-touch-icon-144x144-precomposed.png">
 
   <!-- For serving Retina images with .htaccess -->
-  <script>document.cookie='resolution='+Math.max(screen.width,screen.height)+("devicePixelRatio" in window ? ","+devicePixelRatio : ",1")+'; path=/';</script>
+  <!--<script>document.cookie='resolution='+Math.max(screen.width,screen.height)+("devicePixelRatio" in window ? ","+devicePixelRatio.toFixed(1) : ",1.0")+'; path=/';</script>-->
+  <script>(function(w){var dpr=((w.devicePixelRatio===undefined)?1:w.devicePixelRatio);if(!!w.navigator.standalone){var r=new XMLHttpRequest();r.open('GET','/retinaimages.php?devicePixelRatio='+dpr,false);r.send()}else{document.cookie='devicePixelRatio='+dpr+'; path=/'}})(window)</script>
 
   <link href='http://fonts.googleapis.com/css?family=Open+Sans:300,600,800' rel='stylesheet' type='text/css'>
 
@@ -36,6 +37,7 @@ $mobile = detect_mobile();
   <script src="js/vendor/modernizr-2.6.2.min.js"></script>
 </head>
 <body class="<?php echo $bodyClass; ?>">
+<noscript><style id="devicePixelRatio" media="only screen and (-webkit-min-device-pixel-ratio: 1.5), only screen and (min-resolution: 144dpi)">#devicePixelRatio{background-image:url("/retinaimages.php?devicePixelRatio=2")}</style></noscript>
 
 <!--[if lt IE 7]>
   <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
