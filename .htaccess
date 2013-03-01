@@ -344,6 +344,15 @@ FileETag None
 
 
 # ----------------------------------------------------------------------
+# Remove .php from files
+# ----------------------------------------------------------------------
+<IfModule mod_rewrite.c>
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteRule ^([^\.]+)$ $1.php [NC,L]
+</IfModule>
+
+
+# ----------------------------------------------------------------------
 # Built-in filename-based cache busting
 # ----------------------------------------------------------------------
 
@@ -369,7 +378,7 @@ FileETag None
 # same name does not exist.
 # webmasterworld.com/apache/3808792.htm
 
-Options +MultiViews
+Options -MultiViews
 
 
 # ----------------------------------------------------------------------

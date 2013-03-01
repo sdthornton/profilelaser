@@ -20,7 +20,7 @@
 
       <nav>
         <h3>Site Map</h3>
-        <a href="index">Home</a><br>
+        <a href="/">Home</a><br>
         <a href="gallery">Gallery</a><br>
         <a href="contact">Contact</a><br>
       </nav>
@@ -36,14 +36,12 @@
   <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.8.3.min.js"><\/script>')</script>
 
   <script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyDKYaeLXuKtODPEm_6sQsdfYRpsaCovgyk&sensor=false"></script>
-  <script src="js/plugins.js"></script>
-  <script src="js/main.20120227.js"></script>
+  <script src="js/all.min.201302283.js"></script>
 
-  <!-- Google Analytics
+  <!-- Google Analytics -->
   <script>
     var _gaq=[['_setAccount','UA-37457373-1'],['_trackPageview']];
     (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
     g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
     s.parentNode.insertBefore(g,s)}(document,'script'));
   </script>
-  -->

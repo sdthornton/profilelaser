@@ -17,7 +17,7 @@
   <section class="about">
     <div class="container">
       <h1>Who<br>We<br>Are</h1>
-      <p>Profile Laser is a family-owned and operated laser cutting service. We specialize in cutting and etching stainless steel and carbon steel and cutting aluminum for a diverse set of customers. From lighting fixtures to electrical enclosures to craft brewing tanks, we take care of the needs of our customers. We work efficiently and effectively to maintain quick turn-around times and tight tolerances.</p>
+      <p>Profile Laser is a family-owned and operated precision laser cutting service. We specialize in cutting and etching stainless steel and carbon steel and cutting aluminum for a diverse set of customers. From lighting fixtures to electrical enclosures to craft brewing tanks, we take care of the needs of our customers. We work efficiently and effectively to maintain quick turn-around times and tight tolerances.</p>
 
       <p>Profile laser began in 2011 but our team has an extensive background in the laser-cutting industry. We’re experienced designers, programmers and operators and we’ll use our talents to produce the best possible product within the design specifications and time restrictions given. We’re proud of our high quality work and we look forward to seeing what we can create for you!</p>
 
