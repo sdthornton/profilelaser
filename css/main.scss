@@ -475,9 +475,10 @@ header {
 
 //Clients Section - Home Page
 .talk {
-    @include border(top, darken($color, 5%));
-    @include border(bottom, darken($color, 5%));
-    background: $color;
+    @include border(top, $color);
+    @include border(bottom, $color);
+    background: $color url('../img/talk_bg.png') center center no-repeat;
+    background-size: cover;
     color: #fff;
     overflow: hidden;
     position: relative;

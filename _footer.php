@@ -36,7 +36,7 @@
   <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.8.3.min.js"><\/script>')</script>
 
   <script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyDKYaeLXuKtODPEm_6sQsdfYRpsaCovgyk&sensor=false"></script>
-  <script src="js/all.min.201302283.js"></script>
+  <script src="js/all.min.20130302.js"></script>
 
   <!-- Google Analytics -->
   <script>
