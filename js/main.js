@@ -170,10 +170,8 @@ function talkBoxHeight() {
 }
 
 if (home_page) {
-	$(window).load(function() {
-		"use strict";
-		talkBoxHeight();
-	});
+	talkBoxHeight();
+
 	$(window).resize(function() {
 		"use strict";
 		talkBoxHeight();
@@ -198,6 +196,14 @@ function nextTalk() {
 var talkLength = $('.talk_box').length;
 if (home_page && talkLength > 1) {
 	setInterval(nextTalk, 15000);
+}
+
+
+/* ==========================================================================
+   Fallback for background image on talk section
+   ========================================================================== */
+if (home_page && !Modernizr.backgroundsize) {
+	$('.talk').css({ backgroundImage: 'none', borderTop: '#0F4C81', borderBottom: '#0F4C81'});
 }
 
 
