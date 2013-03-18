@@ -776,6 +776,17 @@ label[for="name"] {
     margin: 10px 0 0 10px;
 }
 
+#loading {
+    background: url('../img/loader.gif') no-repeat;
+    background-size: 64px 64px;
+    bottom: 5px;
+    display: none;
+    height: 64px;
+    position: absolute;
+    right: 200px;
+    width: 64px;
+}
+
 #submit {
     @include transition;
     background: $color;

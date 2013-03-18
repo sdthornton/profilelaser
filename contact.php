@@ -1,6 +1,7 @@
 <?php
   $pageTitle = "Contact Us | ";
   $bodyClass = "contact_page";
+  $contact_page = true;
   include '_header.php';
 ?>
 
@@ -14,7 +15,7 @@
       <section class="general_contact">
         <h2>Send Us a Message or Stop On By</h2>
 
-        <div class="contact_page_text"><a href="http://maps.google.com/?q=2138+N+Interstate+Ave+Portland+OR+97227" target="_blank"><span class="icon-location"></span><span class="contact_text">2138 N. Interstate Ave<br>Portland, OR 97227</span></a></div>
+        <div class="contact_page_text"><a href="http://maps.google.com/?q=Profile+Laser+LLC+2138+N+Interstate+Ave+Portland+OR+97227" target="_blank"><span class="icon-location"></span><span class="contact_text">2138 N. Interstate Ave<br>Portland, OR 97227</span></a></div>
 
         <div class="contact_page_text"><a href="tel:5032926044" class="tel_link"><span class="icon-phone"></span><span class="contact_text">(503) 292-6044</span></a></div>
 
