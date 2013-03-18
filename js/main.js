@@ -569,7 +569,7 @@ if (contact_page) {
 
 		} else {
 			loading.show();
-			formSubmitButton.attr('disabled', 'disabled')
+			formSubmitButton.attr('disabled', 'disabled');
 			$.ajax({
 				url: form.attr('action'),
 				type: form.attr('method'),
