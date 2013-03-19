@@ -53,7 +53,6 @@ var oldie = $.browser.msie && $.browser.version < 9;
 /* ==========================================================================
    Mobile and Small Screens
    ========================================================================== */
-$('.mobile_nav ~ *').transition({ x:0 }, 0);
 $('#fastclick').fastClick(function(e) {
 	"use strict";
 	e.preventDefault();

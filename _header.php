@@ -33,7 +33,7 @@ $mobile = detect_mobile();
 
   <link href='http://fonts.googleapis.com/css?family=Open+Sans:300,600,800' rel='stylesheet' type='text/css'>
 
-  <link rel="stylesheet" href="css/main.2013031703.css">
+  <link rel="stylesheet" href="css/main.20130319.css">
   <script src="js/vendor/modernizr-2.6.2.min.js"></script>
 </head>
 <body class="<?php echo $bodyClass; ?>">
@@ -57,7 +57,7 @@ $mobile = detect_mobile();
     <div class="container">
         <label id="fastclick" for="mobile_nav_check" class="toggle_mobile_nav" id="toggle_mobile_nav"><img src="img/mobile_nav.png" width="60" height="60" alt="Profile Laser, LLC - The World's Greatest Laser Cutting Company - Operating in Portland, OR"></label>
 
-      <span class="logo_container"><a href="index"><img src="img/logo.png" width="300" height="50" class="profile_logo"></a></span>
+      <span class="logo_container"><a href="/"><img src="img/logo.png" width="300" height="50" class="profile_logo"></a></span>
 
       <nav class="desktop_nav">
         <ul>

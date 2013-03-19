@@ -9,7 +9,7 @@ $smoke: #f3f3f3;
 $light_gray: #999;
 $gray: #666;
 $dark_gray: #333;
-$black: #151515;
+$black: #1c1c1c;
 $color: #125a98;
 $accent: #da7d31;
 $footer_height: 320px;
@@ -277,16 +277,13 @@ nav ul {
 
 header {
     background: $white;
-    box-shadow: 0 0 5px rgba(0,0,0,0.5);
+    border-bottom: solid 1px $smoke;
+    box-sizing: content-box;
     overflow: hidden;
     position: fixed;
     max-height: 80px;
     top: 0;
     z-index: 99;
-
-    &.lt-ie9 {
-        @include border(bottom);
-    }
 
     nav {
         float: right;

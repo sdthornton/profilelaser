@@ -1,6 +1,17 @@
 /* ==========================================================================
    Media Styles
    ========================================================================== */
+//Breakpoint for banner image
+@media only screen and (min-width: 150em) {
+	.banner_img {
+		position: relative;
+	}
+
+	.scroll_banner {
+		display: none;
+	}
+}
+
 // Below 1044px | 768px Container - iPad, no gutter
 @media only screen and (max-width: 63.938em) {
 	.container {
