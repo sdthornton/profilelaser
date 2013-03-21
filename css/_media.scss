@@ -217,18 +217,15 @@
 		padding: 2em 0;
 	}
 
-	.mobile_nav {
-		display: block;
-		visibility: hidden;
-		width: 240px;
-		z-index: -2;
-	}
-
 	.toggle_mobile_nav {
 		@include opacity(0.75);
 		display: block;
 		height: 60px;
 		width: 60px;
+	}
+
+	.mobile_nav_wrapper {
+		display: inline;
 	}
 
 	header {
@@ -279,6 +276,10 @@
 		position: relative;
 		visibility: hidden;
 		width: 300%;
+
+		.no-js & {
+			visibility: visible;
+		}
 	}
 
 	.clients {

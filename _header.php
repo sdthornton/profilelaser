@@ -33,7 +33,7 @@ $mobile = detect_mobile();
 
   <link href='http://fonts.googleapis.com/css?family=Open+Sans:300,600,800' rel='stylesheet' type='text/css'>
 
-  <link rel="stylesheet" href="css/main.20130319.css">
+  <link rel="stylesheet" href="css/main.20130320.css">
   <script src="js/vendor/modernizr-2.6.2.min.js"></script>
 </head>
 <body class="<?php echo $bodyClass; ?>">
@@ -43,19 +43,20 @@ $mobile = detect_mobile();
   <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
 <![endif]-->
 <div class="no-js-warning" style="display: none;">For a full browsing experience, you'll need to make sure javascript is enabled on your browser.</div>
-  
-  <input type="checkbox" class="mobile_nav_check" id="mobile_nav_check">
-  <nav class="mobile_nav">
-    <ul>
-      <li class="home_link"><a href="/">Home</a></li>
-      <li class="gallery_link"><a href="gallery">Gallery</a></li>
-      <li class="contact_link"><a href="contact">Contact</a></li>
-    </ul>
-  </nav>
-  
+
   <header>
     <div class="container">
-        <label id="fastclick" for="mobile_nav_check" class="toggle_mobile_nav" id="toggle_mobile_nav"><img src="img/mobile_nav.png" width="60" height="60" alt="Profile Laser, LLC - The World's Greatest Laser Cutting Company - Operating in Portland, OR"></label>
+      <input type="checkbox" class="mobile_nav_check" id="mobile_nav_check">
+      <label id="fastclick" for="mobile_nav_check" class="toggle_mobile_nav" id="toggle_mobile_nav"><img src="img/mobile_nav.png" width="60" height="60" alt="Profile Laser, LLC - The World's Greatest Laser Cutting Company - Operating in Portland, OR"></label>
+      <div class="mobile_nav_wrapper">
+        <nav class="mobile_nav">
+          <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="gallery">Gallery</a></li>
+            <li><a href="contact">Contact</a></li>
+          </ul>
+        </nav>
+      </div>
 
       <span class="logo_container"><a href="/"><img src="img/logo.png" width="300" height="50" class="profile_logo"></a></span>
 

@@ -219,62 +219,6 @@ nav ul {
 }
 
 //Header and Nav
-.mobile_nav_check {
-    display: none;
-}
-
-.mobile_nav {
-    background: $black;
-    display: none;
-    height: 100%;
-    overflow: auto;
-    position: fixed;
-    width: 0;
-
-    li {
-        @include gradient(#333, #222);
-        border-bottom: solid 1px darken(#222, 5%);
-        border-top: solid 1px lighten(#333, 5%);
-        color: $smoke;
-        float: left;
-        text-align: left;
-        width: 100%;
-
-        &:hover,
-        &:active {
-            @include gradient(#444, #222);
-            border-top-color: lighten(#444, 5%);
-            color: $white;
-        }
-    }
-
-    a {
-        color: $smoke;
-        display: block;
-        font-weight: 600;
-        line-height: 60px;
-        padding-left: 10%;
-        text-shadow: 0 1px 1px #000;
-        width: 100%;
-
-        &:hover,
-        &:active {
-            color: $white;
-        }
-    }
-}
-
-.toggle_mobile_nav {
-    -webkit-tap-highlight-color: rgba(0,0,0,0);
-    cursor: pointer;
-    display: none;
-    float: left;
-    height: 80px;
-    margin: 0;
-    padding: 0;
-    width: 80px;
-}
-
 header {
     background: $white;
     border-bottom: solid 1px $smoke;
@@ -317,6 +261,67 @@ header {
     }
 }
 
+.mobile_nav_check {
+    display: none;
+}
+
+.no-js .mobile_nav_check:checked ~ .mobile_nav_wrapper .mobile_nav {
+    display: inline;
+}
+
+.toggle_mobile_nav {
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    cursor: pointer;
+    display: none;
+    float: left;
+    height: 80px;
+    margin: 0;
+    padding: 0;
+    width: 80px;
+}
+
+.mobile_nav_wrapper {
+    display: none;
+    overflow: hidden;
+}
+
+.mobile_nav {
+    background: $color;
+    clear: both;
+    display: none;
+    float: left;
+    margin: 0 auto;
+    padding: 0;
+    width: 100%;
+
+    ul {
+        margin: 0 auto;
+        padding: 0;
+        width: 100%;
+    }
+
+    li {
+        @include gradient(lighten($black, 10%), $black);
+        border-bottom: solid 1px #000;
+        border-top: solid 1px lighten($black, 15%);
+        line-height: 150%;
+        margin: 0 auto;
+        padding: 0;
+        width: 100%;
+    }
+
+    a {
+        color: #fff;
+        display: block;
+        padding: 30px 0;
+        width: 100%;
+
+        &:hover {
+            color: #fff;
+        }
+    }
+}
+
 .profile_logo {
     float: left;
     margin: 15px 0;
@@ -325,13 +330,18 @@ header {
 
 //Banner Section - Home Page
 .banner {
-    background: $white;
+    background: $smoke;
     height: 400px;
     overflow: hidden;
     position: fixed;
     top: 80px;
     width: 100%;
     z-index: 1;
+
+    &.loading {
+        background: $smoke url('../img/loader.gif') center center no-repeat;
+        background-size: 64px 64px;
+    }
 }
 
 .banner_img {
@@ -345,12 +355,17 @@ header {
     cursor: pointer;
     height: 400px;
     position: absolute;
+    visibility: visible;
     width: 200px;
     z-index: 1;
 
     &:hover {
         @include opacity(1.0);
         opacity: 1.0;
+    }
+
+    .loading & {
+        visibility: hidden;
     }
 }
 
@@ -367,9 +382,8 @@ header {
 }
 
 .clients {
-    @include border(bottom, darken($smoke, 5%));
     background: $smoke;
-    box-shadow: 0 0 15px rgba(0,0,0,0.5);
+    border-botttom: solid 1px darken($smoke, 5%);
     margin-top: 480px;
     min-width: 100%;
     padding: 20px 0;

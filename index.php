@@ -4,9 +4,9 @@
 ?>
 
   <!-- Start Page Content -->
-  <section class="banner">
+  <section class="banner loading">
     <div class="banner_prev scroll_banner"></div>
-    <img src="img/banner2.jpg" class="banner_img" id="banner_img" width="2400" height="400" alt="A site banner - showing off Profile Laser's work and equipment.">
+    <div id="banner_img_container"><img src="img/banner2.jpg" class="banner_img" id="banner_img" width="2400" height="400" alt="A site banner - showing off Profile Laser's work and equipment."></div>
     <div class="banner_next scroll_banner"></div>
   </section>
 

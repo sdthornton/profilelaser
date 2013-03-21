@@ -57,23 +57,17 @@ $('#fastclick').fastClick(function(e) {
 	"use strict";
 	e.preventDefault();
 	e.stopPropagation();
-	if ($(this).hasClass('open')) {
-		$('.mobile_nav').css({ zIndex: '-2' });
-		$('.mobile_nav').delay(300).animate({ visibility: 'hidden' }, 0);
-		$('.mobile_nav ~ *').transition({ x:0 }, 300, 'ease');
-		$(this).removeClass('open').css({ opacity: '0.75' });
+	if (!mobile) {
+		$('.mobile_nav').stop(true,true).slideToggle();
 	} else {
-		$('.mobile_nav ~ *').transition({ x:240 }, 300, 'ease');
-		$('.mobile_nav').css({ visibility: 'visible' });
-		$('.mobile_nav').delay(300).animate({ zIndex: '1' }, 0);
-		$(this).addClass('open').css({ opacity: '1.0' });
+		$('.mobile_nav').stop(true,true).toggle();
 	}
 });
 
 function mobileBannerPosition() {
 	"use strict";
 	var windowWidth = $(window).width();
-	var lefts = [0, windowWidth/2, windowWidth, windowWidth*1.5, windowWidth*2, windowWidth*2.5, windowWidth*3];
+	var lefts = [0, windowWidth/2, windowWidth, windowWidth*1.5, windowWidth*2];
 	var left = lefts[Math.floor(Math.random()*lefts.length)];
 	if (windowWidth <= 640) {
 		$('.banner_img').animate({ left: -left }, 0, function() {
@@ -152,6 +146,20 @@ if (home_page && !mobile) {
 			$('.why_icon').animate({opacity: '1.0'}, 500);
 		}
 	});
+}
+
+
+/* ==========================================================================
+   Rotates through the quotes in the Talk section
+   ========================================================================== */
+if (home_page) {
+	if ($(window).width() > 640) {
+		$('#banner_img').hide();
+		$('#banner_img_container').load("/ #banner_img", function() {
+			$('#banner_img').show();
+			$('.banner').removeClass('loading');
+		});
+	}
 }
 
 
