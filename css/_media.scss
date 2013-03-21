@@ -1,6 +1,17 @@
 /* ==========================================================================
    Media Styles
    ========================================================================== */
+//Breakpoint for banner image
+@media only screen and (min-width: 150em) {
+	.banner_img {
+		position: relative;
+	}
+
+	.scroll_banner {
+		display: none;
+	}
+}
+
 // Below 1044px | 768px Container - iPad, no gutter
 @media only screen and (max-width: 63.938em) {
 	.container {
@@ -79,7 +90,7 @@
 	.banner_img {
 		height: auto;
 		position: relative;
-		width: 266.6666%;
+		width: 200%;
 	}
 
 	.container {
@@ -206,18 +217,15 @@
 		padding: 2em 0;
 	}
 
-	.mobile_nav {
-		display: block;
-		visibility: hidden;
-		width: 240px;
-		z-index: -2;
-	}
-
 	.toggle_mobile_nav {
 		@include opacity(0.75);
 		display: block;
 		height: 60px;
 		width: 60px;
+	}
+
+	.mobile_nav_wrapper {
+		display: inline;
 	}
 
 	header {
@@ -267,7 +275,11 @@
 	.banner_img {
 		position: relative;
 		visibility: hidden;
-		width: 400%;
+		width: 300%;
+
+		.no-js & {
+			visibility: visible;
+		}
 	}
 
 	.clients {

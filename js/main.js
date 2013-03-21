@@ -53,28 +53,21 @@ var oldie = $.browser.msie && $.browser.version < 9;
 /* ==========================================================================
    Mobile and Small Screens
    ========================================================================== */
-$('.mobile_nav ~ *').transition({ x:0 }, 0);
 $('#fastclick').fastClick(function(e) {
 	"use strict";
 	e.preventDefault();
 	e.stopPropagation();
-	if ($(this).hasClass('open')) {
-		$('.mobile_nav').css({ zIndex: '-2' });
-		$('.mobile_nav').delay(300).animate({ visibility: 'hidden' }, 0);
-		$('.mobile_nav ~ *').transition({ x:0 }, 300, 'ease');
-		$(this).removeClass('open').css({ opacity: '0.75' });
+	if (!mobile) {
+		$('.mobile_nav').stop(true,true).slideToggle();
 	} else {
-		$('.mobile_nav ~ *').transition({ x:240 }, 300, 'ease');
-		$('.mobile_nav').css({ visibility: 'visible' });
-		$('.mobile_nav').delay(300).animate({ zIndex: '1' }, 0);
-		$(this).addClass('open').css({ opacity: '1.0' });
+		$('.mobile_nav').stop(true,true).toggle();
 	}
 });
 
 function mobileBannerPosition() {
 	"use strict";
 	var windowWidth = $(window).width();
-	var lefts = [0, windowWidth/2, windowWidth, windowWidth*1.5, windowWidth*2, windowWidth*2.5, windowWidth*3];
+	var lefts = [0, windowWidth/2, windowWidth, windowWidth*1.5, windowWidth*2];
 	var left = lefts[Math.floor(Math.random()*lefts.length)];
 	if (windowWidth <= 640) {
 		$('.banner_img').animate({ left: -left }, 0, function() {
@@ -159,6 +152,20 @@ if (home_page && !mobile) {
 /* ==========================================================================
    Rotates through the quotes in the Talk section
    ========================================================================== */
+if (home_page) {
+	if ($(window).width() > 640) {
+		$('#banner_img').hide();
+		$('#banner_img_container').load("/ #banner_img", function() {
+			$('#banner_img').show();
+			$('.banner').removeClass('loading');
+		});
+	}
+}
+
+
+/* ==========================================================================
+   Rotates through the quotes in the Talk section
+   ========================================================================== */
 function talkBoxHeight() {
 	"use strict";
 	var talkHeights = [];
@@ -216,9 +223,9 @@ function nextImg() {
 	var left = parseInt($('#banner_img').css('left'),10);
 	var next = left - 400;
 	var full = Math.abs(next) + windowWidth;
-	var last = windowWidth - 3200;
+	var last = windowWidth - 2400;
 
-	if (full > 3200) {
+	if (full > 2400) {
 		if (left === last) {
 			$('#banner_img').animate({
 				left: '0'
@@ -241,7 +248,7 @@ function prevImg() {
 	var left = parseInt($('#banner_img').css('left'),10);
 	var prev = left + 400;
 	var remainder = Math.abs(left % 400);
-	var last = windowWidth - 3200;
+	var last = windowWidth - 2400;
 
 	if (left < 0) {
 		if (remainder === 0) {
@@ -419,7 +426,7 @@ function googleMap() {
 		});
 
 		var infowindow = new google.maps.InfoWindow({
-			content:'<a href="http://maps.google.com/?q=2138+N+Interstate+Ave+Portland+OR+97227" target="_blank"><b>Profile Laser, LLC</b><br>2138 N. Interstate Ave<br>Portland, OR 97225"</a>'
+			content:'<a href="http://maps.google.com/?q=Profile+Laser+LLC+2138+N+Interstate+Ave+Portland+OR+97227" target="_blank"><b>Profile Laser, LLC</b><br>2138 N. Interstate Ave<br>Portland, OR 97225"</a>'
 		});
 
 		google.maps.event.addListener(marker, 'click', function() {
@@ -431,34 +438,6 @@ function googleMap() {
 if (contact_page) {
 	googleMap();
 }
-
-
-/* ==========================================================================
-   Automatically Fill in Location on Contact Page (currently not working)
-   ========================================================================== */
-/*if (contact_page) {
-	var locationField = document.getElementById('location').value === '';
-	if (navigator.geolocation && locationField) {
-		window.onload = function() {
-			"use strict";
-
-			navigator.geolocation.getCurrentPosition(function(position) {
-				var latitude = position.coords.latitude;
-				var longitude = position.coords.longitude;
-				var locationAPI = "http://maps.googleapis.com/maps/api/geocode/json?latlng="+latitude+","+longitude+"&sensor=false";
-
-				$.getJSON(locationAPI,
-					function(data) {
-						var city = data.results[2].address_components[1].long_name;
-						var state = data.results[2].address_components[2].short_name;
-
-						document.getElementById('location').value = city+', '+state;
-					}
-				);
-			});
-		};
-	}
-}*/
 
 
 /* ==========================================================================
@@ -597,6 +576,7 @@ if (contact_page) {
 
 		} else {
 			loading.show();
+			formSubmitButton.attr('disabled', 'disabled');
 			$.ajax({
 				url: form.attr('action'),
 				type: form.attr('method'),
@@ -605,6 +585,7 @@ if (contact_page) {
 					showNotice('success');
 					form.get(0).reset();
 					loading.hide();
+					formSubmitButton.removeAttr('disabled');
 				}
 			});
 		}
