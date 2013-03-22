@@ -344,9 +344,18 @@ header {
     }
 }
 
+.no-js .banner.loading {
+    background: $smoke;
+}
+
 .banner_img {
     left: 0;
     position: absolute;
+    visibility: hidden;
+
+    .no-js & {
+        visibility: visible;
+    }
 }
 
 .scroll_banner {
