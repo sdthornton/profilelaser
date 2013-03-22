@@ -150,14 +150,12 @@ if (home_page && !mobile) {
 
 
 /* ==========================================================================
-   Rotates through the quotes in the Talk section
+   Shows loading image until home page banner is loaded
    ========================================================================== */
 if (home_page) {
 	if ($(window).width() > 640) {
-		$('#banner_img').hide();
-		$('#banner_img_container').load("/ #banner_img", function() {
-			$('#banner_img').show();
-			$('.banner').removeClass('loading');
+		$('#banner_img').load(function() {
+			$(this).css('visibility', 'visible');
 		});
 	}
 }
