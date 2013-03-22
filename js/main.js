@@ -155,7 +155,8 @@ if (home_page && !mobile) {
 if (home_page) {
 	if ($(window).width() > 640) {
 		$('#banner_img').load(function() {
-			$(this).css('visibility', 'visible');
+			$(this).css({opacity: '0', visibility: 'visible'}).animate({opacity: '1.0'}, 'slow');
+			$('.banner').removeClass('loading');
 		});
 	}
 }

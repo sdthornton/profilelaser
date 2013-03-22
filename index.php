@@ -6,7 +6,7 @@
   <!-- Start Page Content -->
   <section class="banner loading">
     <div class="banner_prev scroll_banner"></div>
-    <div id="banner_img_container"><img src="img/banner2.jpg" class="banner_img" id="banner_img" width="2400" height="400" alt="A site banner - showing off Profile Laser's work and equipment."></div>
+    <div id="banner_img_container"><img src="img/banner3.jpg" class="banner_img" id="banner_img" width="2400" height="400" alt="A site banner - showing off Profile Laser's work and equipment."></div>
     <div class="banner_next scroll_banner"></div>
   </section>
 
@@ -89,6 +89,8 @@
   </section>
 
   <section class="talk">
+    <div class="talk_bg"></div>
+
     <h1>Our Happy Clients</h1>
 
     <div id="talk_box_container" class="container">
