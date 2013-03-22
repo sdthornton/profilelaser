@@ -89,6 +89,8 @@
   </section>
 
   <section class="talk">
+    <div class="talk_bg"></div>
+    
     <h1>Our Happy Clients</h1>
 
     <div id="talk_box_container" class="container">

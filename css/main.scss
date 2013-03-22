@@ -497,7 +497,7 @@ header {
 .talk {
     @include border(top, $color);
     @include border(bottom, $color);
-    background: $color url('../img/talk_bg.png') center center no-repeat;
+    background: $color;
     background-size: cover;
     color: #fff;
     overflow: hidden;
@@ -516,6 +516,22 @@ header {
             height: auto;
         }
     }
+}
+
+.talk_bg {
+    display: none;
+}
+
+.opacity .talk_bg {
+    display: block;
+    background: url('../img/talk_bg.jpg') center center no-repeat;
+    background-size: cover;
+    height: 100%;
+    margin: 0 auto;
+    opacity: 0.25;
+    position: absolute;
+    top: 0;
+    width: 100%;
 }
 
 .talk_box {
