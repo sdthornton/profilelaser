@@ -1,5 +1,19 @@
 @charset "UTF-8";
 
+/*!
+/*
+ * This CSS has was created and compressed via SASS
+ * To see the original .scss files fell free to poke around the folliwng:
+ *
+ * profilelaser.com/css/main.scss
+ * profilelaser.com/css/_lib_mixins.scss
+ * profilelaser.com/css/_media.scss
+ * profilelaser.com/css/_ie.scss
+ * profilelaser.com/css/_icon_font.scss
+ * profilelaser.com/css/_print.scss
+ *
+ */
+
 @import "normalize";
 @import "icon_font";
 @import "lib_mixins";
@@ -360,7 +374,6 @@ header {
 
 .scroll_banner {
     @include no_select;
-    @include opacity(0);
     cursor: pointer;
     height: 400px;
     position: absolute;
@@ -368,26 +381,38 @@ header {
     width: 200px;
     z-index: 1;
 
-    &:hover {
-        @include opacity(1.0);
-        opacity: 1.0;
-    }
-
     .loading & {
         visibility: hidden;
     }
 }
 
 .banner_prev {
-    background: url('../img/banner_prev.png') 0 0 no-repeat;
-    background-size: 200px 400px;
-    left: 0;
+    background: none;
+
+    &:hover {
+        background: url('../img/prevbg.png') 0 0 no-repeat;
+        background-size: 200px 400px;
+        left: 0;
+    }
 }
 
 .banner_next {
-    background: url('../img/banner_next.png') 0 0 no-repeat;
-    background-size: 200px 400px;
+    background: none;
     right: 0;
+
+    &:hover {
+        background: url('../img/nextbg.png') 0 0 no-repeat;
+        background-size: 200px 400px;
+    }
+}
+
+.arrow {
+    float: left;
+    margin: 177px 20px;
+}
+
+.next_arrow {
+    float: right;
 }
 
 .clients {
