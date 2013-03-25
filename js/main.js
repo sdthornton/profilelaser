@@ -64,25 +64,35 @@ $('#fastclick').fastClick(function(e) {
 	}
 });
 
+
+/* ==========================================================================
+   Shows loading image until home page banner is loaded
+   ========================================================================== */
 function mobileBannerPosition() {
 	"use strict";
 	var windowWidth = $(window).width();
 	var lefts = [0, windowWidth/2, windowWidth, windowWidth*1.5, windowWidth*2];
 	var left = lefts[Math.floor(Math.random()*lefts.length)];
 	if (windowWidth <= 640) {
-		$('.banner_img').animate({ left: -left }, 0, function() {
-			$('.banner_img').css({ visibility: 'visible' });
-		});
-	} else {
-		$('.mobile_nav').css({ zIndex: '-2' });
-		$('.mobile_nav').delay(300).animate({ visibility: 'hidden' }, 0);
-		$('.mobile_nav ~ *').transition({ x:0 }, 300, 'ease');
-		$('#fastclick').removeClass('open').css({ opacity: '0.75' });
+		$('.banner_img').css({ left: -left });
 	}
 }
 
 if (home_page) {
-	mobileBannerPosition();
+	var bannerImg = new Image();
+
+	$(bannerImg).load(function() {
+		"use strict";
+		$(this).hide();
+		$('.banner').removeClass('loading');
+		$('.banner_img_container').html(this);
+		$(this).fadeIn('slow');
+		mobileBannerPosition();
+	}).error(function() {
+		"use strict";
+		$('.banner_error').show();
+	}).attr('width', '2400').attr('height', '400').attr('class', 'banner_img').attr('src', 'img/banner3.jpg').attr('id', 'banner_img');
+
 	$(window).resize(function() {
 		"use strict";
 		$('.banner_img').css({ left: '0', visibility: 'visible' });
@@ -146,19 +156,6 @@ if (home_page && !mobile) {
 			$('.why_icon').animate({opacity: '1.0'}, 500);
 		}
 	});
-}
-
-
-/* ==========================================================================
-   Shows loading image until home page banner is loaded
-   ========================================================================== */
-if (home_page) {
-	if ($(window).width() > 640) {
-		$('#banner_img').load(function() {
-			$(this).css({opacity: '0', visibility: 'visible'}).animate({opacity: '1.0'}, 'slow');
-			$('.banner').removeClass('loading');
-		});
-	}
 }
 
 

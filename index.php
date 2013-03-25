@@ -5,9 +5,21 @@
 
   <!-- Start Page Content -->
   <section class="banner loading">
-    <div class="banner_prev scroll_banner"></div>
-    <div id="banner_img_container"><img src="img/banner3.jpg" class="banner_img" id="banner_img" width="2400" height="400" alt="A site banner - showing off Profile Laser's work and equipment."></div>
-    <div class="banner_next scroll_banner"></div>
+    <div class="banner_prev scroll_banner">
+      <a href="javascript:void(0)" title="Scroll banner left." rel="nofollow">
+        <img class="prev_arrow arrow" src="img/prev_arrow.png" width="20" height="46" alt="">
+      </a>
+    </div>
+
+    <div class="banner_img_container">
+      <!-- <img src="img/banner3.jpg" class="banner_img" id="banner_img" width="2400" height="400" alt="A site banner - showing off Profile Laser's work and equipment."> -->
+    </div>
+
+    <div class="banner_next scroll_banner">
+      <a href="javascript:void(0)" title="Scroll banner right." rel="nofollow">
+        <img class="next_arrow arrow" src="img/next_arrow.png" width="20" height="46" alt="">
+      </a>
+    </div>
   </section>
 
   <section class="clients">

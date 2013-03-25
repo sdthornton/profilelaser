@@ -2,7 +2,7 @@
     <div class="container">
       <section class="pride">
         <h3>Profile Laser</h3>
-        <span>The best-precision-laser-cutting-company-this-side-of-the-Atlantic is proud to operate in Portland, OR</span><br>
+        <span>The best-precision-laser-cutting-company-this-side-of-the-Atlantic is proud to serve the greater Portland, OR area.</span><br>
       </section>
 
       <section class="contact_info">
@@ -36,7 +36,7 @@
   <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.8.3.min.js"><\/script>')</script>
 
   <?php if($contact_page==true): ?><script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyDKYaeLXuKtODPEm_6sQsdfYRpsaCovgyk&sensor=false"></script><?php endif ?>
-  <script src="js/all.min.2013032202.js"></script>
+  <script src="js/all.min.20130324.js"></script>
 
   <!-- Google Analytics -->
   <script>
