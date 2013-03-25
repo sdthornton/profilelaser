@@ -365,11 +365,6 @@ header {
 .banner_img {
     left: 0;
     position: absolute;
-    visibility: hidden;
-
-    .no-js & {
-        visibility: visible;
-    }
 }
 
 .scroll_banner {

@@ -18,7 +18,7 @@ $mobile = detect_mobile();
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
   <title><?php echo $pageTitle; ?>Profile Laser - Precision Laser Cutting Services | Portland, OR</title>
-  <meta name="description" content="Profile Laser is a family-owned and operated laser cutting service. We specialize in cutting and etching stainless steel and carbon steel and cutting aluminum for a diverse set of customers. From lighting fixtures to electrical enclosures to craft brewing tanks, we take care of the needs of our customers. We work efficiently and effectively to maintain quick turn-around times and tight tolerances.">
+  <meta name="description" content="Profile Laser is a family-owned and operated laser cutting service. We specialize in cutting and etching stainless steel and carbon steel and cutting aluminum for a diverse set of customers. From lighting fixtures to electrical enclosures to craft brewing tanks, we take care of the needs of our customers. Proudly serving Portland, Vancouver, Beaverton, Gresham, Hillsboro, Milwaukie, Lake Oswego, Oregon City, Fairview, Wood Village, Troutdale, Tualatin, Tigard, West Linn, Camas, and Washougal.">
   <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
 
   <link rel="shortcut icon" href="favicon.ico">
@@ -33,7 +33,7 @@ $mobile = detect_mobile();
 
   <link href='http://fonts.googleapis.com/css?family=Open+Sans:300,600,800' rel='stylesheet' type='text/css'>
 
-  <link rel="stylesheet" href="css/main.20130323.css">
+  <link rel="stylesheet" href="css/main.20130324.css">
   <script src="js/vendor/modernizr-2.6.2.min.js"></script>
 </head>
 <body class="<?php echo $bodyClass; ?>">
