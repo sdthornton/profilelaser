@@ -26,7 +26,7 @@ $dark_gray: #333;
 $black: #1c1c1c;
 $color: #125a98;
 $accent: #da7d31;
-$footer_height: 320px;
+$footer_height: 18.3em;
 
 /* ==========================================================================
    HTML5 Boilerplate Base Styles
@@ -425,7 +425,9 @@ header {
     width: 100%;
 
     .container {
-        width: 580px;
+        max-width: 866px;
+        padding: 0 30px;
+        width: 100%;
     }
 
     h1 {
@@ -526,6 +528,7 @@ header {
 
     h1 {
         color: $white;
+        position: relative;
     }
 
     .container {
@@ -544,7 +547,7 @@ header {
 
 .opacity .talk_bg {
     display: block;
-    background: url('../img/talk_bg.jpg') center center no-repeat;
+    background: url('../img/laser_bg.jpg') center center no-repeat;
     background-size: cover;
     height: 100%;
     margin: 0 auto;

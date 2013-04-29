@@ -1,3 +1,13 @@
+.ie {
+	.banner_prev {
+		background: url('../img/prevbg.png') 0 0 no-repeat;
+	}
+
+	.banner_next {
+		background: url('../img/nextbg.png') 0 0 no-repeat;
+	}
+}
+
 .lt-ie9 {
 	* { -moz-box-sizing: content-box; -webkit-box-sizing: content-box; box-sizing: content-box; }
 
