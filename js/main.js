@@ -91,7 +91,7 @@ if (home_page) {
 	}).error(function() {
 		"use strict";
 		$('.banner_error').show();
-	}).attr('width', '2400').attr('height', '400').attr('class', 'banner_img').attr('src', 'img/banner3.jpg').attr('id', 'banner_img');
+	}).attr('width', '2800').attr('height', '400').attr('class', 'banner_img').attr('src', 'img/home_banner.jpg').attr('id', 'banner_img').css({ width: '2800px', height: '400px' });
 
 	$(window).resize(function() {
 		"use strict";
@@ -110,8 +110,10 @@ function bannerParallax() {
 			var scroll = $(window).scrollTop();
 			if (scroll > 500) {
 				$('.banner').css({ visibility: 'hidden' });
+				$('.scroll_banner').css({ visibility: 'hidden' });
 			} else {
 				$('.banner').css({ visibility: 'visible' });
+				$('.scroll_banner').css({ visibility: 'visible' });
 			}
 			if (!oldie) { $('.banner_img').addClass('banner_img_scroll'); }
 			$('.banner_img_scroll').css('top', -scroll/8);
@@ -219,9 +221,9 @@ function nextImg() {
 	var left = parseInt($('#banner_img').css('left'),10);
 	var next = left - 400;
 	var full = Math.abs(next) + windowWidth;
-	var last = windowWidth - 2400;
+	var last = windowWidth - 2800;
 
-	if (full > 2400) {
+	if (full > 2800) {
 		if (left === last) {
 			$('#banner_img').animate({
 				left: '0'
@@ -244,7 +246,7 @@ function prevImg() {
 	var left = parseInt($('#banner_img').css('left'),10);
 	var prev = left + 400;
 	var remainder = Math.abs(left % 400);
-	var last = windowWidth - 2400;
+	var last = windowWidth - 2800;
 
 	if (left < 0) {
 		if (remainder === 0) {
