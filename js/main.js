@@ -71,7 +71,7 @@ $('#fastclick').fastClick(function(e) {
 function mobileBannerPosition() {
 	"use strict";
 	var windowWidth = $(window).width();
-	var lefts = [0, windowWidth/2, windowWidth, windowWidth*1.5, windowWidth*2];
+	var lefts = [0, windowWidth/2, windowWidth, windowWidth*1.5, windowWidth*2, windowWidth*2.5];
 	var left = lefts[Math.floor(Math.random()*lefts.length)];
 	if (windowWidth <= 640) {
 		$('.banner_img').css({ left: -left });
@@ -80,6 +80,11 @@ function mobileBannerPosition() {
 
 if (home_page) {
 	var bannerImg = new Image();
+	bannerImg.src = 'img/home_banner.jpg';
+	bannerImg.width = 2800;
+	bannerImg.height = 400;
+	bannerImg.id = 'banner_img';
+	bannerImg.className = 'banner_img';
 
 	$(bannerImg).load(function() {
 		"use strict";
@@ -91,7 +96,7 @@ if (home_page) {
 	}).error(function() {
 		"use strict";
 		$('.banner_error').show();
-	}).attr('width', '2800').attr('height', '400').attr('class', 'banner_img').attr('src', 'img/home_banner.jpg').attr('id', 'banner_img').css({ width: '2800px', height: '400px' });
+	});
 
 	$(window).resize(function() {
 		"use strict";
