@@ -5,6 +5,7 @@
 @media only screen and (min-width: 150em) {
 	.banner_img {
 		position: relative;
+		top: 0;
 	}
 
 	.scroll_banner {
@@ -90,6 +91,7 @@
 	.banner_img {
 		height: auto;
 		position: relative;
+		top: 0;
 		width: 233.3333%;
 	}
 
@@ -274,6 +276,7 @@
 
 	.banner_img {
 		position: relative;
+		top: 0;
 		width: 350%;
 
 		.no-js & {

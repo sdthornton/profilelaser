@@ -1,4 +1,27 @@
 /* ==========================================================================
+   Prevent Unnecessary Paints by Removing Hover Events on Scroll
+   ========================================================================== */
+var noPaintOnHover = function() {
+	var enableTimer = 0;
+	window.addEventListener('scroll', function() {
+		clearTimeout(enableTimer);
+		removeHoverClass();
+		enableTimer = setTimeout(addHoverClass, 200);
+	}, false);
+
+	function removeHoverClass() {
+		document.documentElement.classList.remove('hover');
+	}
+
+	function addHoverClass() {
+		document.documentElement.classList.add('hover');
+	}
+};
+
+noPaintOnHover();
+
+
+/* ==========================================================================
    Reusable functions
    ========================================================================== */
 //Function to disable text selection
@@ -121,12 +144,12 @@ function bannerParallax() {
 				$('.scroll_banner').css({ visibility: 'visible' });
 			}
 			if (!oldie) { $('.banner_img').addClass('banner_img_scroll'); }
-			$('.banner_img_scroll').css('top', -scroll/8);
+			$('.banner_img_scroll').css('top', -scroll/8+80);
 		});
 	} else {
-		document.getElementById('banner_img').style.top = '0px';
+		document.getElementById('banner_img').style.top = "auto";
 		$(window).scroll(function() {
-			document.getElementById('banner_img').style.top = '0px';
+			document.getElementById('banner_img').style.top = "auto";
 		});
 	}
 }
