@@ -226,9 +226,11 @@ nav ul {
     line-height: 60px;
     text-decoration: none;
     width: 150px;
-
-    &:hover {
-        background: lighten($accent, 10%);
+    
+    .hover & {
+        &:hover {
+            background: lighten($accent, 10%);
+        }
     }
 }
 
@@ -263,8 +265,10 @@ header {
                 color: $gray;
                 text-decoration: none;
 
-                &:hover {
-                    color: $accent;
+                .hover & {
+                    &:hover {
+                        color: $accent;
+                    }
                 }
             }
 
@@ -330,8 +334,10 @@ header {
         padding: 30px 0;
         width: 100%;
 
-        &:hover {
-            color: #fff;
+        .hover {    
+            &:hover {
+                color: #fff;
+            }
         }
     }
 }
@@ -347,7 +353,7 @@ header {
     background: $smoke;
     height: 400px;
     overflow: hidden;
-    position: fixed;
+    position: absolute;
     top: 80px;
     width: 100%;
     z-index: 1;
@@ -365,7 +371,8 @@ header {
 .banner_img {
     height: 400px;
     left: 0;
-    position: absolute;
+    position: fixed;
+    top: 80px;
     width: 2800px;
 }
 
@@ -373,7 +380,7 @@ header {
     @include no_select;
     cursor: pointer;
     height: 400px;
-    position: absolute;
+    position: fixed;
     visibility: visible;
     width: 200px;
     z-index: 1;
@@ -386,10 +393,12 @@ header {
 .banner_prev {
     background: none;
 
-    &:hover {
-        background: url('../img/prevbg.png') 0 0 no-repeat;
-        background-size: 200px 400px;
-        left: 0;
+    .hover & {
+        &:hover {
+            background: url('../img/prevbg.png') 0 0 no-repeat;
+            background-size: 200px 400px;
+            left: 0;
+        }
     }
 }
 
@@ -397,9 +406,11 @@ header {
     background: none;
     right: 0;
 
-    &:hover {
-        background: url('../img/nextbg.png') 0 0 no-repeat;
-        background-size: 200px 400px;
+    .hover & {
+        &:hover {
+            background: url('../img/nextbg.png') 0 0 no-repeat;
+            background-size: 200px 400px;
+        }
     }
 }
 
@@ -634,12 +645,15 @@ header {
     }
 
     img {
+        @include transition(opacity 0.2s);
         float: left;
         height: auto;
         width: 100%;
 
-        &:hover {
-            @include opacity(0.85);
+        .hover & {
+            &:hover {
+                @include opacity(0.85);
+            }
         }
     }
 }
@@ -857,8 +871,10 @@ label[for="name"] {
     margin-bottom: 5px;
     margin-right: 10px;
 
-    &:hover {
-        background: lighten($color, 10%);
+    .hover & {    
+        &:hover {
+            background: lighten($color, 10%);
+        }
     }
 }
 
@@ -914,8 +930,10 @@ footer {
         *display: inline;
         zoom: 1;
 
-        &:hover {
-            color: $smoke;
+        .hover & {
+            &:hover {
+                color: $smoke;
+            }
         }
     }
 }

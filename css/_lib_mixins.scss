@@ -33,14 +33,16 @@
 }
 
 @mixin transition ($property:all, $duration:.3s, $type:ease-in-out) {
-	-webkit-transition: $duration $type;
-	-moz-transition: $duration $type;
-	-o-transition: $duration $type;
-	transition: $duration $type;
-	-webkit-transition-property: $property;
-	-moz-transition-property: $property;
-	-o-transition-property: $property;
-	transition-property: $property;
+	.hover & {
+		-webkit-transition: $duration $type;
+		-moz-transition: $duration $type;
+		-o-transition: $duration $type;
+		transition: $duration $type;
+		-webkit-transition-property: $property;
+		-moz-transition-property: $property;
+		-o-transition-property: $property;
+		transition-property: $property;
+	}
 }
 
 @mixin gradient ($start, $stop) {
