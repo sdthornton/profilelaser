@@ -265,7 +265,7 @@ function nextImg() {
 		$('#banner_img').animate({
 			left: next + 'px'
 		});
-	}	
+	}
 }
 
 function prevImg() {
@@ -347,7 +347,7 @@ if (gallery_page) {
 					html: page_nums.join('')
 				}).insertAfter('#gallery_images');
 
-				var last_page = ($('.pagination li').last().index())+1;
+				var last_page = ($('.pagination').find('li').last().index())+1;
 
 				$('.pagination li').eq(page-1).addClass('current_page').click(function(e) { e.preventDefault(); });
 				$('.pagination li').eq(page-2).children('a').first().attr('rel', 'prev');
@@ -484,7 +484,7 @@ if (contact_page) {
 			bademail: 'Please enter a valid email address',
 			message: 'Please write us a message',
 			location: 'Please enter your location (just the city and state)',
-			minlength: ' must be greater than '
+			minlength: ' must be greater than or equal to '
 		};
 
 	formSubmitButton.on('click', function() {
@@ -492,7 +492,7 @@ if (contact_page) {
 
 		var formok = true,
 			errors = [];
-			
+
 		formElements.each(function() {
 			var name = this.name,
 				nameUC = name.ucfirst(),
@@ -500,13 +500,13 @@ if (contact_page) {
 				type = this.getAttribute('type'),
 				isRequired = this.getAttribute('required'),
 				minLength = this.getAttribute('data-minlength');
-			
-			//if HTML5 formfields are supported			
+
+			//if HTML5 formfields are supported
 			if( (this.validity) && !this.validity.valid ){
 				formok = false;
-				
+
 				console.log(this.validity);
-				
+
 				if(this.validity.valueMissing) {
 					if (this.name === 'real_name') {
 						errors.push(errorMessages.realname);
@@ -522,13 +522,13 @@ if (contact_page) {
 				} else if(this.validity.typeMismatch && type === 'email') {
 					errors.push(errorMessages.bademail);
 				}
-				
+
 				this.focus();
 				return false;
 			}
-			
+
 			//if this is a required element
-			if(isRequired) {	
+			if(isRequired) {
 				//if HTML5 input required attribute is not supported
 				if (!Modernizr.input.required) {
 					if(value === '') {
@@ -555,7 +555,7 @@ if (contact_page) {
 			//if HTML5 input email input is not supported
 			if(type === 'email') {
 				if (!Modernizr.inputtypes.email) {
-					var emailRegEx = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/; 
+					var emailRegEx = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
 					if (!emailRegEx.test(value)) {
 						this.focus();
 						formok = false;
@@ -564,7 +564,7 @@ if (contact_page) {
 					}
 				}
 			}
-			
+
 			//check minimum lengths
 			if(minLength) {
 				if (value.length < parseInt(minLength, 10)) {
@@ -584,7 +584,7 @@ if (contact_page) {
 				}
 			}
 		});
-		
+
 		if(!formok) {
 			//animate required field notice
 			$('.req-field-desc')
@@ -596,8 +596,8 @@ if (contact_page) {
 						marginLeft: '-=' + 5
 					},150);
 				});
-			
-			//show error message 
+
+			//show error message
 			showNotice('error',errors);
 
 		} else {
@@ -615,9 +615,9 @@ if (contact_page) {
 				}
 			});
 		}
-		
+
 		return false; //this stops submission off the form and also stops browsers showing default error messages
-		
+
 	});
 
 	var showNotice = function(type,data) {
