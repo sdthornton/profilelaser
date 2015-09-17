@@ -1,0 +1,41 @@
+@mixin border ($side, $blue:#e6e6e6, $width:1px) {
+	border-#{$side}: solid $width $blue;
+}
+
+@mixin no_select {
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
+
+@mixin transition ($property:all, $duration:.3s, $type:ease-in-out) {
+	.hover & {
+		-webkit-transition: $duration $type;
+		-moz-transition: $duration $type;
+		-o-transition: $duration $type;
+		transition: $duration $type;
+		-webkit-transition-property: $property;
+		-moz-transition-property: $property;
+		-o-transition-property: $property;
+		transition-property: $property;
+	}
+}
+
+@mixin retina {
+	@media print,
+	(min-resolution: 1.25dppx),
+	(min-resolution: 120dpi) {
+		@content;
+	}
+}
+
+@mixin transform($args...) {
+	$prefixes: (ms, moz, o, webkit);
+  @each $prefix in $prefixes {
+    #{'-' + $prefix + '-transform'}: $args;
+  }
+	transform: $args;
+}

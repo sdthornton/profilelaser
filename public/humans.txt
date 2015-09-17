@@ -1,0 +1,6 @@
+# humanstxt.org/
+# The humans responsible
+
+# TEAM
+
+    Samuel Thornton -- Web Developer -- @samuelthornton -- http://sam-thornton.com

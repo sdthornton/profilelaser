@@ -1,0 +1,89 @@
+html {
+  box-sizing: border-box;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+html {
+  font-size: 100%;
+  line-height: 1.618;
+  -moz-osx-font-smoothing: grayscale;
+  text-shadow: 1px 1px 1px rgba(0,0,0,0.004);
+  text-rendering: optimizeSpeed;
+  -webkit-font-smoothing: antialiased;
+}
+
+@media (min-width: 72em) {
+  html {
+    font-size: 112.5%;
+  }
+}
+
+body {
+  background: $black;
+  font-family: $sans-serif;
+  text-align: center;
+}
+
+main {
+  position: relative;
+  margin-top: 5rem;
+}
+
+p {
+  font-family: $monospace;
+  margin: 0 0 $spacer;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+  font-weight: 700;
+  margin: 0 0 $spacer;
+}
+
+h1 {
+  font-size: 2.8125rem;
+  line-height: 1.15;
+  text-transform: uppercase;
+}
+
+h2 {
+  font-size: 2.125rem;
+  line-height: 1.15;
+}
+
+h3 {
+  font-size: 1.5rem;
+  line-height: 1.45;
+}
+
+h4 {
+  font-size: 1.25rem;
+  line-height: 1.45;
+}
+
+h5 {
+  font-size: 1rem;
+  font-weight: 400;
+  color: $blue;
+  line-height: 1.618;
+}
+
+a {
+  @include transition(#{color, background});
+  color: $orange;
+  text-decoration: none;
+}
+
+nav {
+  ul,
+  li {
+    margin: 0;
+    padding: 0;
+  }
+}

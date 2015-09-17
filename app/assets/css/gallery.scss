@@ -1,0 +1,27 @@
+.gallery {
+  background: $smoke;
+}
+
+.gallery-images {
+  @extend %clearfix;
+  float: left;
+  width: 100%;
+}
+
+.gallery-image-wrap {
+  @extend %clearfix;
+  padding-bottom: $spacer;
+}
+
+.gallery-image {
+  @include transition(opacity 0.2s);
+  display: block;
+  height: auto;
+  width: 100%;
+
+  .hover & {
+    &:hover {
+      opacity: 0.85;
+    }
+  }
+}

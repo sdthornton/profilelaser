@@ -1,0 +1,44 @@
+footer {
+  background: $black;
+  color: $light-gray;
+  font-size: 0.875rem;
+  padding: 52.358px 0;
+  text-align: left;
+  width: 100%;
+
+  h5 {
+    border-bottom: solid 1px $gray;
+    color: $smoke;
+  }
+
+  .copyright {
+    color: $gray;
+    display: inline-block;
+    margin-top: 1.618rem;
+    text-align: center;
+    width: 100%;
+  }
+
+  nav,
+  section {
+    float: left;
+    padding: 0 20px;
+    width: 25%;
+  }
+
+  a {
+    color: $light-gray;
+    display: inline-block;
+
+    .hover & {
+      &:hover {
+        color: $smoke;
+      }
+    }
+  }
+}
+
+.pride {
+  color: $gray;
+  margin-top: $spacer*2;
+}

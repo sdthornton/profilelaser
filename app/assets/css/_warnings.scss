@@ -1,0 +1,25 @@
+.browserupgrade {
+  margin: 0.2em 0;
+  background: #ccc;
+  color: #000;
+  padding: 0.2em 0;
+}
+
+.no-js-warning {
+  background: $black;
+  color: $white;
+  display: none;
+  font-size: 1em;
+  font-weight: bold;
+  height: 80px;
+  line-height: 80px;
+  position: absolute;
+  text-align: center;
+  top: 0;
+  width: 100%;
+  z-index: 9999;
+
+  .no-js & {
+    display: block;
+  }
+}

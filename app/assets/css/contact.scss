@@ -1,0 +1,192 @@
+.contact-us {
+  background: $smoke;
+}
+
+.map {
+  background: $smoke;
+  font-size: 0.858em;
+  height: 400px;
+  margin: 45px 0 52.358px;
+  padding: 0;
+}
+
+.general-contact {
+  float: left;
+  padding-left: 10px;
+  padding-right: 35px;
+  text-align: left;
+  width: 378px;
+}
+
+.contact-page-text {
+  margin-bottom: 0.53em;
+
+  a {
+    color: $gray;
+  }
+
+  [class^="icon-"], [class*=" icon-"] {
+    display: inline-block;
+    *display: inline;
+    line-height: 100%;
+    padding-top: 5px;
+    vertical-align: top;
+    zoom: 1;
+  }
+
+  .icon-location {
+    font-size: 1.5em;
+  }
+
+  .icon-phone {
+    font-size: 1.25em;
+  }
+
+  .icon-print {
+    font-size: 1.1em;
+  }
+
+  .icon-mail-alt {
+    font-size: 1.05em;
+  }
+
+  .contact-text {
+    display: inline-block;
+    padding: 0 0 0 10px;
+    zoom: 1;
+  }
+}
+
+.contact-form {
+  float: left;
+  padding: 0;
+  text-align: left;
+  width: 606px;
+}
+
+#errors,
+#success {
+  display: none;
+
+  &.visible {
+    display: block;
+  }
+}
+
+#errors {
+  font-size: 0.858em;
+  list-style: none;
+  margin: 0 0 7px;
+  padding: 0 10px;
+
+  li:not(#info) {
+    color: #a00;
+    padding: 5px;
+
+    &:before {
+      content: "\2022";
+      font-weight: bold;
+      padding-right: 10px;
+    }
+  }
+
+  #info {
+    font-style: italic;
+    font-weight: bold;
+    list-style: none;
+  }
+}
+
+#success {
+  color: $blue;
+  font-weight: bold;
+  margin: 0 10px 20px;
+}
+
+#name,
+label[for="name"] {
+  position: absolute;
+  visibility: hidden;
+}
+
+#contact_form {
+  div {
+    float: left;
+    overflow: auto;
+    padding: 5px 10px 10px;
+    width: 50%;
+  }
+
+  .anti_robot {
+    opacity: 0;
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    visibility: hidden;
+    width: 100%;
+  }
+
+  .message_div {
+    width: 100%;
+  }
+
+  label {
+    clear: both;
+    float: left;
+    font-size: 0.858em;
+    padding-bottom: 5px;
+  }
+
+  .required {
+    color: #a00;
+    font-size: 0.8em;
+  }
+
+  input:not(#submit),
+  textarea {
+    border: none;
+    clear: both;
+    float: left;
+    padding: 10px;
+    width: 100%;
+  }
+
+  textarea {
+    height: 150px;
+  }
+}
+
+.req-field-desc {
+  color: #a00;
+  clear: left;
+  float: left;
+  font-size: 0.8em;
+  margin: 10px 0 0 10px;
+}
+
+#loading {
+  background: url('../img/loader.gif') no-repeat;
+  background-size: 64px 64px;
+  bottom: 5px;
+  display: none;
+  height: 64px;
+  position: absolute;
+  right: 200px;
+  width: 64px;
+}
+
+#submit {
+  @include transition;
+  background: $blue;
+  border: none;
+  clear: none;
+  float: right;
+  margin-bottom: 5px;
+  margin-right: 10px;
+
+  .hover & {
+    &:hover {
+      background: lighten($blue, 10%);
+    }
+  }
+}
