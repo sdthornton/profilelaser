@@ -36,6 +36,10 @@
   color: $blue;
 }
 
+.text-red {
+  color: #a00;
+}
+
 .text-gray {
   color: $gray;
 }
@@ -46,19 +50,6 @@
 
 .no-margin {
   margin-bottom: 0;
-}
-
-.container {
-  @extend %clearfix;
-  margin: 0 auto;
-  padding: 0 1rem;
-  position: relative;
-  max-width: $page-width;
-  width: 100%;
-}
-
-.container--full {
-  max-width: none;
 }
 
 .main-section {
@@ -72,6 +63,7 @@
 .button {
   background: $orange;
   border-radius: $radius;
+  box-shadow: 0 5px 10px rgba(0,0,0,0.2);
   color: $white;
   display: inline-block;
   letter-spacing: 1px;
@@ -83,5 +75,73 @@
     &:hover {
       background: lighten($orange, 10%);
     }
+  }
+}
+
+.loader {
+  height: 100px;
+  margin: 0 auto;
+  position: relative;
+  width: 100px;
+}
+
+.loader__circular {
+  animation: rotate 2s linear infinite;
+  height: 100px;
+  position: relative;
+  width: 100px;
+}
+
+.loader__path {
+  stroke-dasharray: 1,200;
+  stroke-dashoffset: 0;
+  animation: dash 1.5s ease-in-out infinite, color 6s ease-in-out infinite;
+  stroke-linecap: round;
+}
+
+@keyframes rotate {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes dash {
+  0% {
+   stroke-dasharray: 1,200;
+    stroke-dashoffset: 0;
+  }
+
+  50% {
+    stroke-dasharray: 89,200;
+    stroke-dashoffset: -35;
+  }
+
+  100% {
+    stroke-dasharray: 89,200;
+    stroke-dashoffset: -124;
+  }
+}
+
+@keyframes color {
+  100%, 0% {
+    stroke: $blue;
+  }
+
+  40% {
+    stroke: $orange;
+  }
+
+  66% {
+    stroke: $blue;
+  }
+
+  80%, 90% {
+    stroke: $orange;
+  }
+}
+
+@media only screen and (max-width: 48rem) {
+  .main-section {
+    padding: $spacer*2 0;
   }
 }

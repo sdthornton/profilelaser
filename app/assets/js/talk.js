@@ -1,31 +1,56 @@
 module.exports = class Talk {
   constructor() {
+    this.talkContainer = document.getElementById('talk_box_container');
+    this.talkBoxes = this.talkContainer.querySelectorAll('.talk-box');
+    this.prevArrow = document.querySelector('.talk-arrow');
+    this.nextArrow = document.querySelector('.talk-arrow--right');
     this.talkBoxHeight();
-
-    $(window).on('resize', () => {
-      this.talkBoxHeight();
-    });
-
-  	setInterval(this.nextTalk, 5000);
+    window.addEventListener('resize', () => this.talkBoxHeight(), false)
+    this.bindTalkArrows();
+  	this.setTalkTimeout();
   }
 
   talkBoxHeight() {
     const talkHeights = [];
-    $('.talk-box').each(function() {
-      talkHeights.push($(this).outerHeight());
-    });
+    for (let talkBox of this.talkBoxes) {
+      talkHeights.push(talkBox.offsetHeight)
+    }
 
     const talkHeight = Math.max.apply(null, talkHeights);
-    document.getElementById('talk_box_container').style.height = talkHeight + 'px';
+    this.talkContainer.style.height = `${talkHeight}px`;
+  }
+
+  setTalkTimeout() {
+    clearTimeout(this.talkTimeout);
+    this.talkTimeout = setTimeout(() => this.nextTalk(), 5000);
+  }
+
+  bindTalkArrows() {
+    this.prevArrow.addEventListener('click', () => this.prevTalk(), false);
+    this.nextArrow.addEventListener('click', () => this.nextTalk(), false);
   }
 
   nextTalk() {
-    let next = $('.active-talk').next();
-    if ($('.talk-box').last().hasClass('active-talk')) {
-      next = $('.talk-box').first();
+    let currentActive = this.talkContainer.querySelector('.active-talk');
+    let next = currentActive.nextElementSibling;
+    if (next == null) {
+      next = this.talkContainer.firstElementChild;
     }
 
-    $('.active-talk').removeClass('active-talk')
-    next.addClass('active-talk');
+    this.talkContainer.querySelector('.active-talk').classList.remove('active-talk');
+    next.classList.add('active-talk');
+    this.setTalkTimeout();
+  }
+
+  prevTalk() {
+    let currentActive = this.talkContainer.querySelector('.active-talk');
+    let prev = currentActive.prevElementSibling;
+    if (prev == null) {
+      prev = this.talkContainer.lastElementChild;
+    }
+
+    currentActive.classList.remove('active-talk');
+    prev.classList.add('active-talk');
+    this.setTalkTimeout();
   }
 }

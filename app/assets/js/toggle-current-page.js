@@ -1,13 +1,13 @@
 module.exports = function() {
-  var onHomePage = document.body.className.indexOf('home-page') >= 0;
-  var onGalleryPage = document.body.className.indexOf('gallery-page') >= 0;
-  var onContactPage = document.body.className.indexOf('contact-page') >= 0;
+  var onHomePage = document.body.classList.contains('home-page');
+  var onGalleryPage = document.body.classList.contains('gallery-page');
+  var onContactPage = document.body.classList.contains('contact-page');
 
   if (onHomePage) {
-  	$('.home-link').find('a').addClass('current-page');
+    document.querySelector('.home-link').classList.add('current-page');
   } else if (onGalleryPage) {
-  	$('.gallery-link').find('a').addClass('current-page');
+    document.querySelector('.gallery-link').classList.add('current-page');
   } else if (onContactPage) {
-  	$('.contact-link').find('a').addClass('current-page');
+    document.querySelector('.contact-link').classList.add('current-page');
   }
 }

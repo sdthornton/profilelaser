@@ -1,4 +1,4 @@
-<footer>
+<footer class="site-footer">
   <div class="container">
     <div class="contact-info columns column-6 collapse">
       <div class="columns column-12">
@@ -11,6 +11,7 @@
             524 N Tillamook St, #104<br>
             Portland, OR 97227
           </a><br>
+          8:00am - 4:00pm, M-F<br>
           971-271-7355<br>
           <a href="mailto:&#115;&#97;&#108;&#101;&#115;&#64;&#112;&#114;&#111;&#102;&#105;&#108;&#101;&#108;&#97;&#115;&#101;&#114;&#46;&#99;&#111;&#109;">&#115;&#97;&#108;&#101;&#115;&#64;&#112;&#114;&#111;&#102;&#105;&#108;&#101;&#108;&#97;&#115;&#101;&#114;&#46;&#99;&#111;&#109;</a>
         </span>
@@ -22,13 +23,14 @@
             2138 N Interstate Ave<br>
             Portland, OR 97227
           </a><br>
+          8:00am - 4:00pm, M-F<br>
           503-292-6044<br>
           <a href="mailto:&#118;&#105;&#99;&#107;&#105;&#101;&#64;&#102;&#111;&#117;&#99;&#104;&#46;&#99;&#111;&#109;">&#118;&#105;&#99;&#107;&#105;&#101;&#64;&#102;&#111;&#117;&#99;&#104;&#46;&#99;&#111;&#109;</a>
         </span>
       </div>
     </div>
 
-    <div class="partners_info columns column-3">
+    <div class="columns column-3">
       <h5>Our Partners</h5>
       <a href="http://www.fouch.com/" target="_blank">Fouch Electric</a><br>
       <a href="http://www.roymfg.com/" target="_blank">Roy Manufacturing</a>

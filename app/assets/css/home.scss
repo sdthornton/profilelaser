@@ -36,8 +36,10 @@
   font-size: 3.5rem;
   left: 50%;
   margin: 0;
+  max-width: 100%;
   padding: 0 2rem;
   position: absolute;
+  text-shadow: 0 5px 10px rgba(0,0,0,0.15);
   top: 50%;
   width: $page-width;
 }
@@ -51,7 +53,7 @@
 
 .clients {
   background: $smoke;
-  padding: 20px 0;
+  padding: $spacer/2 0;
   width: 100%;
 }
 
@@ -68,11 +70,12 @@
   background: $smoke;
 }
 
-.process_icon,
-.why_icon {
+.process-icon,
+.why-icon {
   background: $blue url('process-icons.svg') 0 0 no-repeat;
   background-size: 624px 104px;
   border-radius: 50%;
+  // box-shadow: 0 5px 10px rgba(0,0,0,0.5);
   height: 104px;
   margin: $spacer auto;
   width: 104px;
@@ -104,19 +107,14 @@
 
 .talk {
   background: $blue;
-  background-size: cover;
   color: $white;
   position: relative;
 }
 
-.talk_bg {
-  display: none;
-}
-
-.opacity .talk_bg {
+.talk-bg {
   display: block;
   background: url('laser_bg.jpg') center center no-repeat;
-  background-size: cover;
+  background-size: contain;
   height: 100%;
   margin: 0 auto;
   opacity: 0.25;
@@ -149,6 +147,22 @@
   }
 }
 
+.talk-arrow {
+  color: $white;
+  cursor: pointer;
+  font-size: 2rem;
+  left: 0.5rem;
+  position: absolute;
+  transform: translateY(-50%);
+  top: 50%;
+}
+
+.talk-arrow--right {
+  @extend .talk-arrow;
+  left: auto;
+  right: 0.5rem;
+}
+
 .partners {
   background: $smoke;
   position: relative;
@@ -156,5 +170,11 @@
   .button {
     margin-left: 1rem;
     margin-right: 1rem;
+  }
+}
+
+@media only screen and (max-width: 48rem) {
+  .clients {
+    display: none;
   }
 }

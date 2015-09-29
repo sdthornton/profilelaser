@@ -1,11 +1,13 @@
 var gulp = require('gulp');
 var sass = require('gulp-sass');
 var autoprefixer = require('gulp-autoprefixer');
+var pathmodify = require('pathmodify');
 var browserify = require('browserify');
 var babelify = require('babelify');
 var fs = require('fs');
 var sourcemaps = require('gulp-sourcemaps');
 var rev = require('gulp-rev');
+var revCollector = require('gulp-rev-collector');
 var del = require('del');
 var source = require('vinyl-source-stream');
 var buffer = require('vinyl-buffer');
@@ -35,22 +37,23 @@ gulp.task('sass', function() {
     .pipe(gulp.dest('public/assets'));
 });
 
-function bundleJS(bundler) {
+gulp.task('js', function() {
+  var pathOpts = {
+    mods: [pathmodify.mod.dir('vendor', '../../../vendor/assets/js')]
+  };
+
+  var bundler =
+    browserify('app/assets/js/application.js', { debug: true })
+      .plugin(pathmodify(), pathOpts)
+      .transform(babelify)
+
   return bundler.bundle()
-    .on('error', handleErrors)
     .pipe(source('application.js'))
     .pipe(buffer())
-    .pipe(gulp.dest('public/assets'))
     .pipe(sourcemaps.init({ loadMaps: true }))
+    .on('error', handleErrors)
     .pipe(sourcemaps.write())
     .pipe(gulp.dest('public/assets'));
-}
-
-gulp.task('js', function() {
-  var bundler = browserify('app/assets/js/application.js', { debug: true })
-    .transform(babelify)
-
-  return bundleJS(bundler);
 });
 
 gulp.task('images', function() {
@@ -73,7 +76,7 @@ gulp.task('clean', function() {
     .pipe(gulp.dest('build'));
 });
 
-gulp.task('build', ['clean', 'sass', 'js', 'vendor', 'images']);
+gulp.task('build', ['sass', 'js', 'vendor', 'images']);
 
 gulp.task('watch', function() {
   gulp.watch('app/assets/css/**/*.scss', ['sass']);
@@ -81,22 +84,28 @@ gulp.task('watch', function() {
   gulp.watch('app/assets/images/**/*', ['images']);
 });
 
-gulp.task('uglify', function() {
+gulp.task('uglify', ['js'], function() {
   return gulp.src('public/assets/application.js')
     .pipe(uglify())
     .pipe(gulp.dest('public/assets'));
 });
 
-gulp.task('minify', function() {
+gulp.task('minify', ['sass'], function() {
   return gulp.src('public/assets/application.css')
   .pipe(minify())
   .pipe(gulp.dest('public/assets'));
 });
 
-gulp.task('rev', function() {
-  return gulp.src(['public/assets/application.css', 'public/assets/application.js'])
+gulp.task('rev', ['uglify', 'minify', 'vendor', 'images'], function() {
+  return gulp.src(['public/assets/**/*'])
     .pipe(rev())
     .pipe(gulp.dest('public/assets'))
     .pipe(rev.manifest())
     .pipe(gulp.dest('build'));
+});
+
+gulp.task('deploy', ['rev'], function() {
+  return gulp.src(['build/rev-manifest.json', 'public/assets/**/*.{css,js}'])
+    .pipe(revCollector())
+    .pipe(gulp.dest('public/assets'));
 });

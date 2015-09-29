@@ -36,26 +36,24 @@
   <?= javascript('vendor/modernizr-2.8.3.min'); ?>
 </head>
 <body class="<?= $body_class ?>">
-  <!--[if lt IE 8]>
+  <!--[if lt IE 9]>
+    <style>.page-header { top: 2.5rem; } main { margin-top: 6.5rem; }</style>
     <p class="browserupgrade">You are using an <strong>outdated</strong>
     browser. Please <a href="http://browsehappy.com/">upgrade your browser</a>
     to improve your experience.</p>
   <![endif]-->
-  <div class="no-js-warning" style="display: none;">For a full browsing
-  experience, you'll need to make sure javascript is enabled on your browser.
+  <div class="no-js-warning">
+    For a full browsing experience, you'll need to make sure javascript is
+    enabled on your browser.
   </div>
 
   <?php include '_header.php'; ?>
   <main>
-    <?= $content; ?>
+    <?= $view_content; ?>
   </main>
   <?php include '_footer.php'; ?>
 
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-  <script>window.jQuery || document.write('<script src="assets/vendor/jquery-1.11.3.min.js"><\/script>')</script>
   <?= javascript('application'); ?>
-  <script>
-    <?= issetor($javascript_content); ?>
-  </script>
+  <script><?= issetor($javascript_content); ?></script>
 </body>
 </html>

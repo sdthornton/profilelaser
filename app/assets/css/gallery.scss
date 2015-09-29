@@ -1,5 +1,9 @@
 .gallery {
   background: $smoke;
+
+  .loader {
+    margin-bottom: $spacer*2;
+  }
 }
 
 .gallery-images {
@@ -15,6 +19,7 @@
 
 .gallery-image {
   @include transition(opacity 0.2s);
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
   display: block;
   height: auto;
   width: 100%;
@@ -24,4 +29,8 @@
       opacity: 0.85;
     }
   }
+}
+
+#gallery_fail {
+  display: none;
 }

@@ -10,9 +10,11 @@ html {
   font-size: 100%;
   line-height: 1.618;
   -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
   text-shadow: 1px 1px 1px rgba(0,0,0,0.004);
   text-rendering: optimizeSpeed;
-  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+  overflow-y: scroll;
 }
 
 @media (min-width: 72em) {
@@ -29,7 +31,7 @@ body {
 
 main {
   position: relative;
-  margin-top: 5rem;
+  margin-top: 4rem;
 }
 
 p {
@@ -85,5 +87,11 @@ nav {
   li {
     margin: 0;
     padding: 0;
+  }
+}
+
+@media only screen and (max-width: 48rem) {
+  main {
+    margin-top: 0;
   }
 }

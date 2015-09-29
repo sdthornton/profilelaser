@@ -3,7 +3,7 @@ $body_class = 'home-page';
 ?>
 
 <section class="banner">
-  <h1 class="banner__heading">
+  <h1 class="banner__heading text-left">
     Precision Laser Cutting
     <span class="banner__subheading">Serving Portland Oregon</span>
   </h1>
@@ -59,7 +59,7 @@ $body_class = 'home-page';
     </div>
 
     <div class="columns column-4">
-      <div id="design" class="process_icon"></div>
+      <div id="design" class="process-icon"></div>
 
       <h3 class="small-margin">Personal Design</h3>
       <h5>We’ll help you develop a design that is right for your needs.</h5>
@@ -71,7 +71,7 @@ $body_class = 'home-page';
     </div>
 
     <div class="columns column-4">
-      <div id="production" class="process_icon"></div>
+      <div id="production" class="process-icon"></div>
 
       <h3 class="small-margin">Efficient Production</h3>
       <h5>We'll make sure your project is done quickly and is done well.</h5>
@@ -82,7 +82,7 @@ $body_class = 'home-page';
     </div>
 
     <div class="columns column-4">
-      <div id="efficient" class="process_icon"></div>
+      <div id="efficient" class="process-icon"></div>
 
       <h3 class="small-margin">Fast Turnaround</h3>
       <h5>Before you can say, "Best laser cutting company around."</h5>
@@ -106,27 +106,27 @@ $body_class = 'home-page';
     </div>
 
     <div class="columns column-4">
-      <div id="afford" class="why_icon"></div>
+      <div id="afford" class="why-icon"></div>
 
-      <h2>Affordability</h2>
+      <h3 class="small-margin">Affordability</h3>
       <p>Because of high feed rates, efficient layout of parts on the sheet, no
       special tooling requirements, and very little material wasted, pieces can
       be cut at a low cost.</p>
     </div>
 
     <div class="columns column-4">
-      <div id="accuracy" class="why_icon"></div>
+      <div id="accuracy" class="why-icon"></div>
 
-      <h2>Accuracy</h2>
+      <h3 class="small-margin">Accuracy</h3>
       <p>Lasers are remarkably accurate. Your parts can be cut within a
       thousandth of an inch and the first part will be exactly like the last,
       whether cutting two pieces or thousands.</p>
     </div>
 
     <div class="columns column-4">
-      <div id="flexibility" class="why_icon"></div>
+      <div id="flexibility" class="why-icon"></div>
 
-      <h2>Flexibility</h2>
+      <h3 class="small-margin">Flexibility</h3>
       <p>A laser is equally well-suited for prototyping or production, cutting
       or etching. A laser can be compared to an artist’s brush&mdash;in capable
       hands it’s limited only by the imagination.</p>
@@ -135,8 +135,11 @@ $body_class = 'home-page';
 </section>
 
 <section class="talk main-section">
-  <div class="talk_bg"></div>
+  <div class="talk-bg"></div>
   <div class="container">
+    <div class="icon-left-open talk-arrow" data-talk="next"></div>
+    <div class="icon-right-open talk-arrow--right" data-talk="prev"></div>
+
     <div class="columns column-10 push-1">
       <h1>Our Happy Clients</h1>
 
@@ -174,11 +177,11 @@ $body_class = 'home-page';
     <div class="columns column-8 push-2">
       <h1>Our Partners</h1>
 
-      <p>We have close partnerships with <a href="http://www.fouch.com/">Fouch
-      Electric Mfg. Co.</a> and <a href="http://www.roymfg.com/">Roy
-      Manufacturing</a> that allow us to provide fabrication services. If your
-      lasered parts need to be welded, bent, tapped, punched or painted we have
-      the time, means, and resources to take care of you.</p>
+      <p>We have close partnerships with <a href="http://www.fouch.com/" target="_blank">
+      Fouch Electric Mfg. Co.</a> and <a href="http://www.roymfg.com/" target="_blank">
+      Roy Manufacturing</a> that allow us to provide fabrication services. If
+      your lasered parts need to be welded, bent, tapped, punched or painted we
+      have the time, means, and resources to take care of you.</p>
 
       <a href="http://www.fouch.com/" target="_blank" class="button">Visit Fouch</a>
       <a href="http://www.roymfg.com/" target="_blank" class="button">Visit Roy</a>
