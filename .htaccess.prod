@@ -1,3 +1,7 @@
+ErrorDocument 403 /public/404.html
+ErrorDocument 404 /public/404.html
+ErrorDocument 500 /public/500.html
+
 # ----------------------------------------------------------------------
 # | Cross-origin web fonts                                             |
 # ----------------------------------------------------------------------
@@ -9,12 +13,6 @@
         Header set Access-Control-Allow-Origin "*"
     </FilesMatch>
 </IfModule>
-
-# ----------------------------------------------------------------------
-# | Error prevention                                                   |
-# ----------------------------------------------------------------------
-
-Options -MultiViews
 
 # ----------------------------------------------------------------------
 # | Document modes                                                     |
@@ -125,10 +123,6 @@ AddDefaultCharset utf-8
 # ----------------------------------------------------------------------
 # | File access                                                        |
 # ----------------------------------------------------------------------
-
-<IfModule mod_autoindex.c>
-    Options -Indexes
-</IfModule>
 
 <FilesMatch "(^#.*#|\.(bak|conf|dist|fla|in[ci]|log|psd|sh|sql|sw[op])|~)$">
 
@@ -330,21 +324,20 @@ FileETag None
 # | Routing                                                            |
 # ----------------------------------------------------------------------
 
-<IfModule mod_rewrite.c>
-    RewriteEngine on
-    Options +FollowSymlinks
-</IfModule>
+Options -MultiViews
+Options -Indexes
 
-<IfModule mod_rewrite.c>
-    RewriteEngine On
-    RewriteCond %{HTTPS} !=on
-    RewriteCond %{HTTP_HOST} ^www\.(.+)$ [NC]
-    RewriteRule ^ %{ENV:PROTO}://%1%{REQUEST_URI} [R=301,L]
-</IfModule>
+RewriteEngine On
+Options +FollowSymlinks
 
-<IfModule mod_rewrite.c>
-    RewriteEngine On
-    RewriteCond %{REQUEST_FILENAME} !-f
-    RewriteCond %{REQUEST_FILENAME} !-d
-    RewriteRule ^(.*)$ index.php?url=$1 [PT,L]
-</IfModule>
+# Redirect Trailing Slashes If Not A Folder
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)/$ /$1 [L,R=307]
+
+# Route Everything through Public
+RewriteRule ^(?!public)(.*)$ /public/$1
+
+# Route All but Files and Directories through index.php
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^public/(.*)$ /public/index.php?url=$1 [PT,L]

@@ -26,7 +26,7 @@ function unregisterGlobals() {
   }
 }
 
-$url = isset($_GET['url']) ? $_GET['url'] : 'home';
+$url = empty($_GET['url']) ? 'home' : $_GET['url'];
 
 function callRoute() {
   global $url;
@@ -60,7 +60,7 @@ function callRoute() {
 
 function return_content($view, $page_content) {
   $modified_times = [
-    filemtime(ROOT . DS . 'build' . DS . 'rev-manifest.json'),
+    filemtime(ROOT . DS . 'config' . DS . 'rev-manifest.json'),
     filemtime(ROOT . DS .'app' . DS . 'views' . DS . 'layout.php'),
     filemtime(ROOT . DS .'app' . DS . 'views' . DS . '_header.php'),
     filemtime(ROOT . DS .'app' . DS . 'views' . DS . '_footer.php'),

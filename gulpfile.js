@@ -70,10 +70,10 @@ gulp.task('vendor', function() {
 });
 
 gulp.task('clean', function() {
-  del('build/rev-manifest.json');
+  del('config/rev-manifest.json');
   del('public/assets');
   return file('rev-manifest.json', "{}")
-    .pipe(gulp.dest('build'));
+    .pipe(gulp.dest('config'));
 });
 
 gulp.task('build', ['sass', 'js', 'vendor', 'images']);
@@ -101,11 +101,11 @@ gulp.task('rev', ['uglify', 'minify', 'vendor', 'images'], function() {
     .pipe(rev())
     .pipe(gulp.dest('public/assets'))
     .pipe(rev.manifest())
-    .pipe(gulp.dest('build'));
+    .pipe(gulp.dest('config'));
 });
 
 gulp.task('deploy', ['rev'], function() {
-  return gulp.src(['build/rev-manifest.json', 'public/assets/**/*.{css,js}'])
+  return gulp.src(['config/rev-manifest.json', 'public/assets/**/*.{css,js}'])
     .pipe(revCollector())
     .pipe(gulp.dest('public/assets'));
 });

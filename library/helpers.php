@@ -1,6 +1,6 @@
 <?php
 
-$rev_string = file_get_contents(ROOT . DS . 'build' . DS . 'rev-manifest.json');
+$rev_string = file_get_contents(ROOT . DS . 'config' . DS . 'rev-manifest.json');
 $rev_array = json_decode($rev_string, true);
 
 function stylesheet($file) {
