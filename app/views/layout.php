@@ -35,7 +35,6 @@
   <?= stylesheet('application'); ?>
   <?= javascript('vendor/modernizr-2.8.3.min'); ?>
 </head>
-<?php flush(); ?>
 <body class="<?= $body_class ?>">
   <!--[if lt IE 9]>
     <style>.page-header { top: 2.5rem; } main { margin-top: 6.5rem; }</style>
