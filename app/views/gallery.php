@@ -1,6 +1,6 @@
 <?php
-  $pageTitle = "Gallery";
-  $body_class = "gallery-page";
+  $pageTitle = 'Gallery';
+  $body_class = 'gallery-page';
 ?>
 
 <!-- Start Page Content -->
@@ -25,7 +25,7 @@
     refreshing the page</a>.</p>
 
     <div id="gallery_images" class="gallery-images">
-      <div class='gallery-image-wrap columns column-4'>
+      <div class='gallery-image-wrap columns column-4' style="display: none;">
         <a href="#" class="gallery-image-link" target="_blank">
           <img src="" class="gallery-image">
         </a>
@@ -34,4 +34,4 @@
   </div>
 </section>
 
-<?php setoradd($javascript_content, "new Profile.PopulateGallery();"); ?>
+<?php setoradd($javascript_content, 'new Profile.PopulateGallery();'); ?>

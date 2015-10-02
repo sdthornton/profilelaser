@@ -35,6 +35,7 @@
   <?= stylesheet('application'); ?>
   <?= javascript('vendor/modernizr-2.8.3.min'); ?>
 </head>
+<?php flush(); ?>
 <body class="<?= $body_class ?>">
   <!--[if lt IE 9]>
     <style>.page-header { top: 2.5rem; } main { margin-top: 6.5rem; }</style>
@@ -47,11 +48,11 @@
     enabled on your browser.
   </div>
 
-  <?php include '_header.php'; ?>
+  <?php include(ROOT . DS . 'app' . DS . 'views' . DS . '_header.php') ?>
   <main>
     <?= $view_content; ?>
   </main>
-  <?php include '_footer.php'; ?>
+  <?php include ROOT . DS . 'app' . DS . 'views' . DS . '_footer.php'; ?>
 
   <?= javascript('application'); ?>
   <script><?= issetor($javascript_content); ?></script>

@@ -189,4 +189,4 @@ $body_class = 'home-page';
   </div>
 </section>
 
-<?php setoradd($javascript_content, "new Profile.Talk();"); ?>
+<?php setoradd($javascript_content, 'new Profile.Talk();'); ?>

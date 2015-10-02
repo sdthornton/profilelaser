@@ -1,7 +1,6 @@
 <?php
-$page_title = "Contact Us";
-$body_class = "contact-page";
-$contact_page = true;
+$page_title = 'Contact Us';
+$body_class = 'contact-page';
 ?>
 
 <section class="contact-us main-section">
@@ -111,4 +110,4 @@ $contact_page = true;
   </div>
 </section>
 
-<?php setoradd($javascript_content, "new Profile.GoogleMap(); new Profile.Contact();"); ?>
+<?php setoradd($javascript_content, 'new Profile.GoogleMap(); new Profile.Contact();'); ?>

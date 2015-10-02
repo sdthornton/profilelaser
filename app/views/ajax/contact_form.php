@@ -11,7 +11,7 @@ if (isset($_POST)) {
   $time = date('H:i:s');
 
   // Form data
-  $to = "sales@profilelaser.com";
+  $to = 'sales@profilelaser.com';
   $from = isset($_POST['email']) ? $_POST['email'] : '';
   $nospam = isset($_POST['name']) ? $_POST['name'] : '';
   $name = isset($_POST['real_name']) ? $_POST['real_name'] : '';
@@ -24,39 +24,39 @@ if (isset($_POST)) {
   // Validate form data
   if (!empty($nospam)) {
     $form_ok = false;
-    $errors[] = "Sorry robot, no spamming for you today! If you are not a robot, but are in fact human, and you are seeing this error, it means you have accidentally filled out our hidden anti spam field. Simply leave that blank and try to resubmit the form.";
+    $errors[] = 'Sorry robot, no spamming for you today! If you are not a robot, but are in fact human, and you are seeing this error, it means you have accidentally filled out our hidden anti spam field. Simply leave that blank and try to resubmit the form.';
   }
 
   if (empty($name)) {
     $form_ok = false;
-    $fields[] = "real_name";
-    $errors[] = "Please enter your name";
+    $fields[] = 'real_name';
+    $errors[] = 'Please enter your name';
   }
 
   if (empty($email)) {
     $form_ok = false;
-    $fields[] = "email";
-    $errors[] = "Please enter an email address";
+    $fields[] = 'email';
+    $errors[] = 'Please enter an email address';
   } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) { # Validate email address is valid
     $form_ok = false;
-    $fields[] = "email";
-    $errors[] = "Please use a valid email address";
+    $fields[] = 'email';
+    $errors[] = 'Please use a valid email address';
   }
 
   if (empty($message)) {
     $form_ok = false;
-    $fields[] = "message";
-    $errors[] = "Please enter a message";
+    $fields[] = 'message';
+    $errors[] = 'Please enter a message';
   } elseif(strlen($message) < 20) {
     $form_ok = false;
-    $fields[] = "message";
-    $errors[] = "Your message must be greater than 20 characters";
+    $fields[] = 'message';
+    $errors[] = 'Your message must be greater than 20 characters';
   }
 
   if (empty($location)) {
     $form_ok = false;
-    $fields[] = "location";
-    $errors[] = "Please enter your location (just the city and state)";
+    $fields[] = 'location';
+    $errors[] = 'Please enter your location (just the city and state)';
   }
 
   if (empty($company)) {
@@ -80,7 +80,7 @@ if (isset($_POST)) {
                   <strong>Location:</strong> {$location}</p>
                   <p><strong>Message: </strong> {$message}</p>";
 
-    mail($to, "New Message via Website", $emailbody, $headers);
+    mail($to, 'New Message via Website', $emailbody, $headers);
   }
 
   // What we need to return back to our form
@@ -103,5 +103,5 @@ if (isset($_POST)) {
 
   echo(json_encode($return_data));
 } else {
-  header("HTTP/1.0 404 Not Found", true, 404);
+  header('HTTP/1.0 404 Not Found', true, 404);
 }

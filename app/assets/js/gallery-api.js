@@ -7,6 +7,7 @@ module.exports = class PopulateGallery {
     this.loader = document.querySelector('.loader');
     this.failure = document.querySelector('#gallery_fail');
     this.markupTemplate = document.querySelector('.gallery-image-wrap').cloneNode(true);
+    this.markupTemplate.style.display = 'block';
     this.clearTemplateMarkup();
     this.populateGallery();
   }
