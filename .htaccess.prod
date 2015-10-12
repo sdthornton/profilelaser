@@ -330,9 +330,9 @@ Options -Indexes
 RewriteEngine On
 Options +FollowSymlinks
 
-# Uncomment below during site update
+# # Uncomment below during site update
 # RewriteCond %{REQUEST_URI} !^/public\/site-down\.html$
-# RewriteRule ^(.*)$ http://profilelaser.com/public/maintenance.html [R=307,L]
+# RewriteRule ^(.*)$ http://profilelaser.com/public/site-down.html [R=307,L]
 
 # Redirect Trailing Slashes If Not A Folder
 RewriteCond %{REQUEST_FILENAME} !-d
