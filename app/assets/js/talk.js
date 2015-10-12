@@ -44,7 +44,7 @@ module.exports = class Talk {
 
   prevTalk() {
     let currentActive = this.talkContainer.querySelector('.active-talk');
-    let prev = currentActive.prevElementSibling;
+    let prev = currentActive.previousElementSibling;
     if (prev == null) {
       prev = this.talkContainer.lastElementChild;
     }

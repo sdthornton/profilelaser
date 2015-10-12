@@ -33,7 +33,7 @@
 
   <?= stylesheet('vendor/normalize'); ?>
   <?= stylesheet('application'); ?>
-  <?= javascript('vendor/modernizr-2.8.3.min'); ?>
+  <?= javascript('vendor/modernizr'); ?>
 </head>
 <body class="<?= $body_class ?>">
   <!--[if lt IE 9]>

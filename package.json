@@ -2,6 +2,7 @@
   "devDependencies": {
     "babelify": "^6.3.0",
     "browserify": "^11.0.1",
+    "cloudinary": "^1.2.4",
     "del": "^2.0.1",
     "fs": "0.0.2",
     "google-maps-api": "^1.1.0",
@@ -19,8 +20,13 @@
     "imagesloaded": "^3.1.8",
     "konami-js": "0.0.2",
     "masonry-layout": "^3.3.2",
+    "path": "^0.12.7",
     "pathmodify": "^0.4.0",
+    "through2": "^2.0.0",
     "vinyl-buffer": "^1.0.0",
     "vinyl-source-stream": "^1.1.0"
+  },
+  "dependencies": {
+    "imagemin-webp": "^3.1.0"
   }
 }

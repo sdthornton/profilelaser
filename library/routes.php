@@ -79,6 +79,7 @@ function cacheControl(&$url, &$view) {
   if (file_exists($cached_view)) {
     $modified_times = [
       filemtime(ROOT . DS . 'config' . DS . 'rev-manifest.json'),
+      filemtime(ROOT . DS . 'config' . DS . 'cloudinary-manifest.json'),
       filemtime(ROOT . DS .'app' . DS . 'views' . DS . 'layout.php'),
       filemtime(ROOT . DS .'app' . DS . 'views' . DS . '_header.php'),
       filemtime(ROOT . DS .'app' . DS . 'views' . DS . '_footer.php'),

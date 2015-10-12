@@ -1,9 +1,13 @@
 .banner {
-  background: $white url('home-banner-2800.jpg') center center no-repeat;
+  background: $white center center no-repeat;
   background-size: auto 400px;
   height: 400px;
   position: relative;
   width: 100%;
+}
+
+.no-webp .banner {
+  background-image: url('home-banner-2800.jpg');
 
   @media only screen and (max-width: 2400px) {
     background-image: url('home-banner-2400.jpg');
@@ -27,6 +31,34 @@
 
   @media only screen and (max-width: 400px) {
     background-image: url('home-banner-400.jpg');
+  }
+}
+
+.webp .banner {
+  background-image: url('home-banner-2800.webp');
+
+  @media only screen and (max-width: 2400px) {
+    background-image: url('home-banner-2400.webp');
+  }
+
+  @media only screen and (max-width: 2000px) {
+    background-image: url('home-banner-2000.webp');
+  }
+
+  @media only screen and (max-width: 1600px) {
+    background-image: url('home-banner-1600.webp');
+  }
+
+  @media only screen and (max-width: 1200px) {
+    background-image: url('home-banner-1200.webp');
+  }
+
+  @media only screen and (max-width: 800px) {
+    background-image: url('home-banner-800.webp');
+  }
+
+  @media only screen and (max-width: 400px) {
+    background-image: url('home-banner-400.webp');
   }
 }
 
@@ -113,7 +145,7 @@
 
 .talk-bg {
   display: block;
-  background: url('laser_bg.jpg') center center no-repeat;
+  background: $blue center center no-repeat;
   background-size: contain;
   height: 100%;
   margin: 0 auto;
@@ -121,6 +153,14 @@
   position: absolute;
   top: 0;
   width: 100%;
+
+  .no-webp & {
+    background-image: url('laser_bg.jpg');
+  }
+
+  .webp & {
+    background-image: url('laser_bg.webp');
+  }
 }
 
 .talk-box-container {

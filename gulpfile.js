@@ -5,6 +5,8 @@ var pathmodify = require('pathmodify');
 var browserify = require('browserify');
 var babelify = require('babelify');
 var fs = require('fs');
+var through = require('through2');
+var path = require('path');
 var sourcemaps = require('gulp-sourcemaps');
 var rev = require('gulp-rev');
 var revCollector = require('gulp-rev-collector');
@@ -16,7 +18,9 @@ var minify = require('gulp-minify-css');
 var file = require('gulp-file');
 var changed = require('gulp-changed');
 var imagemin = require('gulp-imagemin');
+var cloudinary = require('cloudinary');
 var notify = require('gulp-notify');
+var imageminWebp = require('imagemin-webp');
 
 function handleErrors() {
   var args = Array.prototype.slice.call(arguments);
@@ -56,10 +60,19 @@ gulp.task('js', function() {
     .pipe(gulp.dest('public/assets'));
 });
 
-gulp.task('images', function() {
-  return gulp.src('app/assets/images/**/*.{jpg,png,bmp,jpeg,svg,gif}')
+gulp.task('base-images', function() {
+  return gulp.src('app/assets/images/**/*.{jpg,jpeg,png,svg,gif}')
     .pipe(changed('public/assets'))
-    .pipe(imagemin())
+    .pipe(imagemin({
+      progressive: true
+    }))
+    .on('error', handleErrors)
+    .pipe(gulp.dest('public/assets'));
+});
+
+gulp.task('images', ['base-images'], function() {
+  return gulp.src('public/assets/**/*.{jpg,jpeg}')
+    .pipe(imageminWebp({ quality: 80 })())
     .on('error', handleErrors)
     .pipe(gulp.dest('public/assets'));
 });
@@ -96,7 +109,99 @@ gulp.task('minify', ['sass'], function() {
   .pipe(gulp.dest('public/assets'));
 });
 
-gulp.task('rev', ['uglify', 'minify', 'vendor', 'images'], function() {
+cloudinary.config({
+  cloud_name: 'profile-laser',
+  api_key: '458595478511397',
+  api_secret: 'woP1YwFLpaSqcy_9ozwJths6Dx8'
+});
+
+function CloudinaryUpload(tags) {
+  this.tags = tags;
+  this.content = {};
+};
+
+CloudinaryUpload.prototype.deleteOldByTag = function() {
+  var self = this;
+  cloudinary.api.delete_resources_by_tag(self.tags);
+};
+
+CloudinaryUpload.prototype.uploader = function() {
+  var self = this;
+  var count = 0;
+
+  return through.obj(function(file, enc, cb) {
+    file.name = file.path.replace(file.base, '');
+    cloudinary.uploader.upload(file.path, function(data) {
+      count++
+      if (!!data.url) {
+        self.content[file.name] = data.url;
+      }
+      return cb();
+    },{ tags: self.tags });
+  }, function(cb) {
+    file('cloudinary-manifest.json', JSON.stringify(self.content), { src: true })
+      .pipe(gulp.dest('config'));
+    return cb();
+  });
+};
+
+function cloudinaryCollector() {
+  var manifest = {};
+  var mutables = [];
+
+  return through.obj(function(file, enc, cb) {
+    var ext = path.extname(file.path);
+    if (ext === '.json') {
+      var content = file.contents.toString();
+      manifest = JSON.parse(content);
+    } else {
+      mutables.push(file);
+    }
+    return cb();
+  }, function(cb) {
+    var changes = [];
+    for (var key in manifest) {
+      var pattern = key.replace(/[\-\[\]\{\}\(\)\*\+\?\.\^\$\|\/\\]/g, "\\$&");
+      changes.push({
+        regexp: new RegExp(pattern, 'g'),
+        patternLength: pattern.length,
+        replacement: manifest[key]
+      });
+    }
+
+    changes.sort(function(a, b) {
+      return b.patternLength - a.patternLength;
+    });
+
+    mutables.forEach(function(file) {
+      if (!file.isNull()) {
+        var src = file.contents.toString();
+        changes.forEach(function(r) {
+          src = src.replace(r.regexp, r.replacement);
+        });
+        file.contents = new Buffer(src);
+      }
+      this.push(file);
+    }, this);
+
+    return cb();
+  });
+}
+
+
+// Deploy tasks
+
+gulp.task('deploy-build', ['uglify', 'minify', 'vendor', 'images']);
+
+gulp.task('cloudinary-upload', ['deploy-build'], function() {
+  var cloudinaryUpload = new CloudinaryUpload(['profileLaser']);
+  cloudinaryUpload.deleteOldByTag();
+
+  return gulp.src('public/assets/*.{jpg,png,bmp,jpeg,svg,gif,webp}')
+    .pipe(cloudinaryUpload.uploader());
+});
+
+gulp.task('rev', ['deploy-build'], function() {
   return gulp.src(['public/assets/**/*'])
     .pipe(rev())
     .pipe(gulp.dest('public/assets'))
@@ -104,8 +209,18 @@ gulp.task('rev', ['uglify', 'minify', 'vendor', 'images'], function() {
     .pipe(gulp.dest('config'));
 });
 
-gulp.task('deploy', ['rev'], function() {
-  return gulp.src(['config/rev-manifest.json', 'public/assets/**/*.{css,js}'])
+gulp.task('deploy-cache', ['cloudinary-upload', 'rev']);
+
+gulp.task('cloudinary-collector', ['deploy-cache'], function() {
+  return gulp.src(['config/cloudinary-manifest.json', 'public/assets/*.{css,js}'])
+    .pipe(cloudinaryCollector())
+    .pipe(gulp.dest('public/assets'));
+});
+
+gulp.task('rev-collector', ['cloudinary-collector'], function() {
+  return gulp.src(['config/rev-manifest.json', 'public/assets/*.{css,js}'])
     .pipe(revCollector())
     .pipe(gulp.dest('public/assets'));
 });
+
+gulp.task('deploy', ['rev-collector']);

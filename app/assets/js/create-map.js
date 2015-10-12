@@ -56,13 +56,6 @@ module.exports = class LocationMap {
     this.map.setZoom(17);
 
     const infoWindow = new google.maps.InfoWindow();
-    const markerIcon = new google.maps.MarkerImage(
-      'assets/marker.png',
-      null,
-      null,
-      null,
-      new google.maps.Size(80,45)
-    );
 
     for (let location of this.locations) {
       let markerOption = {
@@ -70,7 +63,6 @@ module.exports = class LocationMap {
         map: this.map,
         title: location.title,
         animation: google.maps.Animation.DROP,
-        icon: markerIcon
       };
       let marker = new google.maps.Marker(markerOption);
       google.maps.event.addListener(marker, 'click', () => {
